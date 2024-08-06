@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciry8h8ne0j74"]
+
+[ext_resource type="SpriteFrames" uid="uid://cdqi0bvb8i46u" path="res://marios_spriteframe.tres" id="1_04nfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pe3g"]
+size = Vector2(20, 48)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("1_04nfr")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4pe3g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

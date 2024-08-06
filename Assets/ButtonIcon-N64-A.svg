@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) by Toomai Glittershine for SmashWiki -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink"
+		height="256" width="256"
+		viewBox="0 0 256 256">
+	<defs id="defs4">
+		<linearGradient id="linearGradient4285">
+			<stop id="stop4287" offset="0" style="stop-color:#3f7bcf;stop-opacity:1;" />
+			<stop id="stop4297" offset="0.85" style="stop-color:#3f7bcf;stop-opacity:1;" />
+			<stop id="stop4293" offset="0.95" style="stop-color:#3f7bcf;stop-opacity:0;" />
+			<stop id="stop4289" offset="1" style="stop-color:#3f7bcf;stop-opacity:0;" />
+		</linearGradient>
+		<linearGradient id="linearGradient4273">
+			 <stop id="stop4275" offset="0" style="stop-color:#004fbf;stop-opacity:1;" />
+			<stop id="stop4281" offset="0.95" style="stop-color:#004fbf;stop-opacity:1;" />
+			<stop id="stop4277" offset="1" style="stop-color:#00275f;stop-opacity:1;" />
+		</linearGradient>
+		<radialGradient id="radialGradient4279" xlink:href="#linearGradient4273" cx="128" cy="124" fx="128" fy="124" r="96" gradientUnits="userSpaceOnUse" />
+		<radialGradient id="radialGradient4291" xlink:href="#linearGradient4285" cx="128" cy="124" fx="128" fy="124" r="96" gradientUnits="userSpaceOnUse" />
+	</defs>
+	<metadata id="metadata7">
+		<rdf:RDF>
+			<cc:Work rdf:about="">
+				<dc:format>image/svg+xml</dc:format>
+				<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+				<dc:title/>
+			</cc:Work>
+		</rdf:RDF>
+	</metadata>
+	<g id="g3458">
+		<path id="circle4220" style="opacity:1;fill:#00275f;fill-opacity:1;stroke:none;"
+			d="m 32,128 0,16 c 0,53.01934 42.980656,96 96,96 53.01934,0 96,-42.98074 96,-96 l 0,-16 z"
+		/>
+		<circle id="path3336" cx="128" cy="128" r="96" style="opacity:1;fill:url(#radialGradient4279);fill-opacity:1;stroke:none;" />
+		<circle id="path4283" cx="128" cy="124" r="96" style="opacity:1;fill:url(#radialGradient4291);fill-opacity:1;stroke:none;" />
+		<path id="path4203" style="opacity:1;fill:#00275f;fill-opacity:1;fill-rule:evenodd;stroke:none;"
+			d="m 106.62891,113.87885 4.71679,24.79687 c 0.1591,0.83643 -0.77358,1.9707 -1.625,1.9707 l -6.93164,0 c -0.85142,0 -1.78404,-1.13426 -1.625,-1.9707 l 4.71485,-24.79687 c 0.0467,-0.2456 0.70328,-0.2456 0.75,0 z m 10.49023,-24.3125 c -0.19222,-1.0106 -1.34628,-1.97071 -2.375,-1.97071 l -16.978515,0 c -1.028715,0 -2.182783,0.96011 -2.375,1.97071 l -15.324219,80.56836 c -0.15909,0.83643 0.773577,1.9707 1.625,1.9707 l 11.113282,0 c 1.028715,0 2.182801,-0.9601 2.375,-1.9707 l 2.535156,-13.33008 c 0.192199,-1.0106 1.34628,-1.97071 2.374996,-1.97071 l 12.33008,0 c 1.02872,0 2.1828,0.96011 2.375,1.97071 l 2.53516,13.33008 c 0.1922,1.0106 1.34629,1.9707 2.375,1.9707 l 11.11328,0 c 0.85142,0 1.78409,-1.13427 1.625,-1.9707 z"
+		/>
+		<path id="path4266" style="opacity:1;fill:#003b8f;fill-opacity:1;fill-rule:evenodd;stroke:none;"
+			d="m 97.765625,91.59564 c -1.028715,0 -2.182783,0.96011 -2.375,1.97071 l -14.824219,77.93554 c 0.313886,0.35042 0.726287,0.60352 1.125,0.60352 l 11.113282,0 c 1.028715,0 2.1828,-0.9601 2.375,-1.9707 l 2.535156,-13.33008 c 0.192199,-1.0106 1.346284,-1.97071 2.374996,-1.97071 l 12.33008,0 c 1.02872,0 2.1828,0.96011 2.375,1.97071 l 2.53516,13.33008 c 0.1922,1.0106 1.34629,1.9707 2.375,1.9707 l 11.11328,0 c 0.39871,0 0.81111,-0.2531 1.125,-0.60352 L 117.11914,93.56635 c -0.19222,-1.0106 -1.34628,-1.97071 -2.375,-1.97071 z m 8.488285,22.09961 c 0.17582,0 0.35164,0.0608 0.375,0.1836 l 4.71679,24.79687 0,4 c 0,0.85143 -0.77358,1.9707 -1.625,1.9707 l -6.93164,0 c -0.85142,0 -1.625,-1.11927 -1.625,-1.9707 l 0,-4 4.71485,-24.79687 c 0.0233,-0.1228 0.19917,-0.1836 0.375,-0.1836 z"
+		/>
+	</g>
+</svg>

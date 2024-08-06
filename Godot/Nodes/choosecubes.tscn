@@ -1,0 +1,181 @@
+[gd_scene load_steps=20 format=3 uid="uid://dknv1afp0r4gi"]
+
+[ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="1_7c2vx"]
+[ext_resource type="Script" path="res://Godot/Nodes/choosecubes.gd" id="1_21207"]
+[ext_resource type="Texture2D" uid="uid://crwx4xooiap8l" path="res://Assets/SuperstarSagaUI/Block_BroAttack.png" id="2_hs6gf"]
+[ext_resource type="Texture2D" uid="uid://dwnf67gm85rlf" path="res://Assets/SuperstarSagaUI/Block_Flee.png" id="3_vkmjr"]
+[ext_resource type="Texture2D" uid="uid://73idqrblkhgh" path="res://Assets/SuperstarSagaUI/Block_Item.png" id="4_k5q3q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irwty"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_468l7"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.33
+uv1_scale = Vector3(2, 1.5, 1)
+uv1_offset = Vector3(0.175, 0.16, 0)
+texture_filter = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldwy2"]
+lightmap_size_hint = Vector2i(7, 10)
+material = SubResource("StandardMaterial3D_468l7")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g7afp"]
+load_path = "res://.godot/imported/Block_Jump.png-589e4b34c7b8d6388c334fa7ff16f2c5.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs74r"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+shading_mode = 0
+albedo_texture = SubResource("CompressedTexture2D_g7afp")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_bku0f"]
+material = SubResource("StandardMaterial3D_fs74r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crkbf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+shading_mode = 0
+albedo_texture = ExtResource("1_7c2vx")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_j2pp1"]
+material = SubResource("StandardMaterial3D_crkbf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wiyv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+shading_mode = 0
+albedo_texture = ExtResource("2_hs6gf")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_wwkk3"]
+material = SubResource("StandardMaterial3D_6wiyv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mym0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+shading_mode = 0
+albedo_texture = ExtResource("3_vkmjr")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_c5vuc"]
+material = SubResource("StandardMaterial3D_6mym0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0cgi"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+shading_mode = 0
+albedo_texture = ExtResource("4_k5q3q")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ew78n"]
+material = SubResource("StandardMaterial3D_g0cgi")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_21207")
+offset_speed = 200.0
+
+[node name="Jump" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jump"]
+shape = SubResource("BoxShape3D_irwty")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jump"]
+transparency = 1.0
+mesh = SubResource("BoxMesh_ldwy2")
+skeleton = NodePath("")
+
+[node name="Decal" type="MeshInstance3D" parent="Jump"]
+transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
+mesh = SubResource("QuadMesh_bku0f")
+skeleton = NodePath("")
+
+[node name="Hammer" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.1, -0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hammer"]
+shape = SubResource("BoxShape3D_irwty")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hammer"]
+transparency = 1.0
+mesh = SubResource("BoxMesh_ldwy2")
+skeleton = NodePath("")
+
+[node name="Decal" type="MeshInstance3D" parent="Hammer"]
+transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
+mesh = SubResource("QuadMesh_j2pp1")
+skeleton = NodePath("")
+
+[node name="Bros" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.1, -0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bros"]
+shape = SubResource("BoxShape3D_irwty")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bros"]
+transparency = 1.0
+mesh = SubResource("BoxMesh_ldwy2")
+skeleton = NodePath("")
+
+[node name="Decal" type="MeshInstance3D" parent="Bros"]
+transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
+mesh = SubResource("QuadMesh_wwkk3")
+skeleton = NodePath("")
+
+[node name="Flee" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Flee"]
+shape = SubResource("BoxShape3D_irwty")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Flee"]
+transparency = 1.0
+mesh = SubResource("BoxMesh_ldwy2")
+skeleton = NodePath("")
+
+[node name="Decal" type="MeshInstance3D" parent="Flee"]
+transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
+mesh = SubResource("QuadMesh_c5vuc")
+skeleton = NodePath("")
+
+[node name="Item" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item"]
+shape = SubResource("BoxShape3D_irwty")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item"]
+transparency = 1.0
+mesh = SubResource("BoxMesh_ldwy2")
+skeleton = NodePath("")
+
+[node name="Decal" type="MeshInstance3D" parent="Item"]
+transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
+mesh = SubResource("QuadMesh_ew78n")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.962611, 0.270886, 0, -0.270886, 0.962611, 0.177041, 0.425504, 1)
