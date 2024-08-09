@@ -11,10 +11,27 @@ config_version=5
 [application]
 
 config/name="Mario & Luigi"
+run/main_scene="res://node_3d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerStats="*res://Godot/Scripts/PlayerStats.gd"
-Transitions="*res://Godot/Nodes/Fade_Out.tscn"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
+[dotnet]
+
+project/assembly_name="Mario & Luigi"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/asus/Documents/Mario & Luigi/Example.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray()

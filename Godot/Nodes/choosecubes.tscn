@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dknv1afp0r4gi"]
+[gd_scene load_steps=24 format=3 uid="uid://dknv1afp0r4gi"]
 
 [ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="1_7c2vx"]
-[ext_resource type="Script" path="res://Godot/Nodes/choosecubes.gd" id="1_21207"]
+[ext_resource type="Script" path="res://Godot/Scripts/choosecubes.gd" id="1_21207"]
 [ext_resource type="Texture2D" uid="uid://crwx4xooiap8l" path="res://Assets/SuperstarSagaUI/Block_BroAttack.png" id="2_hs6gf"]
 [ext_resource type="Texture2D" uid="uid://dwnf67gm85rlf" path="res://Assets/SuperstarSagaUI/Block_Flee.png" id="3_vkmjr"]
 [ext_resource type="Texture2D" uid="uid://73idqrblkhgh" path="res://Assets/SuperstarSagaUI/Block_Item.png" id="4_k5q3q"]
@@ -94,6 +94,24 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_ew78n"]
 material = SubResource("StandardMaterial3D_g0cgi")
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8sj7c"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uh2mf"]
+material = SubResource("ORMMaterial3D_8sj7c")
+radius = 0.09
+height = 0.7
+radial_segments = 16
+rings = 4
+
+[sub_resource type="SystemFont" id="SystemFont_nq8sx"]
+font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_544gp"]
+size = Vector3(0.3, 0.1, 0.3)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_21207")
 offset_speed = 200.0
@@ -177,5 +195,24 @@ transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0,
 mesh = SubResource("QuadMesh_ew78n")
 skeleton = NodePath("")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.962611, 0.270886, 0, -0.270886, 0.962611, 0.177041, 0.425504, 1)
+[node name="SoftBody3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 0, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
+transparency = 0.2
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_uh2mf")
+skeleton = NodePath("Label3D")
+
+[node name="Label3D" type="Label3D" parent="SoftBody3D"]
+transform = Transform3D(1.063, 0, 0, 0, 0.85, 0, 0, 0, 0.557, 0, 0, 0)
+sorting_offset = 1.0
+billboard = 1
+text = "HAMMER"
+font = SubResource("SystemFont_nq8sx")
+font_size = 24
+uppercase = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape3D_544gp")

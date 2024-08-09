@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_lfbua"]
 [ext_resource type="SpriteFrames" uid="uid://cdqi0bvb8i46u" path="res://marios_spriteframe.tres" id="2_ideco"]
-[ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/3DS - Mario & Luigi Dream Team - Goomba.png" id="3_hwxte"]
+[ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/Goomba.png" id="3_hwxte"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pui0c"]
 size = Vector3(0.227219, 0.525024, 0.16893)

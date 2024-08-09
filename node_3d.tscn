@@ -1,14 +1,16 @@
-[gd_scene load_steps=86 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=91 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="SpriteFrames" uid="uid://cdqi0bvb8i46u" path="res://marios_spriteframe.tres" id="1_cl6qm"]
 [ext_resource type="Script" path="res://Godot/Scripts/game.gd" id="1_k43w1"]
 [ext_resource type="PackedScene" uid="uid://dpwo8kvrumeym" path="res://Godot/Nodes/HP.tscn" id="2_fjly1"]
-[ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/3DS - Mario & Luigi Dream Team - Goomba.png" id="2_sh7xv"]
+[ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/Goomba.png" id="2_sh7xv"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="4_wqmdj"]
-[ext_resource type="PackedScene" uid="uid://bdkf7j5i1dib5" path="res://Godot/Nodes/cube.tscn" id="5_71lik"]
 [ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui.tscn" id="5_k62ue"]
+[ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="7_obbi1"]
 [ext_resource type="PackedScene" uid="uid://dknv1afp0r4gi" path="res://Godot/Nodes/choosecubes.tscn" id="8_3g76q"]
+[ext_resource type="AudioStream" uid="uid://dxhjy2axnolw6" path="res://Assets/bossBattleTheme.mp3" id="10_svq8u"]
+[ext_resource type="PackedScene" uid="uid://jntlvgyqrksk" path="res://Godot/Nodes/item_list.tscn" id="12_6qohb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yn7o2"]
 sky_top_color = Color(0.581934, 0.770068, 0.960994, 1)
@@ -526,6 +528,85 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_e844i"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChooseCube:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChooseCube:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChooseCube:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_uncif"]
+resource_name = "hide_cubes"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChooseCube:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChooseCube:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChooseCube:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2y6h"]
+_data = {
+"RESET": SubResource("Animation_e844i"),
+"hide_cubes": SubResource("Animation_uncif")
+}
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k43w1")
 
@@ -561,26 +642,32 @@ mesh = SubResource("BoxMesh_3lqfh")
 [node name="Characters" type="Node3D" parent="."]
 
 [node name="Mario" type="CharacterBody3D" parent="Characters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075315, 0.33, 0)
+slide_on_ceiling = false
 script = ExtResource("1_ad80m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Mario"]
 shape = SubResource("BoxShape3D_pui0c")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Mario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0389518, -0.00876758, 0)
 cast_shadow = 2
-billboard = 2
+billboard = 1
 texture_filter = 0
 sprite_frames = ExtResource("1_cl6qm")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.669193
+animation = &"thinking"
+autoplay = "thinking"
+frame_progress = 0.030513
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Mario"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.1, 0)
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_s1rb8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Characters/Mario"]
+stream = ExtResource("7_obbi1")
+volume_db = -16.0
 
 [node name="Goomba" type="CharacterBody3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97219, 0.262433, 0)
@@ -602,10 +689,21 @@ layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_s1rb8")
 
-[node name="StaticBody3D2" parent="." instance=ExtResource("5_71lik")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-visible = false
+[node name="ChooseCube" parent="." instance=ExtResource("8_3g76q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+center_point = Vector2(-0.3, -1)
+pos_offset = 10.0
+offset_speed = 500.0
+metadata/_edit_pinned_properties_ = [&"pos_offset"]
 
-[node name="Node3D2" parent="." instance=ExtResource("8_3g76q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17039, 0)
-center_point = Vector2(-0.2, -1)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_svq8u")
+volume_db = -16.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h2y6h")
+}
+
+[node name="Control" parent="." instance=ExtResource("12_6qohb")]
