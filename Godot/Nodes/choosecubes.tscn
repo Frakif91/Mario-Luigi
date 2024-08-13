@@ -1,20 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://dknv1afp0r4gi"]
+[gd_scene load_steps=27 format=3 uid="uid://dknv1afp0r4gi"]
 
 [ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="1_7c2vx"]
 [ext_resource type="Script" path="res://Godot/Scripts/choosecubes.gd" id="1_21207"]
 [ext_resource type="Texture2D" uid="uid://crwx4xooiap8l" path="res://Assets/SuperstarSagaUI/Block_BroAttack.png" id="2_hs6gf"]
 [ext_resource type="Texture2D" uid="uid://dwnf67gm85rlf" path="res://Assets/SuperstarSagaUI/Block_Flee.png" id="3_vkmjr"]
 [ext_resource type="Texture2D" uid="uid://73idqrblkhgh" path="res://Assets/SuperstarSagaUI/Block_Item.png" id="4_k5q3q"]
+[ext_resource type="AudioStream" uid="uid://bnufmitt5nb57" path="res://Assets/SFX/WU_SE_OBJ_GET_COIN.wav" id="6_krgcr"]
+[ext_resource type="AudioStream" uid="uid://35djvibuuao4" path="res://Assets/SFX/WU_SE_SYS_CURSOR_1.wav" id="7_wussd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_irwty"]
 size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_468l7"]
+shading_mode = 2
 albedo_color = Color(1, 0, 0, 1)
 roughness = 0.33
 uv1_scale = Vector3(2, 1.5, 1)
 uv1_offset = Vector3(0.175, 0.16, 0)
-texture_filter = 4
+texture_repeat = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_ldwy2"]
 lightmap_size_hint = Vector2i(7, 10)
@@ -112,6 +115,8 @@ subpixel_positioning = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_544gp"]
 size = Vector3(0.3, 0.1, 0.3)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_p7wp4"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_21207")
 offset_speed = 200.0
@@ -188,7 +193,6 @@ shape = SubResource("BoxShape3D_irwty")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Item"]
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
-skeleton = NodePath("")
 
 [node name="Decal" type="MeshInstance3D" parent="Item"]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
@@ -197,7 +201,7 @@ skeleton = NodePath("")
 
 [node name="SoftBody3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 0, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
-transparency = 0.2
+transparency = 0.1
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_uh2mf")
 skeleton = NodePath("Label3D")
@@ -216,3 +220,17 @@ uppercase = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 shape = SubResource("BoxShape3D_544gp")
+
+[node name="Hitsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_krgcr")
+volume_db = -16.0
+
+[node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wussd")
+volume_db = -16.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.434871, 0)
+visible = false
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_p7wp4")

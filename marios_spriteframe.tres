@@ -1052,7 +1052,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"close-mouth",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1122,7 +1122,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hurt-behind",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1134,7 +1134,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ty4y6")
 }],
-"loop": false,
+"loop": true,
 "name": &"hurt-normal",
 "speed": 10.0
 }, {
@@ -1458,7 +1458,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump-succesful",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1549,9 +1549,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o551p")
 }],
-"loop": true,
+"loop": false,
 "name": &"luigi-revived",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1565,7 +1565,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"open-mouth",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1639,9 +1639,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7e6ll")
 }],
-"loop": true,
+"loop": false,
 "name": &"taking-out-item",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1825,7 +1825,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"thinking-tired",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -35,22 +35,38 @@ texture = ExtResource("1_7bt3t")
 centered = false
 offset = Vector2(0, -256)
 
-[node name="HP_10" type="Sprite2D" parent="UI_Health"]
-position = Vector2(152, 96)
+[node name="HP_10" type="TextureRect" parent="UI_Health"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 58.9997
+offset_right = 169.0
+offset_bottom = 106.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_r0ilm")
 
-[node name="HP_01" type="Sprite2D" parent="UI_Health"]
-position = Vector2(192, 96)
+[node name="HP_01" type="TextureRect" parent="UI_Health"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 57.9997
+offset_right = 205.0
+offset_bottom = 106.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_pdakh")
 
-[node name="BP_10" type="Sprite2D" parent="UI_Health"]
-position = Vector2(152, 176)
+[node name="BP_10" type="TextureRect" parent="UI_Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 140.0
+offset_right = 160.0
+offset_bottom = 187.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_r0ilm")
 
-[node name="BP_01" type="Sprite2D" parent="UI_Health"]
-position = Vector2(192, 176)
+[node name="BP_01" type="TextureRect" parent="UI_Health"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 139.0
+offset_right = 200.0
+offset_bottom = 187.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_gpjy4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=104 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="SpriteFrames" uid="uid://cdqi0bvb8i46u" path="res://marios_spriteframe.tres" id="1_cl6qm"]
@@ -9,8 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui.tscn" id="5_k62ue"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="7_obbi1"]
 [ext_resource type="PackedScene" uid="uid://dknv1afp0r4gi" path="res://Godot/Nodes/choosecubes.tscn" id="8_3g76q"]
+[ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="9_12403"]
 [ext_resource type="AudioStream" uid="uid://dxhjy2axnolw6" path="res://Assets/bossBattleTheme.mp3" id="10_svq8u"]
+[ext_resource type="Texture2D" uid="uid://bp61hwbohrbf2" path="res://Godot/Assets/mushroom.tres" id="11_4m4tf"]
 [ext_resource type="PackedScene" uid="uid://jntlvgyqrksk" path="res://Godot/Nodes/item_list.tscn" id="12_6qohb"]
+[ext_resource type="AudioStream" uid="uid://cyt320yrhvevo" path="res://Assets/SFX/WU_SE_SYS_INVALID_.wav" id="12_okllj"]
+[ext_resource type="AudioStream" uid="uid://dtvi1p5cm4pq1" path="res://Assets/SFX/Mario_&_Luigi_DT_Heal.ogg" id="13_0qoua"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yn7o2"]
 sky_top_color = Color(0.581934, 0.770068, 0.960994, 1)
@@ -50,11 +54,11 @@ size = Vector3(0.227219, 0.525024, 0.16893)
 diffuse_mode = 3
 backlight_enabled = true
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_s1rb8"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_hqrsi"]
 lightmap_size_hint = Vector2i(6, 5)
 material = SubResource("StandardMaterial3D_jrur5")
-top_radius = 0.1
-bottom_radius = 0.1
+top_radius = 0.12
+bottom_radius = 0.12
 height = 0.01
 radial_segments = 32
 
@@ -528,6 +532,275 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_s1rb8"]
+lightmap_size_hint = Vector2i(6, 5)
+material = SubResource("StandardMaterial3D_jrur5")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.01
+radial_segments = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ew34"]
+atlas = ExtResource("9_12403")
+region = Rect2(2, 3929, 33, 33)
+
+[sub_resource type="Animation" id="Animation_statb"]
+resource_name = "point"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.3, -0.25, 0, 0.25, 0, -0.2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.3, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_qxujt"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flurs"]
+_data = {
+"RESET": SubResource("Animation_qxujt"),
+"point": SubResource("Animation_statb")
+}
+
+[sub_resource type="Animation" id="Animation_08v1m"]
+resource_name = "Eat"
+length = 6.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.6, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"taking-out-item", &"showing-item", &"open-mouth", &"close-mouth", &"tummy"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../Characters/Mario/AnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MarioAnimations/Sprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.365, -0.25, 0, 0.25, 0, 0.365, 0, 0, 0, 0, 0.128337, 0, 0, 0, 0),
+"times": PackedFloat32Array(0.6, 1.6, 2.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%MarioAnimations/Sprite3D:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.48, -0.25, 0, 0.25, 0, 0.48, 0, 0, 0, 0, 1.7, -0.25, 0, 0.25, 0, 0.48, 0, 0, 0, 0),
+"times": PackedFloat32Array(0.6, 1.6, 2, 2.4)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HealSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("..:event_caller")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_n4v3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Characters/Mario/AnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MarioAnimations/Sprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.365, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%MarioAnimations/Sprite3D:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.48, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HealSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("..:event_caller")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_quky8"]
+_data = {
+"Eat": SubResource("Animation_08v1m"),
+"RESET": SubResource("Animation_n4v3o")
+}
+
 [sub_resource type="Animation" id="Animation_e844i"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -563,6 +836,51 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ItemList:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ItemList:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ItemList:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:event_caller")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_uncif"]
 resource_name = "hide_cubes"
@@ -586,7 +904,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, 0, 0, 0.5, 0, 3, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4)
 }
 tracks/2/type = "bezier"
@@ -600,11 +918,61 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4)
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:event_caller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_bc8ic"]
+resource_name = "show_itemlist"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemList:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.25, 0, 0, -0.5, 0, 0.5, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemList:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ItemList:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h2y6h"]
 _data = {
 "RESET": SubResource("Animation_e844i"),
-"hide_cubes": SubResource("Animation_uncif")
+"hide_cubes": SubResource("Animation_uncif"),
+"show_itemlist": SubResource("Animation_bc8ic")
 }
 
 [node name="Node3D" type="Node3D"]
@@ -615,7 +983,8 @@ offset_top = 120.0
 offset_bottom = 120.0
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0.984995, 1.24417, 2.02576)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 1, 1.4, 2)
+doppler_tracking = 2
 current = true
 fov = 60.0
 
@@ -655,15 +1024,14 @@ cast_shadow = 2
 billboard = 1
 texture_filter = 0
 sprite_frames = ExtResource("1_cl6qm")
-animation = &"thinking"
+animation = &"idle"
 autoplay = "thinking"
-frame_progress = 0.030513
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Mario"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.1, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.01, -0.1, 0)
 layers = 2
 transparency = 1.0
-mesh = SubResource("CylinderMesh_s1rb8")
+mesh = SubResource("CylinderMesh_hqrsi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Characters/Mario"]
 stream = ExtResource("7_obbi1")
@@ -677,17 +1045,43 @@ shape = SubResource("BoxShape3D_pui0c")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Goomba"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0582228, 0)
+cast_shadow = 0
 billboard = 1
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_iv0un")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Characters/Goomba"]
+[node name="FakeShadder" type="AnimatedSprite3D" parent="Characters/Goomba"]
+transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, -0.0582228, 0)
+visible = false
+cast_shadow = 0
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+texture_filter = 4
+sprite_frames = SubResource("SpriteFrames_iv0un")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Shadow" type="MeshInstance3D" parent="Characters/Goomba"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.0952805, 0)
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_s1rb8")
+
+[node name="Pointer" type="Node3D" parent="Characters/Goomba"]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Characters/Goomba/Pointer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.3, 0)
+billboard = 1
+texture_filter = 2
+texture = SubResource("AtlasTexture_0ew34")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Characters/Goomba/Pointer"]
+libraries = {
+"": SubResource("AnimationLibrary_flurs")
+}
 
 [node name="ChooseCube" parent="." instance=ExtResource("8_3g76q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -701,9 +1095,41 @@ stream = ExtResource("10_svq8u")
 volume_db = -16.0
 autoplay = true
 
+[node name="MarioAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../AnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_quky8")
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="MarioAnimations"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.365, 0.48, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+texture = ExtResource("11_4m4tf")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_h2y6h")
 }
 
-[node name="Control" parent="." instance=ExtResource("12_6qohb")]
+[node name="ItemList" parent="." instance=ExtResource("12_6qohb")]
+offset_left = 1152.0
+offset_bottom = -648.0
+
+[node name="HealSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_0qoua")
+
+[node name="InvalidSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_okllj")
+volume_db = -4.0
+
+[node name="BackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_okllj")
+volume_db = -4.0
+
+[connection signal="animation_changed" from="Characters/Mario/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_changed"]
+[connection signal="animation_changed" from="MarioAnimations" to="." method="_on_mario_animations_animation_changed"]
+
+[editable path="ChooseCube"]

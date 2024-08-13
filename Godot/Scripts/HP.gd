@@ -1,8 +1,7 @@
-@tool
 extends Control
 
-@export var hp = 24
-@export var bp = 18
+@export var hp : int = 24
+@export var bp : int = 18
 @export var low_health_effect = true
 @export var low_hp_color = Color(1,0,0.8)
 @export var low_bp_color = Color.WHITE
@@ -28,7 +27,22 @@ func _ready():
 		load(og_link + "8.png"),
 		load(og_link + "9.png")]
 
+var change_speed = 10
+var temp_hp : float = hp
+var temp_bp : float = bp
+
 func _process(_delta):
+	if not Engine.is_editor_hint(): #DON'T RUN THE SCRIPT INSIDE THE EDITOR
+
+		#Smooth HP increaser/decreaser.
+		temp_hp = move_toward(temp_hp,Globals.MARIO.hp,_delta*change_speed)
+		max_hp = Globals.MARIO.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
+		temp_bp = move_toward(temp_bp,Globals.MARIO.bp,_delta*change_speed)
+		max_bp = Globals.MARIO.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
+
+		hp = int(temp_hp)
+		bp = int(temp_bp)
+
 	var image_hp_10
 	var image_hp_01
 	#var image_bp_10

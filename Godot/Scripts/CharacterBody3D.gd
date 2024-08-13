@@ -7,6 +7,9 @@ const GRAVITY_MULT = 1.2
 
 const animations = ["jump-up-right","idle"]
 
+@onready var animati = $AnimatedSprite3D
+@onready var animation_player = $""
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -15,14 +18,18 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity*GRAVITY_MULT * delta
-		$AnimatedSprite3D.play(&"jump-up-right")
-	else:
-		$AnimatedSprite3D.play(&"thinking")
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed(&"Jump") and is_on_floor() and Globals.MARIO.can_jump:
 		velocity.y = JUMP_VELOCITY
 		$"AudioStreamPlayer".play()
+	if not Globals.MARIO.mario_overrite_animation:
+		if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING: # and is_on_floor():
+			$AnimatedSprite3D.play(&"thinking")
+		else:
+			$AnimatedSprite3D.play(&"idle")
+		if not is_on_floor():
+			$AnimatedSprite3D.play(&"jump-up-right")
 
 
 	# Get the input direction and handle the movement/deceleration.

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwiad5hmtb41q"
-path="res://.godot/imported/Battle UI Paper Mario.png-9e1342b34ab465457aa5a2e6fcedbda9.ctex"
+uid="uid://bdq1sb7313vmh"
+path="res://.godot/imported/rounded-star-flat-style.png-3552d2b0df436a86c32a38ae480da54e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Battle UI Paper Mario.png"
-dest_files=["res://.godot/imported/Battle UI Paper Mario.png-9e1342b34ab465457aa5a2e6fcedbda9.ctex"]
+source_file="res://Assets/rounded-star-flat-style.png"
+dest_files=["res://.godot/imported/rounded-star-flat-style.png-3552d2b0df436a86c32a38ae480da54e.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

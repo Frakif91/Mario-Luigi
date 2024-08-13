@@ -1,6 +1,6 @@
 extends Control
 
-
+var trans_ready_time = Globals.trans_ready_time
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,5 +9,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _input(_event):
+	if Input.is_action_just_pressed(&"TestButton1"):
+		$AnimationPlayer.play(&"new_animation")
