@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://usdppwtddwra"]
+
+[ext_resource type="Texture2D" uid="uid://dd6cfaloo28no" path="res://Assets/Prototypes/PNG/Dark/texture_08.png" id="1_86ts5"]
+[ext_resource type="Texture2D" uid="uid://lm00tpqaaorf" path="res://Assets/logo.png" id="2_osf7l"]
+[ext_resource type="Texture2D" uid="uid://bsad5u1588gs6" path="res://Assets/ButtonIcon-N64-A.svg" id="3_w4e0p"]
+[ext_resource type="Texture2D" uid="uid://b2uo3imrjq2co" path="res://Assets/ButtonIcon-N64-B.svg" id="4_7culh"]
+
+[sub_resource type="GDScript" id="GDScript_h2xok"]
+resource_name = "tp_to_scene"
+script/source = "extends Control
+
+var battle_scene = preload(\"res://Godot/Scene/battle_scene.tscn\")
+var overworld_scene = preload(\"res://Godot/Scene/overworld_test.tscn\")
+
+func change_scene(scene : PackedScene):
+	#V - this method allow to call \"get_tree().change_scene_to_packed(scene)\" but at the end of the game frame : for safe execution.
+	get_tree().call_deferred(\"change_scene_to_packed\",scene)
+
+func _on_button_battle_pressed():
+	for child in $\"Control\".get_children():
+		child.queue_free()
+	var new_loading_lbl = Label.new()
+	var new_loading_pg = ProgressBar.new()
+	var fake_load_info = Label.new()
+	new_loading_pg.max_value = 100
+	new_loading_pg.min_value = 0
+	new_loading_pg.value = 0
+	new_loading_pg.custom_minimum_size = Vector2(300,30)
+	new_loading_pg.theme = load(\"res://Godot/Scene/progress_bar_theme.tres\")
+	new_loading_lbl.text = \"Loading...\"
+	fake_load_info.text = \"Fake loading screen btw\"
+	fake_load_info.label_settings = load(\"res://Godot/Scene/fake_loading_text_settings.tres\")
+	$Control.add_child(new_loading_lbl)
+	$Control.add_child(new_loading_pg)
+	$Control.add_child(fake_load_info)
+	for i in range(100):
+		new_loading_pg.value = i
+		await Globals.wait(randf_range(0.15,0.01))
+	await Globals.wait(0.1)
+	change_scene(battle_scene)
+
+func _on_button_overworld_pressed():
+	change_scene(overworld_scene)
+"
+
+[sub_resource type="GDScript" id="GDScript_n6vjf"]
+resource_name = "defiling"
+script/source = "extends TextureRect
+
+var og_pos : Vector2 = Vector2(-1152,-648)
+var target_pos : Vector2 = Vector2(0,0)
+var progression : float = 0
+var seconds : float = 20
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	go_to(og_pos,target_pos,5)
+
+func go_to(from : Vector2, to : Vector2, seconds : float):
+	target_pos = to
+	og_pos = from
+	progression = 0.0
+	seconds = seconds
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	progression = clamp(progression + (delta/seconds),0,1)
+	
+	if progression >= 1:
+		progression = 0
+	
+	position = lerp(og_pos,target_pos,progression)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_h2xok")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_repeat = 2
+layout_mode = 2
+offset_right = 2880.0
+offset_bottom = 1620.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_86ts5")
+expand_mode = 1
+stretch_mode = 1
+script = SubResource("GDScript_n6vjf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 306.519
+grow_horizontal = 2
+texture = ExtResource("2_osf7l")
+expand_mode = 5
+
+[node name="Control" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_right = 75.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 2
+text = "Battle Scene"
+icon = ExtResource("3_w4e0p")
+expand_icon = true
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 2
+text = "Overworld Scene"
+icon = ExtResource("4_7culh")
+expand_icon = true
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_battle_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_overworld_pressed"]

@@ -17,8 +17,11 @@ signal animation_called_event
 @onready var label_change_effect_timer = Timer.new()
 var transition_direction = 1
 var transition_time = 0.07
+var camera_position = {OG = Vector3(1.,1.4,2.),T_ENEMY = Vector3(1.4,1.4,2.2)}
+var cur_cam_pos
 
 func _ready():
+	Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
 	Globals.eat_inventory_item.connect(_mario_play_eat_animation)
 	choosecube.hit_block.connect(Hitting_Block)
 	label_change_effect_timer.autostart = false
@@ -41,6 +44,8 @@ func _input(_event):
 			anima.play_backwards(&"show_itemlist")
 			Globals.is_itemlist_opened = false
 			await anima.animation_finished
+		Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
+		$"Characters/Goomba/Pointer".visible = false
 		choosecube.is_in_choosing_position = true
 		Globals.MARIO.can_jump = true
 		anima.play_backwards(&"hide_cubes")
@@ -72,11 +77,13 @@ func changed_block(_curent_index: int, direction : int):
 func Hitting_Block():
 	#print_debug("AAAAAAAAAAAAAAAAAAAA")
 	if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING:
+		Globals.cur_action = choosecube.selected_block_index
 		match (choosecube.selected_block_name):
 			"JUMP":
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_SELECTING
 				choosecube.is_in_choosing_position = false
 				anima.play(&"hide_cubes")
+				$"Characters/Goomba/Pointer".visible = true
 
 			"ITEM":
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_MENU

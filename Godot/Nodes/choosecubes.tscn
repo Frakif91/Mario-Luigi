@@ -200,7 +200,7 @@ mesh = SubResource("QuadMesh_ew78n")
 skeleton = NodePath("")
 
 [node name="SoftBody3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 0, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
+transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 9.3097e-18, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
 transparency = 0.1
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_uh2mf")

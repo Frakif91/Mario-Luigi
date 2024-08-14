@@ -6,6 +6,9 @@ signal finish_eating
 signal heal_mario(hp : int)
 signal hurt_mario(damage : int)
 
+#From Chooseblocks -> ["HAMMER","BROS.","FLEE","ITEM","JUMP"]
+enum ACTIONS_BLOCKS {NONE = -1,HAMMER,JUMP,ITEM,FLEE,BROS}
+var cur_action
 var RPG = RPG_System.new()
 var MARIO = RPG.Mario.new()
 var trans_ready_time = 1

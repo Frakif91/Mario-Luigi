@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=258 format=3 uid="uid://cdqi0bvb8i46u"]
+[gd_resource type="SpriteFrames" load_steps=263 format=3 uid="uid://cdqi0bvb8i46u"]
 
-[ext_resource type="Texture2D" uid="uid://bodm4h3g2h0uv" path="res://Assets/Mario Battle 1o2.png" id="1_rwgk7"]
+[ext_resource type="Texture2D" uid="uid://bodm4h3g2h0uv" path="res://Assets/Sprites/Mario Battle 1o2.png" id="1_rwgk7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6i4lj"]
 atlas = ExtResource("1_rwgk7")
@@ -954,6 +954,26 @@ region = Rect2(504, 744, 84, 62)
 atlas = ExtResource("1_rwgk7")
 region = Rect2(588, 744, 84, 62)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_glvmx"]
+atlas = ExtResource("1_rwgk7")
+region = Rect2(0, 5038, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lr4d"]
+atlas = ExtResource("1_rwgk7")
+region = Rect2(74, 5038, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsqpk"]
+atlas = ExtResource("1_rwgk7")
+region = Rect2(148, 5038, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03dyd"]
+atlas = ExtResource("1_rwgk7")
+region = Rect2(222, 5038, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmkdx"]
+atlas = ExtResource("1_rwgk7")
+region = Rect2(296, 5038, 74, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3y8p"]
 atlas = ExtResource("1_rwgk7")
 region = Rect2(0, 5616, 74, 64)
@@ -1826,6 +1846,26 @@ animations = [{
 "loop": true,
 "name": &"thinking-tired",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glvmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lr4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsqpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03dyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmkdx")
+}],
+"loop": false,
+"name": &"throwing_item_himself",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,

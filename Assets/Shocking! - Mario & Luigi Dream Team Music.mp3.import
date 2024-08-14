@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dji7foy04su3r"
+path="res://.godot/imported/Shocking! - Mario & Luigi Dream Team Music.mp3-74390605a5f452cf7a1a907a992267af.mp3str"
+
+[deps]
+
+source_file="res://Assets/Shocking! - Mario & Luigi Dream Team Music.mp3"
+dest_files=["res://.godot/imported/Shocking! - Mario & Luigi Dream Team Music.mp3-74390605a5f452cf7a1a907a992267af.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c058jus0csarr"]
+
+[sub_resource type="SystemFont" id="SystemFont_xxddq"]
+font_names = PackedStringArray("Arial")
+
+[resource]
+font = SubResource("SystemFont_xxddq")
+font_size = 10
+font_color = Color(0.572988, 0.572988, 0.572988, 1)

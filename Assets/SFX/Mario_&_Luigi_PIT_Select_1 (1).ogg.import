@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cie4oqto2ab4a"
+path="res://.godot/imported/Mario_&_Luigi_PIT_Select_1 (1).ogg-3028be253b0e728d2121e5d603f08c73.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SFX/Mario_&_Luigi_PIT_Select_1 (1).ogg"
+dest_files=["res://.godot/imported/Mario_&_Luigi_PIT_Select_1 (1).ogg-3028be253b0e728d2121e5d603f08c73.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

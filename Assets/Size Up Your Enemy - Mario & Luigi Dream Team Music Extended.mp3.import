@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bu4jnkvdioipv"
+path="res://.godot/imported/Size Up Your Enemy - Mario & Luigi Dream Team Music Extended.mp3-f6245e0cd7e655ca0c1070f4a30e36e0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Size Up Your Enemy - Mario & Luigi Dream Team Music Extended.mp3"
+dest_files=["res://.godot/imported/Size Up Your Enemy - Mario & Luigi Dream Team Music Extended.mp3-f6245e0cd7e655ca0c1070f4a30e36e0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
