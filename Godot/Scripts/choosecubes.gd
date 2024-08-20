@@ -75,6 +75,7 @@ func _process(_delta):
 			if INT_EEE[get_choose_cube()] == i:
 				array_selected = INT_EEE[get_choose_cube()]
 				selected_block_name = get_choose_cube_name()
+				$"Area3D".global_position = Vector3(vec.x,position.y,vec.y)
 				child.global_position = Vector3(vec.x,position.y + sin(deg_to_rad(int(choosen_floating_one_delta*360) % 360))*0.02,vec.y)
 			else:
 				child.global_position = Vector3(vec.x,position.y,vec.y)

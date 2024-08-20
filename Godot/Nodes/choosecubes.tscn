@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dknv1afp0r4gi"]
+[gd_scene load_steps=27 format=3 uid="uid://p4r5g73ddt6g"]
 
 [ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="1_7c2vx"]
 [ext_resource type="Script" path="res://Godot/Scripts/choosecubes.gd" id="1_21207"]

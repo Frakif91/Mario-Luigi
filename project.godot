@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Mario & Luigi"
+config/name="Mario & Luigi : Hotel Mania"
+config/version="1.0.0"
 run/main_scene="res://Godot/Scene/title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://Assets/load.png"
+config/icon="res://n_icon.png"
 
 [autoload]
 
@@ -35,6 +37,19 @@ movie_writer/movie_file="C:/Users/asus/Documents/Mario & Luigi/Example.avi"
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "purple",
+"res://Assets/3D/": "red",
+"res://Assets/Music/": "blue",
+"res://Assets/SFX/": "blue",
+"res://Godot/Assets/": "red",
+"res://Godot/Nodes/": "blue",
+"res://Godot/Scene/": "green",
+"res://Godot/Scripts/": "yellow"
+}
 
 [input]
 
@@ -84,5 +99,40 @@ MenuRight={
 Test2={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":50,"key_label":0,"unicode":233,"echo":false,"script":null)
+]
+}
+Test3={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":51,"key_label":0,"unicode":34,"echo":false,"script":null)
+]
+}
+Test4={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":52,"key_label":0,"unicode":39,"echo":false,"script":null)
+]
+}
+Test5={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":53,"key_label":0,"unicode":40,"echo":false,"script":null)
+]
+}
+Test6={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":54,"key_label":0,"unicode":45,"echo":false,"script":null)
+]
+}
+Test7={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":55,"key_label":0,"unicode":232,"echo":false,"script":null)
+]
+}
+Test8={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":56,"key_label":0,"unicode":95,"echo":false,"script":null)
+]
+}
+Test9={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":57,"key_label":0,"unicode":231,"echo":false,"script":null)
 ]
 }

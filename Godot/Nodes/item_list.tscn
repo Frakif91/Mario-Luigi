@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jntlvgyqrksk"]
+[gd_scene load_steps=14 format=3 uid="uid://jntlvgyqrksk"]
 
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="1_ddoss"]
 [ext_resource type="Script" path="res://Godot/Scripts/item_list.gd" id="1_hiyf0"]
@@ -22,6 +22,20 @@ region = Rect2(2, 5552, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pjvg"]
 atlas = ExtResource("4_hrolo")
 region = Rect2(38.1, 2, 24, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38fhq"]
+atlas = ExtResource("5_5k8gh")
+region = Rect2(3, 5389, 253, 30)
+
+[sub_resource type="SystemFont" id="SystemFont_ytyks"]
+font_names = PackedStringArray("Rubik")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjvpy"]
+font = SubResource("SystemFont_ytyks")
+font_size = 21
+outline_size = 10
+outline_color = Color(0, 0.211601, 0.394675, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -112,6 +126,41 @@ offset_top = 21.0
 offset_right = 38.0001
 offset_bottom = 61.0
 texture = SubResource("AtlasTexture_2pjvg")
+
+[node name="TextureRect" type="TextureRect" parent="BagageBackgroundTexture"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.00852
+anchor_right = 1.0
+anchor_bottom = 1.18807
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_38fhq")
+expand_mode = 5
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="BagageBackgroundTexture/TextureRect"]
+clip_children = 1
+clip_contents = true
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 12.0
+offset_right = 512.0
+offset_bottom = 51.0
+mouse_filter = 2
+
+[node name="Description" type="Label" parent="BagageBackgroundTexture/TextureRect/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 5.0
+offset_right = 372.0
+offset_bottom = 34.0
+text = " Put cursor on item to see description"
+label_settings = SubResource("LabelSettings_tjvpy")
+
+[node name="Marker2D" type="Marker2D" parent="BagageBackgroundTexture/TextureRect"]
+position = Vector2(64.0001, 20)
 
 [node name="Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kwwi0")

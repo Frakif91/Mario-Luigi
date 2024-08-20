@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpwo8kvrumeym"]
+[gd_scene load_steps=14 format=3 uid="uid://dpwo8kvrumeym"]
 
 [ext_resource type="Texture2D" uid="uid://bttlcp3mi0wwr" path="res://Assets/Healths.png" id="1_7bt3t"]
 [ext_resource type="Script" path="res://Godot/Scripts/HP.gd" id="1_amk17"]
 [ext_resource type="Texture2D" uid="uid://56b044xq0dta" path="res://Assets/Numbers/0.png" id="3_gpjy4"]
+[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="3_jgbnl"]
 [ext_resource type="Texture2D" uid="uid://c8qga18gqccj4" path="res://Assets/Numbers/1.png" id="4_pdakh"]
 [ext_resource type="Texture2D" uid="uid://bipvm1mjnlti" path="res://Assets/Numbers/2.png" id="4_r0ilm"]
+[ext_resource type="Texture2D" uid="uid://j8mocvjm3wcr" path="res://Assets/Numbers/3.png" id="7_ccty3"]
+[ext_resource type="Texture2D" uid="uid://dq5gf0ogid1y6" path="res://Assets/Numbers/4.png" id="8_y8yt6"]
+[ext_resource type="Texture2D" uid="uid://bwuvdft2fxsqm" path="res://Assets/Numbers/5.png" id="9_qc7rf"]
+[ext_resource type="Texture2D" uid="uid://cqx7b0c4e6ll2" path="res://Assets/Numbers/6.png" id="10_dmgt7"]
+[ext_resource type="Texture2D" uid="uid://cirhg5cvphb8q" path="res://Assets/Numbers/7.png" id="11_ig0gf"]
+[ext_resource type="Texture2D" uid="uid://cfh2cb7ddi3rm" path="res://Assets/Numbers/8.png" id="12_yf6sq"]
+[ext_resource type="Texture2D" uid="uid://ode65m5hqba2" path="res://Assets/Numbers/9.png" id="13_hnp23"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -35,38 +43,40 @@ texture = ExtResource("1_7bt3t")
 centered = false
 offset = Vector2(0, -256)
 
-[node name="HP_10" type="TextureRect" parent="UI_Health"]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 58.9997
-offset_right = 169.0
-offset_bottom = 106.0
+[node name="HP" type="Control" parent="UI_Health"]
+layout_mode = 1
+anchor_left = 0.332031
+anchor_top = 0.222657
+anchor_right = 0.871093
+anchor_bottom = 0.486329
+offset_right = -46.0
+offset_bottom = -22.5
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_r0ilm")
+script = ExtResource("3_jgbnl")
+Numbers = Array[Texture2D]([ExtResource("3_gpjy4"), ExtResource("4_pdakh"), ExtResource("4_r0ilm"), ExtResource("7_ccty3"), ExtResource("8_y8yt6"), ExtResource("9_qc7rf"), ExtResource("10_dmgt7"), ExtResource("11_ig0gf"), ExtResource("12_yf6sq"), ExtResource("13_hnp23")])
+do_hide_zero = true
+spacing = -8
+value = 357
+images_slot = Array[Texture2D]([ExtResource("11_ig0gf"), ExtResource("9_qc7rf"), ExtResource("7_ccty3")])
+metadata/_edit_use_anchors_ = true
 
-[node name="HP_01" type="TextureRect" parent="UI_Health"]
-layout_mode = 0
-offset_left = 173.0
-offset_top = 57.9997
-offset_right = 205.0
-offset_bottom = 106.0
+[node name="BP" type="Control" parent="UI_Health"]
+layout_mode = 1
+anchor_left = 0.3125
+anchor_top = 0.539063
+anchor_right = 0.851562
+anchor_bottom = 0.802735
+offset_right = -46.0
+offset_bottom = -22.5
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_pdakh")
-
-[node name="BP_10" type="TextureRect" parent="UI_Health"]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 140.0
-offset_right = 160.0
-offset_bottom = 187.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_r0ilm")
-
-[node name="BP_01" type="TextureRect" parent="UI_Health"]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 139.0
-offset_right = 200.0
-offset_bottom = 187.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_gpjy4")
+script = ExtResource("3_jgbnl")
+Numbers = Array[Texture2D]([ExtResource("3_gpjy4"), ExtResource("4_pdakh"), ExtResource("4_r0ilm"), ExtResource("7_ccty3"), ExtResource("8_y8yt6"), ExtResource("9_qc7rf"), ExtResource("10_dmgt7"), ExtResource("11_ig0gf"), ExtResource("12_yf6sq"), ExtResource("13_hnp23")])
+do_hide_zero = true
+spacing = -8
+value = -1418
+images_slot = Array[Texture2D]([ExtResource("4_r0ilm"), ExtResource("13_hnp23"), ExtResource("10_dmgt7")])
+metadata/_edit_use_anchors_ = true

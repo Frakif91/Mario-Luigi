@@ -1,0 +1,170 @@
+[gd_scene load_steps=22 format=3 uid="uid://c2lgl0il2m1nw"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Damage_Anouncer.gd" id="1_5pjkn"]
+[ext_resource type="Texture2D" uid="uid://dwiad5hmtb41q" path="res://Assets/Battle UI Paper Mario.png" id="2_gsxcb"]
+[ext_resource type="Script" path="res://Godot/Scripts/DamageAnouncerTexture.gd" id="3_fr5vs"]
+[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="4_ock2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evgwo"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 922, 40, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3ey2"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 958, 40, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k5gf"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 994, 40, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibj38"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 1030, 40, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vabfl"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 2, 24, 24)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7khk"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 30, 24, 24)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk4hg"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 58, 24, 24)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21m6r"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 86, 24, 24)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dmk7"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 114, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpib7"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 142, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oi8j"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 170, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbxj4"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 198, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoiai"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 226, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7rib"]
+atlas = ExtResource("2_gsxcb")
+region = Rect2(2, 254, 24, 24)
+
+[sub_resource type="Animation" id="Animation_lk5hk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8t3fk"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.001, 0.001), Vector2(2, 2), Vector2(2, 2), Vector2(0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86m57"]
+_data = {
+"RESET": SubResource("Animation_lk5hk"),
+"new_animation": SubResource("Animation_8t3fk")
+}
+
+[node name="Control" type="Control"]
+texture_filter = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("1_5pjkn")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_evgwo")
+script = ExtResource("3_fr5vs")
+textures = Array[Texture2D]([SubResource("AtlasTexture_evgwo"), SubResource("AtlasTexture_v3ey2"), SubResource("AtlasTexture_6k5gf"), SubResource("AtlasTexture_ibj38")])
+
+[node name="Damage" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 8.0
+offset_right = 41.0
+offset_bottom = 30.0
+script = ExtResource("4_ock2l")
+Numbers = Array[Texture2D]([SubResource("AtlasTexture_vabfl"), SubResource("AtlasTexture_l7khk"), SubResource("AtlasTexture_qk4hg"), SubResource("AtlasTexture_21m6r"), SubResource("AtlasTexture_5dmk7"), SubResource("AtlasTexture_kpib7"), SubResource("AtlasTexture_2oi8j"), SubResource("AtlasTexture_kbxj4"), SubResource("AtlasTexture_eoiai"), SubResource("AtlasTexture_h7rib")])
+do_hide_zero = true
+alignement = 0
+spacing = -8
+value = 35
+images_slot = Array[Texture2D]([SubResource("AtlasTexture_kpib7"), SubResource("AtlasTexture_21m6r"), SubResource("AtlasTexture_vabfl")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_86m57")
+}
+autoplay = "new_animation"

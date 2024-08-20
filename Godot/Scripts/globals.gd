@@ -9,8 +9,11 @@ signal hurt_mario(damage : int)
 #From Chooseblocks -> ["HAMMER","BROS.","FLEE","ITEM","JUMP"]
 enum ACTIONS_BLOCKS {NONE = -1,HAMMER,JUMP,ITEM,FLEE,BROS}
 var cur_action
+enum BROTHER {MARIO,LUIGI}
+var cur_brother
 var RPG = RPG_System.new()
-var MARIO = RPG.Mario.new()
+var MARIO = RPG.Brother.new()
+var LUIGI = RPG.Brother.new()
 var trans_ready_time = 1
 
 var is_itemlist_opened : bool = false
@@ -20,14 +23,16 @@ class RPG_System:
     enum combat_turn {PLAYER_CHOOSING, PLAYER_MENU, PLAYER_SELECTING, PLAYER_ACTION}
     var combat_state: combat_turn = combat_turn.PLAYER_CHOOSING
 
-    class Mario:
+    class Brother:
+        var og_position : Vector3
+
         var hp : int = 21:
             set(new_hp):
                 hp = clampi(new_hp,0,max_hp)
             get:
                 return hp
         var bp : int = 18
-        var max_hp : int = 30
+        var max_hp : int = 36
         var max_bp : int = 24
         var attack : int = 13
         var defense : int = 15
@@ -36,7 +41,7 @@ class RPG_System:
         var xp : int = 300
         var xp_to_next_level : int = 80
 
-        var mario_overrite_animation = false
+        var overrite_animation = false
         var can_jump = true
 
         #ANIMATION BEHAVIOR

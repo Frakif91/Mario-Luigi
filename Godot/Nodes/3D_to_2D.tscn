@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk43wdkyxsws8"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/3DSpriteto2D.gd" id="1_0ddeg"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_0ddeg")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+animation = &""
