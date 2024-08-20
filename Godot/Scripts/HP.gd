@@ -19,8 +19,6 @@ extends Control
 @export var affect_BP = true
 @export var hide_zeros = true
 
-@export_enum("Mario","Luigi") var who_is
-
 const og_link = "res://Assets/Numbers/"
 var images 
 
@@ -40,7 +38,7 @@ func _process(_delta):
 		if not Engine.is_editor_hint(): #DON'T RUN THE SCRIPT INSIDE THE EDITOR
 			#Smooth HP increaser/decreaser.
 			temp_hp = lerpf(temp_hp,Globals.MARIO.hp,_delta*change_speed)
-			max_hp = Globals.MARIO.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
+			max_hp = Globals.cur_brother.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
 			temp_bp = lerpf(temp_bp,Globals.MARIO.bp,_delta*change_speed)
 			max_bp = Globals.MARIO.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
 
@@ -49,9 +47,9 @@ func _process(_delta):
 	elif who_is == 1:
 		#Smooth HP increaser/decreaser.
 			temp_hp = lerpf(temp_hp,Globals.LUIGI.hp,_delta*change_speed)
-			max_hp = Globals.LUIGI.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
+			max_hp = Globals.cur_brother.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
 			temp_bp = lerpf(temp_bp,Globals.LUIGI.bp,_delta*change_speed)
-			max_bp = Globals.LUIGI.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
+			max_bp = Globals.cur_brother.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
 
 			hp = int(temp_hp)
 			bp = int(temp_bp)
@@ -62,7 +60,7 @@ func set_values(_hp : int, _bp : int):
 	if not HP.is_node_ready() or not BP.is_node_ready():
 		return
 	
-	if low_health_effect and Globals.MARIO.update_state() == Globals.MARIO.states.TIRED:
+	if low_health_effect and Globals.cur_brother.update_state() == Globals.cur_brother.states.TIRED:
 		HP.modulate = low_hp_color
 	else:
 		HP.modulate = Color.WHITE

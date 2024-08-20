@@ -32,24 +32,10 @@ func _init(Mario : BrotherCB3, Luigi : BrotherCB3, Enemies : Array[Node3D], Rati
     #mario_anim = mario_variable.animated_sprite
 
 func _init_animation(overrite : bool):
-    var action_brother : BrotherCB3
-    var og_position : Vector3
-    var who_brother = Globals.cur_brother
-    if who_brother == Globals.BROTHER.MARIO:
-        print("Mario")
-        action_brother = mario_variable
-        og_position = Globals.MARIO.og_position
-        Globals.MARIO.overrite_animation = overrite
-    elif who_brother == Globals.BROTHER.LUIGI:
-        print("Luigi")
-        action_brother = luigi_variable
-        og_position = Globals.LUIGI.og_position
-        Globals.LUIGI.overrite_animation = overrite
-    else:
-        print("None")
-        action_brother = mario_variable
-        og_position = Globals.MARIO.og_position
-    return [action_brother, og_position]
+    var action_brother : BrotherCB3 = Globals.cur_brother
+    var og_position : Vector3 = Globals.cur_brother.og_position
+    if overrite:
+        Globals.cur_brother.overrite_animation = true
 
 
 func _ready():
@@ -72,27 +58,34 @@ func _jump_manual_animation(enemy_position: Vector3):
     var jump_maximal_good_window = 1.45
     var does_have_result = false
     var result
+    var step : int = 0
 
     var init_anima = _init_animation(true) 
     var action_brother : BrotherCB3 = init_anima[0]
     var og_position : Vector3 = init_anima[1]
 
+    action_brother.animated_sprite.play(&"walking")
     while (animation_timer.time_left > 0 and not stop_animation):
         progression = total_time - animation_timer.time_left
-        if (progression < 0.5):
-            action_brother.animated_sprite.play(&"walking")
+        # if (progression < 0.5 and step):
+        #     action_brother.animated_sprite.play(&"walking")
         if (progression > 0.5 and progression < 0.95):
-            action_brother.animated_sprite.play(&"jump-up-right")
+            if step == 0:
+                step = 1
+                action_brother.animated_sprite.play(&"jump-up-right")
             action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0.5,0.95) ,0.5),og_position.y,1.7)
         if (progression > 0.95 and progression < 1.4):
-            action_brother.animated_sprite.play(&"jump-down-right")
+            if step == 1:
+                step = 2
+                action_brother.animated_sprite.play(&"jump-down-right")
             action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0.95,1.4) ,2),1.5,enemy_position.y + 0.2)
-        if (progression < 1.4):
-            action_brother.animated_sprite.play(&"jump_on_enemy")
+        if (progression < 1.4):            
             action_brother.position.x = lerp(og_position.x,enemy_position.x,get_percentage(progression,0,1.4))
             action_brother.position.z = lerp(og_position.z,enemy_position.z,get_percentage(progression,0,1.4))
         if (progression > jump_minimal_window and progression < jump_maximal_window and not does_have_result):
-
+            if step == 2:
+                step = 3
+                action_brother.animated_sprite.play(&"jump_on_enemy")
             result = jump_check_hit(progression,jump_minimal_good_window,jump_maximal_good_window)
             if result:
                 does_have_result = true

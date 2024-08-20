@@ -2,13 +2,11 @@ extends Node3D
 
 class_name  S2D_on_3D
 
+@export_node_path("Node2D","Control") var affected_node_np
+@onready var affected_node = get_node(affected_node_np)
+
 func _process(_delta):
 	var cam : Camera3D = get_viewport().get_camera_3d()
 
-	if not get_child_count():
-		return
-
-	for child in get_children():
-		if child is Node2D:
-			#child.visible = not cam.is_position_behind(position)
-			child.position = cam.unproject_position(position)
+	#child.visible = not cam.is_position_behind(position)
+	affected_node.position = cam.unproject_position(position)

@@ -55,18 +55,18 @@ sky_custom_fov = 100.4
 [sub_resource type="BoxShape3D" id="BoxShape3D_4c2jg"]
 size = Vector3(30, 0.08, 30)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83ebp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqn6q"]
 albedo_texture = ExtResource("4_wqmdj")
 uv1_scale = Vector3(6, 2, 3)
 billboard_keep_scale = true
 point_size = 128.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_3lqfh"]
-material = SubResource("StandardMaterial3D_83ebp")
+material = SubResource("StandardMaterial3D_iqn6q")
 size = Vector3(10, 0.08, 10)
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_1odcr"]
-material = SubResource("StandardMaterial3D_83ebp")
+material = SubResource("StandardMaterial3D_iqn6q")
 radius = 30.0
 radial_steps = 32
 section_length = 5.0
@@ -1520,7 +1520,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/S2D_to_3D/AButton:texture:region")
+tracks/1/path = NodePath("UI/AButton:texture:region")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1565,7 +1565,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/S2D_to_3D/AButton:texture:region")
+tracks/0/path = NodePath("UI/AButton:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -2060,7 +2060,7 @@ filter_clip = true
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k43w1")
-event_caller = 0.0
+transition_speed_multiplier = null
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0.5, 1.8, 2.5)
@@ -2124,7 +2124,7 @@ volume_db = -16.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.408896, 0.311155, 0.760046)
 slide_on_ceiling = false
 script = ExtResource("1_ad80m")
-who = 1
+character_name = &"Luigi"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Luigi"]
 shape = SubResource("BoxShape3D_pui0c")
@@ -2328,16 +2328,19 @@ libraries = {
 }
 autoplay = "L"
 
-[node name="S2D_to_3D" type="Node3D" parent="UI"]
-script = ExtResource("19_k8dub")
-
-[node name="AButton" type="TextureRect" parent="UI/S2D_to_3D"]
+[node name="AButton" type="TextureRect" parent="UI"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 213.0
 offset_top = 347.0
 offset_right = 309.0
 offset_bottom = 443.0
 texture = SubResource("AtlasTexture_nt2rg")
+
+[node name="S2D_to_3D" type="Node3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361671, 0.503368, 0)
+script = ExtResource("19_k8dub")
+affected_node_np = NodePath("../AButton")
 
 [node name="HPM" parent="UI" instance=ExtResource("2_fjly1")]
 visible = false

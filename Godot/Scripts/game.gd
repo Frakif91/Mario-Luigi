@@ -9,9 +9,9 @@ signal animation_called_event
 @onready var label_change_effect_timer = Timer.new()
 @onready var mario_anim = $"MarioAnimations"
 @onready var ratings = $"UI/Ratings/RatingsAnim"
-
 #@export_node_path("Anim"
 #overrite_animation
+@export var brothers : Dictionary = {Mario = $"Characters/Mario", Luigi = $"Characters/Luigi"}
 @export var transition_speed_multiplier = 1.
 @export var event_caller : float = 0.0 :
 	set(id):
@@ -22,7 +22,7 @@ signal animation_called_event
 			choosecube.set_global_transparence(id)
 
 var damage_instance = preload("res://Godot/Nodes/damage_display.tscn")
-@export var jump_class = preload("res://Godot/Scripts/manual_animations.gd")
+var jump_class = preload("res://Godot/Scripts/manual_animations.gd")
 var transition_direction = 1
 var transition_time = 0.07
 var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), OUT = Vector3(1,2,3),LUIGI = Vector3(0.5,1.4,2.5)}
@@ -32,11 +32,14 @@ var cur_cam_pos = camera_position.OG
 var action_who : BrotherCB3
 var jump_process : Actions
 
+func _enter_tree():
+	Globals.Bros = brothers
+
 func _ready():
-	Globals.cur_brother = Globals.BROTHER.MARIO
+	Globals.cur_brother = brothers["Mario"]
 	Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
-	Globals.eat_inventory_item.connect(_mario_play_eat_animation)
-	choosecube.hit_block.connect(Hitting_Block)
+	Globals.eat_inventory_item.connect(brother_play_eat_anim)
+	choosecube.hit_block.connect(hitting_block)
 	label_change_effect_timer.autostart = false
 	label_change_effect_timer.one_shot = true
 	jump_process = jump_class.new(
@@ -45,7 +48,8 @@ func _ready():
 	self.add_child(label_change_effect_timer)
 	choosecube.change_block.connect(changed_block)
 
-	$"Characters/Mario/AnimatedSprite3D".position = animation_offsets["idle"]
+	for bro in brothers:
+		bro.animated_sprite.position = animation_offsets["idle"]
 
 	itemlist.set_deferred(&"size",Vector2(1152,648)) #In case of problems
 	anima.play(&"show_itemlist")
@@ -56,14 +60,14 @@ func _ready():
 	await Globals.wait(Globals.trans_ready_time + 1.1)
 	anima.play_backwards(&"hide_cubes")
 
-func change_character(brother : Globals.BROTHER):
-	if brother == Globals.BROTHER.LUIGI:
+func change_character(brother : BrotherCB3):
+	if brother == brothers.Mario:
 		cur_cam_pos = camera_position.LUIGI
 		choosecube.center_point = chooseblocks_offsets.LUIGI
 		action_who = $"Characters/Luigi"
 		Globals.cur_brother = Globals.BROTHER.LUIGI
 	
-	elif brother == Globals.BROTHER.MARIO:
+	elif brother == brothers.Luigi:
 		cur_cam_pos = camera_position.OG
 		choosecube.center_point = chooseblocks_offsets.MARIO
 		action_who = $"Characters/Mario"
@@ -93,8 +97,8 @@ func _input(_event):
 			var result : Actions.results = await jump_process._jump_manual_animation($"Characters/Goomba".position)
 			await jump_process.result_todo(result)
 			print("Finish")
-			Globals.MARIO.overrite_animation = false
-			Globals.MARIO.overrite_animation = false
+			brothers["Mario"].overrite_animation = false
+			brothers["Mario"].overrite_animation = false
 			set_visible_choosecube()
 
 			#$"MarioAnimations".play(&"Jump_on_goomba")
@@ -107,15 +111,15 @@ func set_visible_choosecube():
 	
 	if Globals.cur_brother == Globals.BROTHER.MARIO:
 		cur_cam_pos = camera_position.OG
-		Globals.MARIO.overrite_animation = false
-		Globals.LUIGI.overrite_animation = false
+		brothers["Mario"].overrite_animation = false
+		brothers["Luigi"].overrite_animation = false
 	Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
 	$"Characters/Goomba/Pointer".visible = false
-	choosecube.is_in_choosing_position = true
 	anima.play_backwards(&"hide_cubes")
 	await anima.animation_finished
-	Globals.MARIO.can_jump = true
-	Globals.LUIGI.can_jump = true
+	choosecube.is_in_choosing_position = true
+	brothers["Mario"].can_jump = true
+	brothers["Luigi"].can_jump = true
 	%AButton.show()
 	Globals.chooseblocks_visible = true
 	Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_CHOOSING
@@ -141,7 +145,7 @@ func changed_block(_curent_index: int, direction : int):
 	#label.text = BLOCKS_NAMES[-_curent_index % choosecube.blocks_nb]
 
 #region Hit Block
-func Hitting_Block():
+func hitting_block():
 	#print_debug("AAAAAAAAAAAAAAAAAAAA")
 	if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING:
 		match (choosecube.selected_block_name):
@@ -149,14 +153,14 @@ func Hitting_Block():
 				cur_cam_pos = camera_position.T_ENEMY
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_SELECTING
 				choosecube.is_in_choosing_position = false
-				Globals.MARIO.can_jump = false
+				Globals.cur_brother.can_jump = false
 				anima.play(&"hide_cubes")
 				$"Characters/Goomba/Pointer".visible = true
 
 			"ITEM":
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_MENU
 				choosecube.is_in_choosing_position = false
-				Globals.MARIO.can_jump = false
+				Globals.cur_brother.can_jump = false
 				anima.play(&"hide_cubes",0.1,3)
 				await anima.animation_finished
 				anima.play(&"show_itemlist")
@@ -168,22 +172,22 @@ func Hitting_Block():
 		Globals.cur_action = choosecube.selected_block_index
 		%AButton.visible = false
 			
-func _mario_play_eat_animation(texture, uniqueitem):	
+func brother_play_eat_anim(texture, uniqueitem):	
 	if Globals.is_itemlist_opened:
 		Globals.is_itemlist_opened = false
 		anima.play_backwards(&"show_itemlist")
 
-	Globals.MARIO.overrite_animation = true #Disable "state machine" animations, to let $MarioAnimation do it's job
+	brothers["Mario"].overrite_animation = true #Disable "state machine" animations, to let $MarioAnimation do it's job
 	Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_ACTION
-	Globals.MARIO.can_jump = false
+	brothers["Mario"].can_jump = false
 	$"MarioAnimations/Sprite3D".texture = texture
 	$"MarioAnimations".play(&"Eat")
 	await animation_called_event
 	itemlist.item_power_application(uniqueitem.item)
 	await $"MarioAnimations".animation_finished
-	Globals.MARIO.overrite_animation = false #Enable back "state machine" animations
+	brothers["Mario"].overrite_animation = false #Enable back "state machine" animations
 	Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_CHOOSING
-	Globals.MARIO.can_jump = true
+	brothers["Mario"].can_jump = true
 	choosecube.is_in_choosing_position = true
 	anima.play_backwards(&"hide_cubes")
 	Globals.finish_eating.emit()
