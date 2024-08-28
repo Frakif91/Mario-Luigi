@@ -1,10 +1,11 @@
+@tool
 extends TextureRect
 
 class_name DamageAnouncerTexture
 
 @export var textures : Array[Texture2D]
 
-enum BackGroundTexture {MARIO,LUIGI,DAMAGE,TOTAL}
+enum BackGroundTexture {MARIO,LUIGI,DAMAGE,TOTAL,HEAL,LUCKY,CRITICAL}
 @export var cur_bg_tex : BackGroundTexture = BackGroundTexture.MARIO :
 	set(value):
 		cur_bg_tex = value; update()

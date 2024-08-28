@@ -1,15 +1,20 @@
 extends Control
 
+@export_node_path("BrotherCB3") var player_node
+@onready var player : BrotherCB3 = get_node(player_node)
+
 @export var hp : int = 24 :
 	set(new_hp):
 		if hp != new_hp:
 			hp = new_hp
-			set_values(hp,bp)
+			if self.is_node_ready():
+				set_values(null,hp,bp)
 @export var bp : int = 18 :
 	set(new_bp):
 		if bp != new_bp:
 			bp = new_bp
-			set_values(hp,bp)
+			if self.is_node_ready():
+				set_values(null,hp,bp)
 @export var low_health_effect = true
 @export var low_hp_color = Color(1,0,0.8)
 @export var low_bp_color = Color.WHITE
@@ -26,44 +31,44 @@ var images
 @onready var BP = $"UI_Health/BP"
 
 func _ready():
-	set_values(hp,bp)
+	print_debug("HP Brother Debug :",player)
+	set_values(player,hp,bp)
 	
 
-@export var change_speed = 10
+@export var change_speed = 7
 var temp_hp : float = hp
 var temp_bp : float = bp
 
 func _process(_delta):
-	if who_is == 0:
-		if not Engine.is_editor_hint(): #DON'T RUN THE SCRIPT INSIDE THE EDITOR
-			#Smooth HP increaser/decreaser.
-			temp_hp = lerpf(temp_hp,Globals.MARIO.hp,_delta*change_speed)
-			max_hp = Globals.cur_brother.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
-			temp_bp = lerpf(temp_bp,Globals.MARIO.bp,_delta*change_speed)
-			max_bp = Globals.MARIO.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
-
-			hp = int(temp_hp)
-			bp = int(temp_bp)
-	elif who_is == 1:
+	if not Engine.is_editor_hint(): #DON'T RUN THE SCRIPT INSIDE THE EDITOR
 		#Smooth HP increaser/decreaser.
-			temp_hp = lerpf(temp_hp,Globals.LUIGI.hp,_delta*change_speed)
-			max_hp = Globals.cur_brother.max_hp #move_toward(max_hp,Globals.MARIO.max_hp,_delta*change_speed)
-			temp_bp = lerpf(temp_bp,Globals.LUIGI.bp,_delta*change_speed)
-			max_bp = Globals.cur_brother.max_bp #move_toward(max_bp,Globals.MARIO.max_bp,_delta*change_speed)
+		if (player.bro.hp - int(temp_hp)) == 0:
+			temp_hp = player.bro.hp
+		else: 
+			temp_hp = temp_hp + sign(player.bro.hp - temp_hp)*(_delta*change_speed)
+		temp_bp = temp_bp + sign(player.bro.bp - temp_bp)*(_delta*change_speed)
+		#temp_hp = temp_hp + sign(player.bro.hp)
 
+		if hp != int(temp_hp) or bp != int(temp_bp):
 			hp = int(temp_hp)
 			bp = int(temp_bp)
+			set_values(player,hp,bp)
 
-func set_values(_hp : int, _bp : int):
+func set_values(bros : BrotherCB3, _hp : int, _bp : int):
 	if not HP is Control or not BP is Control:
 		return
 	if not HP.is_node_ready() or not BP.is_node_ready():
 		return
 	
-	if low_health_effect and Globals.cur_brother.update_state() == Globals.cur_brother.states.TIRED:
+	if typeof(bros) == TYPE_NIL or typeof(bros.bro) == TYPE_NIL:
+		return
+
+	if low_health_effect and bros.bro.update_state() == bros.bro.states.TIRED:
 		HP.modulate = low_hp_color
 	else:
 		HP.modulate = Color.WHITE
+
+	print_debug("Set values")
 
 	HP.value = _hp
 	BP.value = _bp

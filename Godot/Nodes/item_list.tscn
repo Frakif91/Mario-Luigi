@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bddq6rk2blxqw" path="res://Godot/Nodes/item_template.tscn" id="3_dwlib"]
 [ext_resource type="Texture2D" uid="uid://db7uos7s8j5rp" path="res://Assets/3DS - Mario & Luigi Dream Team - Text Box.png" id="4_hrolo"]
 [ext_resource type="Texture2D" uid="uid://dwiad5hmtb41q" path="res://Assets/Battle UI Paper Mario.png" id="5_5k8gh"]
-[ext_resource type="AudioStream" uid="uid://35djvibuuao4" path="res://Assets/SFX/WU_SE_SYS_CURSOR_1.wav" id="6_kwwi0"]
+[ext_resource type="AudioStream" uid="uid://cj5nhqkapctpw" path="res://Assets/Sound/SE_BTL_BEEP1.wav" id="6_dal7h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6xj1"]
 atlas = ExtResource("1_ddoss")
@@ -163,5 +163,5 @@ label_settings = SubResource("LabelSettings_tjvpy")
 position = Vector2(64.0001, 20)
 
 [node name="Select" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_kwwi0")
+stream = ExtResource("6_dal7h")
 pitch_scale = 0.53

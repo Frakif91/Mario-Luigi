@@ -3,6 +3,7 @@ extends Control
 class_name DamageAnnouncer
 
 @onready var display : TextureNumber = $"Damage"
+@onready var display_heal : TextureNumber = $"Damage2"
 @onready var background : DamageAnouncerTexture = $"Background"
 @onready var animationplayer = $"AnimationPlayer"
 
@@ -20,9 +21,18 @@ func create(pos3d : Vector3, damage_value : int, bg_type : int):
 	display.value = damage_value
 
 func showup():
-	animationplayer.play(&"new_animation")
-	await animationplayer.animation_finished
-	queue_free()
+	if background.cur_bg_tex == DamageAnouncerTexture.BackGroundTexture.HEAL:
+		display.hide()
+		display_heal.show()
+		animationplayer.play(&"heal_hp")
+		await animationplayer.animation_finished
+		queue_free()
+	else:
+		display_heal.hide()
+		display.show()
+		animationplayer.play(&"new_animation")
+		await animationplayer.animation_finished
+		queue_free()
 	
 
 

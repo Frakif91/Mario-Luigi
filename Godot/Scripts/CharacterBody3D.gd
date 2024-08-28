@@ -1,10 +1,9 @@
-extends CharacterBody3D
-
-class_name BrotherCB3
+class_name BrotherCB3 extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const GRAVITY_MULT = 1.2
+
 
 var og_position : Vector3
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,52 +11,53 @@ var affected_by_gravity = true
 
 @onready var animated_sprite : AnimatedSprite3D = $AnimatedSprite3D
 
-@export_category("Character Stats")
-@export var character_name : StringName = "Mario"
-@export var hp : int = 21:
-	set(new_hp):
-		hp = clampi(new_hp,0,max_hp)
-	get:
-		return hp
-@export var bp : int = 18
-@export var max_hp : int = 36
-@export var max_bp : int = 24
-@export var attack : int = 13
-@export var defense : int = 15
-@export var speed : int = 10
-@export var level : int = 5
-@export var xp : int = 300
-@export var xp_to_next_level : int = 80
-
-@export_category("Other")
-@export var overrite_animation = false
-@export var can_jump = true
-@export var chooseblock_offset : Vector3
-@export var camera_position : Vector3
-
 #ANIMATION BEHAVIOR
-enum states {IDLE,TIRED,KO} 
+enum states {IDLE,TIRED,KO}
+#var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), OUT = Vector3(1,2,3),LUIGI = Vector3(0.5,1.4,2.5)}
+
+@export_enum("Mario","Luigi") var who = "Mario"
 @export var cur_state : states
 
 func update_state() -> states:
-	if hp <= 0: cur_state = states.KO
-	elif hp <= ceili(max_hp*0.3): cur_state = states.TIRED
+	if bro.hp <= 0: cur_state = states.KO
+	elif bro.hp <= ceili(bro.max_hp*0.3): cur_state = states.TIRED
 	else: cur_state = states.IDLE
 	return cur_state
+
+var bro : Globals.Brother
+
+func _ready():
+	if who == "Mario":
+		# bro = CharacterDefaultStats.new().create_character(CharacterDefaultStats.available.MARIO)
+		var test = Globals.Bros.get("Mario")
+		bro = test
+		bro.camera_position = Vector3(1.,1.4,2.)
+		og_position = position
+
+	if who == "Luigi":
+		var test = Globals.Bros.get("Luigi")
+		bro = test
+		bro.camera_position = Vector3(0.5,1.4,2.5)
+		og_position = position
+	
+	bro.og_position = og_position
+
+	
+	#bro.camera_position = position #+ Vector3(1,2,2)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor() and not Globals.MARIO.overrite_animation:
+	if not is_on_floor() and not bro.overrite_animation:
 		velocity.y -= gravity*GRAVITY_MULT * delta
 
-		if Input.is_action_just_pressed(&"Jump") and is_on_floor() and Globals.MARIO.can_jump:
-			velocity.y = JUMP_VELOCITY
-			$"AudioStreamPlayer".play()
+	if Input.is_action_just_pressed(bro.action_button) and is_on_floor() and bro.can_jump:
+		velocity.y = JUMP_VELOCITY
+		$"AudioStreamPlayer".play()
 
-	if not overrite_animation:
-		if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING: # and is_on_floor():
+	if not bro.overrite_animation:
+		if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING and Globals.cur_brother == self: # and is_on_floor():
 			if update_state() == states.TIRED:
 				animated_sprite.play(&"thinking-tired")
 			else:

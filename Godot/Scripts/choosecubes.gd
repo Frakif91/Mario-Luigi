@@ -88,7 +88,7 @@ func _process(_delta):
 		if selected_block_index < 0:
 			selected_block_index = blocks_nb - 1
 		change_block.emit(cur_index,-1)
-		$"SwitchSound".pitch_scale = 0.5
+		#$"SwitchSound".pitch_scale = 0.5
 		$"SwitchSound".play()
 	if Input.is_action_just_pressed(&"ui_right") and is_in_choosing_position:
 		cur_index += 1
@@ -96,7 +96,7 @@ func _process(_delta):
 		if selected_block_index >= blocks_nb:
 			selected_block_index = 0
 		change_block.emit(cur_index,1)
-		$"SwitchSound".pitch_scale = 0.5
+		#$"SwitchSound".pitch_scale = 0.5
 		$"SwitchSound".play()
 	
 	if (pos_offset - index_angle*cur_index) > distance_margin or (pos_offset - index_angle*cur_index) < -distance_margin:

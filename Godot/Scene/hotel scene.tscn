@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://ch4wrucil6uau"]
+
+[ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_ygy4k"]
+[ext_resource type="Texture2D" uid="uid://dwr8e5r2so5hx" path="res://Assets/Mesh/wood-vector-texture-template-pattern-seamless-material-hardwood-floor-natural-light-parquet-vector-i/47074.jpg" id="2_drbw5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wgdbu"]
+size = Vector3(30, 0.08, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83ebp"]
+albedo_texture = ExtResource("1_ygy4k")
+uv1_scale = Vector3(6, 2, 3)
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qp3gw"]
+material = SubResource("StandardMaterial3D_83ebp")
+size = Vector3(10, 0.08, 10)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_bsfca"]
+material = SubResource("StandardMaterial3D_83ebp")
+radius = 30.0
+radial_steps = 32
+section_length = 5.0
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ypmnf"]
+albedo_texture = ExtResource("2_drbw5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_w1st7"]
+material = SubResource("ORMMaterial3D_ypmnf")
+size = Vector3(10, 3, -0.1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vw5yk"]
+
+[sub_resource type="Sky" id="Sky_sqs4r"]
+sky_material = SubResource("ProceduralSkyMaterial_vw5yk")
+
+[sub_resource type="Environment" id="Environment_uuwwc"]
+background_mode = 2
+sky = SubResource("Sky_sqs4r")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_wgdbu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_qp3gw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-1.31134e-08, -1, 0, 0.3, -4.37114e-08, 0, 0, 0, 1, 1, -8.95, 0)
+mesh = SubResource("TubeTrailMesh_bsfca")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1, 0)
+mesh = SubResource("BoxMesh_w1st7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 1, 0)
+material_override = SubResource("ORMMaterial3D_ypmnf")
+mesh = SubResource("BoxMesh_w1st7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+material_override = SubResource("ORMMaterial3D_ypmnf")
+mesh = SubResource("BoxMesh_w1st7")
+skeleton = NodePath("../MeshInstance3D2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uuwwc")
+
+[node name="LightMapGI" type="LightmapGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+quality = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 5, 8)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, -0.612373, 0.612372, 2.00002e-08, 0.707107, 0.707107, -0.866025, -0.353553, 0.353553, 0, 6, 0)

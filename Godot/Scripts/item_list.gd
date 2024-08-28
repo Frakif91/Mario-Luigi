@@ -43,6 +43,8 @@ var default_shroom = Globals.itemQuantityEmpty
 var health_shroom  = Globals.Inventory.Item_Quantity.new(Globals.Inventory.UniqueItem.new(load("res://Assets/HP.png"), "Health Shroom", "HAAAAA"),3)
 var null_shroom    = Globals.Inventory.Item_Quantity.new(Globals.Inventory.UniqueItem.new(load("res://Godot/Assets/placeholder.tres"), "Null Shroom", "HEEEE"),69)
 
+var sounds = [preload("res://Assets/Sound/SE_BTL_1UP.wav"),preload("res://Assets/SFX/Mario_&_Luigi_DT_Heal.ogg"),preload("res://Assets/SFX/Mario_&_Luigi_SS_&_BM_Heal.ogg")]
+
 var Items = []
 var Selectable_Items = []
 
@@ -111,7 +113,7 @@ func _input(_event):
 			%Description.text = " " + Selectable_Items[item_index].item.description
 			call_deferred(&"_move_pf_to",item_index)
 		
-		if Input.is_action_just_pressed(&"ui_accept"):
+		if Input.is_action_just_pressed(Globals.cur_brother.bro.action_button):
 			if (Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_MENU):
 				Selectable_Items[item_index].quantity -= 1
 				Globals.eat_inventory_item.emit(Selectable_Items[item_index].item.texture,Selectable_Items[item_index])
@@ -141,14 +143,35 @@ func _move_pf_to(_item_index):
 	print_debug("Target n°",_item_index," have gpos y :",child.global_position.y)
 	pf_taget_pos_y = child.global_position.y
 
+#var damage_instance = preload("res://Godot/Scripts/Damage_Anouncer.gd")
+var damage_instance = preload("res://Godot/Nodes/damage_display.tscn")
+
+func show_heal(heal: int, posin3d: Vector3, damage_type: int):
+	print("SHOWED")
+	var di: DamageAnnouncer = damage_instance.instantiate()
+	di.create(posin3d, heal, damage_type)
+	add_child(di)
+	di.show()
+	di.showup()
+
+@onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
+func _play_audio(audio_file : AudioStream):
+	audio_player.stream = audio_file
+	audio_player.play()
+
 func item_power_application(item : Globals.Inventory.UniqueItem):
 	match(item.name):
 		"1UP Mushroom":
-			pass
+			_play_audio(sounds[0])
+			show_heal(0,Globals.cur_brother.position + Vector3(0.2,0,0),DamageAnouncerTexture.BackGroundTexture.HEAL)
 		"Hyper Mushroom":
-			Globals.MARIO.hp = Globals.MARIO.hp + 60
+			_play_audio(sounds[1])
+			show_heal(60,Globals.cur_brother.position + Vector3(0,0,0),DamageAnouncerTexture.BackGroundTexture.HEAL)
+			Globals.cur_brother.bro.hp = Globals.cur_brother.bro.hp + 60
 		"Basic Sirop":
-			Globals.MARIO.bp = Globals.MARIO.bp + 15
+			_play_audio(sounds[2])
+			show_heal(15,Globals.cur_brother.position + Vector3(0.2,0,0),DamageAnouncerTexture.BackGroundTexture.HEAL)
+			Globals.cur_brother.bro.bp = Globals.cur_brother.bro.bp + 15
 		
 
 

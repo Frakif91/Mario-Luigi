@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://crwx4xooiap8l" path="res://Assets/SuperstarSagaUI/Block_BroAttack.png" id="2_hs6gf"]
 [ext_resource type="Texture2D" uid="uid://dwnf67gm85rlf" path="res://Assets/SuperstarSagaUI/Block_Flee.png" id="3_vkmjr"]
 [ext_resource type="Texture2D" uid="uid://73idqrblkhgh" path="res://Assets/SuperstarSagaUI/Block_Item.png" id="4_k5q3q"]
-[ext_resource type="AudioStream" uid="uid://bnufmitt5nb57" path="res://Assets/SFX/WU_SE_OBJ_GET_COIN.wav" id="6_krgcr"]
-[ext_resource type="AudioStream" uid="uid://35djvibuuao4" path="res://Assets/SFX/WU_SE_SYS_CURSOR_1.wav" id="7_wussd"]
+[ext_resource type="AudioStream" uid="uid://siip0vh26dih" path="res://Assets/Sound/SE_BTL_BLOCK2.wav" id="6_thxlj"]
+[ext_resource type="AudioStream" uid="uid://drdn12niv35vd" path="res://Assets/Sound/SE_BTL_BLOCK1.wav" id="7_itppf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_irwty"]
 size = Vector3(0.3, 0.3, 0.3)
@@ -222,12 +222,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 shape = SubResource("BoxShape3D_544gp")
 
 [node name="Hitsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_krgcr")
-volume_db = -16.0
+stream = ExtResource("6_thxlj")
+volume_db = -8.0
 
 [node name="SwitchSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_wussd")
-volume_db = -16.0
+stream = ExtResource("7_itppf")
+volume_db = -8.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.434871, 0)

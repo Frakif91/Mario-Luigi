@@ -30,7 +30,7 @@ signal on_reset()
         
 @export var images_slot : Array[Texture2D] = []
 
-var is_debug = true
+var is_debug = false
 
 func set_value(new_value):
     value = new_value
@@ -72,14 +72,11 @@ func update():
     # update() is called before _ready()
     if not number_container:
         return
-
     if not number_container.is_node_ready():
         return #If it's not ready, then don't start to create problems
                #All people, in their life, need some time before big events start
                #Anyway, i'm going back to sleep
-    
     reset()
-
     if is_debug:
         print("Max Slot : ",max_slot)
         #print("Images count : ",images_slot.size())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=151 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="Script" path="res://Godot/Scripts/game.gd" id="1_k43w1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/Goomba.png" id="2_sh7xv"]
 [ext_resource type="SpriteFrames" uid="uid://cblna1laxmsm0" path="res://luigis_spriteframe.tres" id="4_mug6a"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="4_wqmdj"]
+[ext_resource type="Script" path="res://Godot/Scene/automatic_animation.gd" id="5_0xi6g"]
 [ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui.tscn" id="5_k62ue"]
 [ext_resource type="SpriteFrames" uid="uid://cwwx7armsn46q" path="res://luigi_spriteframe.tres" id="6_8wy7m"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="7_obbi1"]
@@ -674,92 +675,80 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:frame")
-tracks/0/interp = 1
+tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.9, 1.85, 2.2, 2.65, 3.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [&"taking-out-item", &"showing-item", &"throwing_item_himself", &"open-mouth", &"close-mouth", &"tummy"]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%MarioAnimations/Sprite3D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%MarioAnimations/Sprite3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.9, 2.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MarioAnimations/Sprite3D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.17, -0.25, 0, 0.25, 0, 0.17, -0.25, 0, 0.25, 0, 0.048, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.85, 2.7)
+}
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:x")
+tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.365, -0.25, 0, 0.25, 0, 0.365, 0, 0, 0, 0, 0.128337, 0, 0, 0, 0),
-"times": PackedFloat32Array(0.6, 1.85, 2.7)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("%MarioAnimations/Sprite3D:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(0.48, -0.25, 0, 0.25, 0, 0.48, 0, 0, 0, 0, 1.7, -0.25, 0, 0.25, 0, 0.48, 0, 0, 0, 0),
 "times": PackedFloat32Array(0.6, 1.85, 2.3, 2.7)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../MarioAnimations/HealSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../MarioAnimations/HealSound:playing")
+tracks/5/path = NodePath("..:event_caller")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(3.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [24]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("..:event_caller")
+tracks/6/path = NodePath("%MarioAnimations/SpecialItem:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(3.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [24]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("%MarioAnimations/SpecialItem:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -851,185 +840,173 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:frame")
+tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0]
+"values": [&"idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
+tracks/1/path = NodePath("%MarioAnimations/Sprite3D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [&"idle"]
+"update": 1,
+"values": [false]
 }
-tracks/2/type = "value"
+tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%MarioAnimations/Sprite3D:visible")
+tracks/2/path = NodePath("%MarioAnimations/Sprite3D:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.17, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.48, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../MarioAnimations/HealSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("%MarioAnimations/Sprite3D:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.365, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("%MarioAnimations/Sprite3D:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.48, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../MarioAnimations/HealSound:playing")
+tracks/5/path = NodePath("..:event_caller")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("..:event_caller")
+tracks/6/path = NodePath("%MarioAnimations/SpecialItem:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
-tracks/7/type = "value"
+tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("%MarioAnimations/SpecialItem:playing")
+tracks/7/path = NodePath("../Characters/Mario:position:x")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Characters/Mario:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Characters/Mario:position:y")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Characters/Mario:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0.33174, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Characters/Mario/AnimatedSprite3D:billboard")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Characters/Mario/AnimatedSprite3D:billboard")
+tracks/10/path = NodePath("../Characters/Mario/AnimatedSprite3D:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1]
+"values": [Vector3(0.08, 0, 0)]
 }
-tracks/11/type = "value"
+tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Characters/Mario/AnimatedSprite3D:position")
+tracks/11/path = NodePath("../Characters/Mario:position:z")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.08, 0, 0)]
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../Characters/Mario:position:z")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../Characters/Goomba/AnimatedSprite3D:animation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Characters/Goomba/AnimatedSprite3D:animation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"idle"]
 }
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("../Characters/Mario/AnimatedSprite3D:rotation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Characters/Mario/AnimatedSprite3D:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../Characters/Mario/AnimatedSprite3D:flip_h")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Characters/Mario/AnimatedSprite3D:flip_h")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1484,6 +1461,40 @@ atlas = ExtResource("17_fsweh")
 region = Rect2(3.1, 5461, 124.9, 30)
 filter_clip = true
 
+[sub_resource type="Animation" id="Animation_kd72p"]
+resource_name = "A"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/AButton:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(3, 4525, 62, 62), Rect2(69, 4525, 62, 62)]
+}
+
+[sub_resource type="Animation" id="Animation_yxlyj"]
+resource_name = "B"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/AButton:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(3, 4593, 62, 62), Rect2(69, 4593, 62, 62)]
+}
+
 [sub_resource type="Animation" id="Animation_6dthc"]
 resource_name = "DefenseUIElement"
 
@@ -1558,35 +1569,20 @@ tracks/0/keys = {
 "values": [Vector2(0, 120), Vector2(0, 42)]
 }
 
-[sub_resource type="Animation" id="Animation_kd72p"]
-resource_name = "a"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/AButton:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Rect2(3, 4525, 62, 62), Rect2(69, 4525, 62, 62)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u4sot"]
 _data = {
+"A": SubResource("Animation_kd72p"),
+"B": SubResource("Animation_yxlyj"),
 "DefenseUIElement": SubResource("Animation_6dthc"),
 "L": SubResource("Animation_phc17"),
 "RESET": SubResource("Animation_kw8ed"),
-"Show_BPs": SubResource("Animation_xufjs"),
-"a": SubResource("Animation_kd72p")
+"Show_BPs": SubResource("Animation_xufjs")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nt2rg"]
 atlas = ExtResource("17_fsweh")
 region = Rect2(3, 4525, 62, 62)
+filter_clip = true
 
 [sub_resource type="Animation" id="Animation_xf5cv"]
 resource_name = "Excellent"
@@ -2053,6 +2049,28 @@ _data = {
 "RESET": SubResource("Animation_1acra")
 }
 
+[sub_resource type="GDScript" id="GDScript_6aq3o"]
+resource_name = "auto_audio"
+script/source = "extends AnimationPlayer
+
+@onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	add_child(audio_player)
+
+var ratings_sfx = {
+	\"Ok\" : preload(\"res://Assets/Sound/SE_BTL_GOOD.wav\"),
+	\"Good\" : preload(\"res://Assets/Sound/SE_BTL_GOOD.wav\"),
+	\"Great\" : preload(\"res://Assets/Sound/SE_BTL_GREAT.wav\"),
+	\"Excellent\" : preload(\"res://Assets/Sound/SE_BTL_EXCELENT.wav\")
+}
+
+func _on_current_animation_changed(name):
+	audio_player.stream = ratings_sfx[name]
+	audio_player.play()
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vd14l"]
 atlas = ExtResource("17_fsweh")
 region = Rect2(4, 2160, 124, 60)
@@ -2060,13 +2078,11 @@ filter_clip = true
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k43w1")
-transition_speed_multiplier = null
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0.5, 1.8, 2.5)
 doppler_tracking = 2
 current = true
-fov = 60.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ej0ly")
@@ -2074,6 +2090,14 @@ environment = SubResource("Environment_ej0ly")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
 light_cull_mask = 4294966273
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+layers = 2
+light_energy = 16.0
+light_cull_mask = 4294966274
 shadow_enabled = true
 directional_shadow_mode = 1
 
@@ -2109,9 +2133,10 @@ texture_filter = 0
 sprite_frames = ExtResource("4_mug6a")
 animation = &"idle"
 autoplay = "thinking"
+script = ExtResource("5_0xi6g")
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Mario"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.01, -0.1, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.08, -0.1, 0)
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_hqrsi")
@@ -2124,21 +2149,22 @@ volume_db = -16.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.408896, 0.311155, 0.760046)
 slide_on_ceiling = false
 script = ExtResource("1_ad80m")
-character_name = &"Luigi"
+who = "Luigi"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Luigi"]
 shape = SubResource("BoxShape3D_pui0c")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Luigi"]
-transform = Transform3D(1, -4.46638e-06, 0, 4.46638e-06, 1, 0, 0, 0, 1, 0.08, 0, 0)
+transform = Transform3D(1, -4.46638e-06, 0, 4.46638e-06, 1, 0, 0, 0, 1, -3.26281, 0, -3.70574)
 cast_shadow = 2
 billboard = 1
 texture_filter = 0
 sprite_frames = ExtResource("6_8wy7m")
 animation = &"thinking"
+frame_progress = 0.865006
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Luigi"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.01, -0.1, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.08, -0.1, 0)
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_hqrsi")
@@ -2155,6 +2181,7 @@ shape = SubResource("BoxShape3D_pui0c")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Goomba"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0582228, 0)
+layers = 3
 cast_shadow = 0
 billboard = 1
 texture_filter = 4
@@ -2178,21 +2205,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_s1rb8")
-
-[node name="Pointer" type="Node3D" parent="Characters/Goomba"]
-visible = false
-
-[node name="Sprite3D" type="Sprite3D" parent="Characters/Goomba/Pointer"]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.3, 0.3, 0)
-billboard = 1
-texture_filter = 2
-texture = SubResource("AtlasTexture_0ew34")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Characters/Goomba/Pointer"]
-libraries = {
-"": SubResource("AnimationLibrary_flurs")
-}
-autoplay = "point"
 
 [node name="Goomba2" type="CharacterBody3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29999, 0.262433, 0.700247)
@@ -2245,7 +2257,7 @@ autoplay = "point"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 center_point = Vector2(-1.05, 0.5)
 pos_offset = 10.0
-offset_speed = 500.0
+offset_speed = 400.0
 metadata/_edit_pinned_properties_ = [&"pos_offset"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
@@ -2261,7 +2273,7 @@ libraries = {
 }
 
 [node name="Sprite3D" type="Sprite3D" parent="MarioAnimations"]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.365, 0.48, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.17, 0.48, 0)
 visible = false
 billboard = 1
 texture_filter = 2
@@ -2288,7 +2300,6 @@ volume_db = -4.0
 
 [node name="BackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_u3je3")
-volume_db = -4.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -2328,13 +2339,9 @@ libraries = {
 }
 autoplay = "L"
 
-[node name="AButton" type="TextureRect" parent="UI"]
+[node name="AButton" type="Sprite2D" parent="UI"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 213.0
-offset_top = 347.0
-offset_right = 309.0
-offset_bottom = 443.0
+scale = Vector2(1.5, 1.5)
 texture = SubResource("AtlasTexture_nt2rg")
 
 [node name="S2D_to_3D" type="Node3D" parent="UI"]
@@ -2343,15 +2350,13 @@ script = ExtResource("19_k8dub")
 affected_node_np = NodePath("../AButton")
 
 [node name="HPM" parent="UI" instance=ExtResource("2_fjly1")]
-visible = false
 layout_mode = 1
 offset_top = 120.0
 offset_right = 1152.0
 offset_bottom = 768.0
-who_is = 0
+player_node = NodePath("../../Characters/Mario")
 
 [node name="HPL" type="Control" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2363,10 +2368,10 @@ offset_bottom = 768.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_0foia")
+player_node = NodePath("../../Characters/Luigi")
 hp = 21
 affect_BP = false
 hide_zeros = false
-who_is = 1
 
 [node name="UI_Health" type="ReferenceRect" parent="UI/HPL"]
 layout_mode = 1
@@ -2424,7 +2429,6 @@ images_slot = Array[Texture2D]([ExtResource("26_dd7em"), ExtResource("33_deon8")
 metadata/_edit_use_anchors_ = true
 
 [node name="Entry Scene" parent="UI" instance=ExtResource("5_k62ue")]
-visible = false
 layout_mode = 1
 
 [node name="Ratings" type="Control" parent="UI"]
@@ -2439,6 +2443,7 @@ grow_vertical = 2
 libraries = {
 "": SubResource("AnimationLibrary_plxm1")
 }
+script = SubResource("GDScript_6aq3o")
 
 [node name="Rating" type="TextureRect" parent="UI/Ratings"]
 layout_mode = 0
@@ -2448,6 +2453,21 @@ offset_right = 226.0
 offset_bottom = 135.0
 texture = SubResource("AtlasTexture_vd14l")
 
-[connection signal="animation_changed" from="Characters/Mario/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_changed"]
+[node name="Pointer" type="Node3D" parent="."]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Pointer"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.3, 0.3, 0)
+billboard = 1
+texture_filter = 2
+texture = SubResource("AtlasTexture_0ew34")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
+libraries = {
+"": SubResource("AnimationLibrary_flurs")
+}
+autoplay = "point"
+
 [connection signal="animation_changed" from="Characters/Luigi/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_changed"]
 [connection signal="animation_changed" from="MarioAnimations" to="." method="_on_mario_animations_animation_changed"]
+[connection signal="current_animation_changed" from="UI/Ratings/RatingsAnim" to="UI/Ratings/RatingsAnim" method="_on_current_animation_changed"]
