@@ -16,7 +16,7 @@ SLG64 here. I would like to list out the ideas so that it may be easier to read.
   - You can get Allies, Cosmetics, Pets, Upgrades, Items, etc.
 
 - Boss Fights
-  -Only have one idea ready, need 10-15 total.
+  -Only have two ideas already, we need 10-15 total.
 
 - Items
   - Hammers, Mushrooms, etc. I hope we can make a lot of cool strategies for the game.
