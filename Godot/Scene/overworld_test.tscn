@@ -1,10 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=29 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_e50fe"]
 [ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_yxsim"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="3_4lsss"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
-[ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="5_xxv1k"]
+[ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="4_et8cy"]
+[ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="5_4popt"]
+[ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
+[ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
@@ -100,14 +103,14 @@ mesh = SubResource("BoxMesh_k7rf6")
 [node name="Mario" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
 script = ExtResource("1_e50fe")
-SPEED = 3.0
+SPEED = 2.0
 
 [node name="ASprite3D" type="AnimatedSprite3D" parent="Mario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
 texture_filter = 4
 render_priority = 1
 sprite_frames = ExtResource("2_yxsim")
-animation = &"walk-SR"
+animation = &"walk-S"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
@@ -124,6 +127,14 @@ mesh = SubResource("CylinderMesh_3veek")
 
 [node name="JumpSFX" type="AudioStreamPlayer" parent="Mario"]
 stream = ExtResource("3_4lsss")
+
+[node name="RightFoot" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource("4_et8cy")
+
+[node name="RightFoot2" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource("5_4popt")
+
+[node name="Timer" type="Timer" parent="Mario"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nf4br")
@@ -197,6 +208,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.051, 0)
 mesh = SubResource("CylinderMesh_so13y")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_xxv1k")
+stream = ExtResource("7_04ykq")
 volume_db = -16.0
 autoplay = true
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("8_v1amf")

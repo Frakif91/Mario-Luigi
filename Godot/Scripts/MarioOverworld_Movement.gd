@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var asprite3D : AnimatedSprite3D = $"ASprite3D"
 @onready var jumpsfx : AudioStreamPlayer = $"JumpSFX"
 @export var center_fall_anim_rspeed : float = 0.3
+@export var walk_sound_waittime = 11.0/20./2.
+var cur_right_foot = false
 
 const DIRECTION : Dictionary = {UP = &"N", DOWN = &"S", LEFT = &"L", RIGHT = &"R",
 								UPLEFT = &"NL", UPRIGHT = &"NR", DOWNLEFT = &"SL", DOWNRIGHT = &"SR"}
@@ -24,6 +26,10 @@ signal touched_floor
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	$"Timer".start(walk_sound_waittime)
+	$"Timer".stop()
+
 func animation_process():
 	get_action_and_direction(Vector2(sign(velocity.x),sign(velocity.z)))
 
@@ -34,8 +40,11 @@ func animation_process():
 		can_play_animation = true
 	elif state_action == ACTIONS.WALK:
 		play_animation(state_action,state_direction,&"")
+		$"Timer".start()
 	elif state_action == ACTIONS.IDLE:
 		play_animation(state_action,state_direction,&"0")
+		cur_right_foot = true
+		$"Timer".stop()
 	elif state_action == ACTIONS.JUMP:
 		play_animation(state_action,state_direction,str(jump_alt))
 

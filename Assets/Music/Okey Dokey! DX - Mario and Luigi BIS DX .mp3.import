@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xm1f7vowgt0n"
+path="res://.godot/imported/Okey Dokey! DX - Mario and Luigi BIS DX .mp3-2371e6afd94cf8868ee57709625107ba.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Okey Dokey! DX - Mario and Luigi BIS DX .mp3"
+dest_files=["res://.godot/imported/Okey Dokey! DX - Mario and Luigi BIS DX .mp3-2371e6afd94cf8868ee57709625107ba.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

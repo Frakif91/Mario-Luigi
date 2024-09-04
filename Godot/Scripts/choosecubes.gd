@@ -75,6 +75,7 @@ func _process(_delta):
 			if INT_EEE[get_choose_cube()] == i:
 				array_selected = INT_EEE[get_choose_cube()]
 				selected_block_name = get_choose_cube_name()
+				$"Area3D".global_position = Vector3(vec.x,position.y,vec.y)
 				child.global_position = Vector3(vec.x,position.y + sin(deg_to_rad(int(choosen_floating_one_delta*360) % 360))*0.02,vec.y)
 			else:
 				child.global_position = Vector3(vec.x,position.y,vec.y)
@@ -87,7 +88,7 @@ func _process(_delta):
 		if selected_block_index < 0:
 			selected_block_index = blocks_nb - 1
 		change_block.emit(cur_index,-1)
-		$"SwitchSound".pitch_scale = 0.5
+		#$"SwitchSound".pitch_scale = 0.5
 		$"SwitchSound".play()
 	if Input.is_action_just_pressed(&"ui_right") and is_in_choosing_position:
 		cur_index += 1
@@ -95,7 +96,7 @@ func _process(_delta):
 		if selected_block_index >= blocks_nb:
 			selected_block_index = 0
 		change_block.emit(cur_index,1)
-		$"SwitchSound".pitch_scale = 0.5
+		#$"SwitchSound".pitch_scale = 0.5
 		$"SwitchSound".play()
 	
 	if (pos_offset - index_angle*cur_index) > distance_margin or (pos_offset - index_angle*cur_index) < -distance_margin:

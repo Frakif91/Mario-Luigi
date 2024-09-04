@@ -50,8 +50,8 @@ func _item_selected():
 func _on_button_pressed():
 	itemlist_choosed_signal.emit(itemlist_index)
 
-
-func _on_button_mouse_entered():
-	move_finger.emit(itemlist_index)
-	print_debug("Emmited")
-	#pf_move_func.call(itemlist_index)
+# too much calls
+# func _on_button_mouse_entered():
+# 	move_finger.emit(itemlist_index)
+# 	print_debug("Emmited")
+# 	#pf_move_func.call(itemlist_index)

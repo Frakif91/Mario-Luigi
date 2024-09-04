@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfj1qb5h35qe4"
+path="res://.godot/imported/Mini Game 1 - Mario & Luigi BIS OST.mp3-c850c2adbeaed84c33f7ba440c0213ae.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Mini Game 1 - Mario & Luigi BIS OST.mp3"
+dest_files=["res://.godot/imported/Mini Game 1 - Mario & Luigi BIS OST.mp3-c850c2adbeaed84c33f7ba440c0213ae.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

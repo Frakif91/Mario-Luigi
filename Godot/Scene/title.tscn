@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://usdppwtddwra"]
+[gd_scene load_steps=8 format=3 uid="uid://usdppwtddwra"]
 
 [ext_resource type="Texture2D" uid="uid://dd6cfaloo28no" path="res://Assets/Prototypes/PNG/Dark/texture_08.png" id="1_86ts5"]
 [ext_resource type="Texture2D" uid="uid://lm00tpqaaorf" path="res://Assets/logo.png" id="2_osf7l"]
 [ext_resource type="Texture2D" uid="uid://bsad5u1588gs6" path="res://Assets/ButtonIcon-N64-A.svg" id="3_w4e0p"]
 [ext_resource type="Texture2D" uid="uid://b2uo3imrjq2co" path="res://Assets/ButtonIcon-N64-B.svg" id="4_7culh"]
+[ext_resource type="AudioStream" uid="uid://bxi6inw3a2d7p" path="res://Assets/Music/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3" id="5_gke8p"]
 
 [sub_resource type="GDScript" id="GDScript_h2xok"]
 resource_name = "tp_to_scene"
@@ -16,7 +17,7 @@ func change_scene(scene : PackedScene):
 	#V - this method allow to call \"get_tree().change_scene_to_packed(scene)\" but at the end of the game frame : for safe execution.
 	get_tree().call_deferred(\"change_scene_to_packed\",scene)
 
-func _on_button_battle_pressed():
+func _do_tricky_animation():
 	for child in $\"Control\".get_children():
 		child.queue_free()
 	var new_loading_lbl = Label.new()
@@ -37,9 +38,13 @@ func _on_button_battle_pressed():
 		new_loading_pg.value = i
 		await Globals.wait(randf_range(0.15,0.01))
 	await Globals.wait(0.1)
+
+func _on_button_battle_pressed():
+	await _do_tricky_animation()
 	change_scene(battle_scene)
 
 func _on_button_overworld_pressed():
+	await _do_tricky_animation()
 	change_scene(overworld_scene)
 "
 
@@ -129,6 +134,11 @@ layout_mode = 2
 text = "Overworld Scene"
 icon = ExtResource("4_7culh")
 expand_icon = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gke8p")
+volume_db = -13.0
+autoplay = true
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_battle_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_overworld_pressed"]

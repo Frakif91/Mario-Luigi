@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=3 uid="uid://dop7chg026ap4"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="1_irily"]
+[ext_resource type="Texture2D" uid="uid://56b044xq0dta" path="res://Assets/Numbers/0.png" id="2_yb43h"]
+[ext_resource type="Texture2D" uid="uid://c8qga18gqccj4" path="res://Assets/Numbers/1.png" id="3_87lsc"]
+[ext_resource type="Texture2D" uid="uid://bipvm1mjnlti" path="res://Assets/Numbers/2.png" id="4_dgf8c"]
+[ext_resource type="Texture2D" uid="uid://j8mocvjm3wcr" path="res://Assets/Numbers/3.png" id="5_cwdhu"]
+[ext_resource type="Texture2D" uid="uid://dq5gf0ogid1y6" path="res://Assets/Numbers/4.png" id="6_rrb80"]
+[ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="7_mxncw"]
+[ext_resource type="Texture2D" uid="uid://b3ydc8bt6fdoy" path="res://Assets/HP.png" id="8_0ca23"]
+[ext_resource type="Texture2D" uid="uid://cirhg5cvphb8q" path="res://Assets/Numbers/7.png" id="9_u7l35"]
+[ext_resource type="Texture2D" uid="uid://cfh2cb7ddi3rm" path="res://Assets/Numbers/8.png" id="10_vgkkk"]
+[ext_resource type="Texture2D" uid="uid://ode65m5hqba2" path="res://Assets/Numbers/9.png" id="11_etwi0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureNumber" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 213.0
+offset_bottom = 161.0
+script = ExtResource("1_irily")
+Numbers = Array[Texture2D]([ExtResource("2_yb43h"), ExtResource("3_87lsc"), ExtResource("4_dgf8c"), ExtResource("5_cwdhu"), ExtResource("6_rrb80"), ExtResource("7_mxncw"), ExtResource("8_0ca23"), ExtResource("9_u7l35"), ExtResource("10_vgkkk"), ExtResource("11_etwi0")])
+spacing = -4
+value = 159
+images_slot = Array[Texture2D]([ExtResource("11_etwi0"), ExtResource("7_mxncw"), ExtResource("3_87lsc")])
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
