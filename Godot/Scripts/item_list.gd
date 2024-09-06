@@ -54,8 +54,11 @@ var item_index : int = 0 #same thing as selected_item but used this time
 var description_label_size
 var wait_between_reshow = 1.5
 
+@onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_child(audio_player)
 	item_have_been_choosed.connect(_item_choosed)
 	move_finger.connect(_move_pf_to.bind(3))
 	for index in range(7):
@@ -154,7 +157,7 @@ func show_heal(heal: int, posin3d: Vector3, damage_type: int):
 	di.show()
 	di.showup()
 
-@onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
+
 func _play_audio(audio_file : AudioStream):
 	audio_player.stream = audio_file
 	audio_player.play()

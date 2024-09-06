@@ -1,13 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=34 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_e50fe"]
-[ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_yxsim"]
+[ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_xqjho"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="3_4lsss"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
+[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="3_fjnjp"]
 [ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="4_et8cy"]
 [ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="5_4popt"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
+[ext_resource type="SpriteFrames" uid="uid://v4pbu477uses" path="res://Godot/overworld_test_luigi_animations.tres" id="7_5gott"]
+[ext_resource type="Script" path="res://Godot/Scripts/LuigiOverworld_Movement.gd" id="7_iq67v"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
+[ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
@@ -36,9 +40,11 @@ size = Vector3(50, 1, 50)
 radius = 0.125
 height = 0.49
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_3veek"]
-top_radius = 0.15
-bottom_radius = 0.15
+top_radius = 0.13
+bottom_radius = 0.13
 height = 0.001
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h10to"]
@@ -90,6 +96,7 @@ size = Vector3(1, 0.1, 1)
 height = 0.01
 
 [node name="Overworld" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -102,25 +109,34 @@ mesh = SubResource("BoxMesh_k7rf6")
 
 [node name="Mario" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
+slide_on_ceiling = false
 script = ExtResource("1_e50fe")
+luigi_np = NodePath("../Luigi")
 SPEED = 2.0
 
 [node name="ASprite3D" type="AnimatedSprite3D" parent="Mario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+billboard = 1
 texture_filter = 4
 render_priority = 1
-sprite_frames = ExtResource("2_yxsim")
-animation = &"walk-S"
+sprite_frames = ExtResource("2_xqjho")
+animation = &"walk-N"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
 shape = SubResource("CapsuleShape3D_qf3ef")
 
 [node name="Camera3D" type="Camera3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 1.5, 1.5)
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
+attributes = SubResource("CameraAttributesPractical_e1eit")
+doppler_tracking = 2
+current = true
+script = ExtResource("3_fjnjp")
+speed = 5.0
+follow_offset = Vector3(0, 1.63535, 1.5)
 
 [node name="FakeShadow" type="MeshInstance3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_3veek")
@@ -136,19 +152,57 @@ stream = ExtResource("5_4popt")
 
 [node name="Timer" type="Timer" parent="Mario"]
 
+[node name="Luigi" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06279, -0.376311)
+slide_on_ceiling = false
+script = ExtResource("7_iq67v")
+array_lenght = 15
+mario_np = NodePath("../Mario")
+
+[node name="ASprite3D" type="AnimatedSprite3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+billboard = 1
+texture_filter = 4
+render_priority = 1
+sprite_frames = ExtResource("7_5gott")
+animation = &"walk-SL"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
+shape = SubResource("CapsuleShape3D_qf3ef")
+
+[node name="FakeShadow" type="MeshInstance3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+layers = 2
+transparency = 1.0
+mesh = SubResource("CylinderMesh_3veek")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("3_4lsss")
+
+[node name="RightFoot" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("4_et8cy")
+
+[node name="RightFoot2" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("5_4popt")
+
+[node name="Timer" type="Timer" parent="Luigi"]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nf4br")
 
 [node name="WorldLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.144516, -0.866025, -0.47866, 0.957319, 4.18458e-08, 0.289032, -0.250309, -0.5, 0.829063, 0, 4.04908, 0)
+visible = false
 light_cull_mask = 4294967293
 shadow_enabled = true
 
 [node name="RoundShadowsLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.04908, 0)
 layers = 2
-light_cull_mask = 4293918722
+light_cull_mask = 4293918721
 shadow_enabled = true
+directional_shadow_max_distance = 20.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
@@ -217,3 +271,9 @@ visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 icon = ExtResource("8_v1amf")
+
+[node name="Node3D" parent="." instance=ExtResource("9_qnxvs")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1, 1.7652, -4)
+
+[node name="Node3D2" parent="." instance=ExtResource("9_qnxvs")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.89309, 2.92022, 3.60702)

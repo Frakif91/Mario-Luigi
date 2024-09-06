@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://usdppwtddwra"]
 
-[ext_resource type="Texture2D" uid="uid://dd6cfaloo28no" path="res://Assets/Prototypes/PNG/Dark/texture_08.png" id="1_86ts5"]
+[ext_resource type="Texture2D" uid="uid://chwn1br1jchb" path="res://Assets/texture_ml_little.png" id="1_d1doc"]
 [ext_resource type="Texture2D" uid="uid://lm00tpqaaorf" path="res://Assets/logo.png" id="2_osf7l"]
 [ext_resource type="Texture2D" uid="uid://bsad5u1588gs6" path="res://Assets/ButtonIcon-N64-A.svg" id="3_w4e0p"]
 [ext_resource type="Texture2D" uid="uid://b2uo3imrjq2co" path="res://Assets/ButtonIcon-N64-B.svg" id="4_7culh"]
@@ -95,7 +95,7 @@ offset_right = 2880.0
 offset_bottom = 1620.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_86ts5")
+texture = ExtResource("1_d1doc")
 expand_mode = 1
 stretch_mode = 1
 script = SubResource("GDScript_n6vjf")

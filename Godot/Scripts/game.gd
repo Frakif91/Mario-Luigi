@@ -29,7 +29,7 @@ var jump_class = preload("res://Godot/Scripts/manual_animations.gd")
 var transition_direction = 1
 var transition_time = 0.07
 var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), OUT = Vector3(1,2,3),LUIGI = Vector3(0.5,1.4,2.5)}
-var animation_offsets = {"idle" = Vector3(0.0,0,0),"hammer" = Vector3(0.088,0.143,-0.04)}
+var animation_offsets = {"idle" = Vector3(-0.1,0,0),"hammer" = Vector3(-0.1,0.05,-0.1), "none" = Vector3(0,0,0)}
 var chooseblocks_offsets = {MARIO = Vector2(-0.5,-1), LUIGI = Vector2(-1.25,0.6)}
 var chooseblock_global_of = {"Mario" = Vector3(-0.1,1,0), "Luigi" = Vector3(-0.55, 1, 0.73)}
 var cur_cam_pos = camera_position.OG
@@ -48,6 +48,7 @@ func _ready():
 	Globals.cur_brother = brothers["Mario"]
 	Globals.cur_brother.bro.hp -= 10
 	Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
+	change_character(Globals.cur_brother)
 	Globals.eat_inventory_item.connect(brother_play_eat_anim)
 	choosecube.hit_block.connect(hitting_block)
 	label_change_effect_timer.autostart = false
@@ -98,6 +99,19 @@ func _input(_event):
 	if Input.is_action_just_pressed(&"Test4"):
 		cur_cam_pos = camera_position.T_ENEMY
 	
+	if Input.is_action_just_pressed(&"Test5"):
+		Globals.cur_brother.bro.overrite_animation = true
+		Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
+		await jump_process._victory_screen()
+		Globals.cur_brother.bro.overrite_animation = false
+		Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
+	
+	if Input.is_action_just_pressed(&"Test3"):
+		Globals.cur_brother.animated_sprite.position = animation_offsets["hammer"]
+		Globals.cur_brother.bro.overrite_animation = true
+		await jump_process._hammer_manual_animation($"Characters/Goomba".position,$"Characters/Goomba/AnimatedSprite3D")
+		Globals.cur_brother.bro.overrite_animation = false
+		Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
 	
 	if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_SELECTING and Globals.cur_action == Globals.ACTIONS_BLOCKS.JUMP:
 		if Input.is_action_just_pressed(Globals.cur_brother.bro.action_button):
@@ -110,6 +124,44 @@ func _input(_event):
 			brothers["Mario"].bro.overrite_animation = false
 			brothers["Luigi"].bro.overrite_animation = false
 			set_visible_choosecube()
+
+		if Input.is_action_just_pressed(&"MenuDown"):
+			cur_enemy_index += 1
+			if cur_enemy_index > enemies.size() - 1:
+				cur_enemy_index = 0
+			cur_enemy = enemies[cur_enemy_index]
+			$"ChooseCube/SwitchSound".play()
+			$"Pointer".position = cur_enemy.position
+		if Input.is_action_just_pressed(&"MenuUp"):
+			cur_enemy_index -= 1
+			if cur_enemy_index < 0:
+				cur_enemy_index = enemies.size() - 1
+			cur_enemy = enemies[cur_enemy_index]
+			$"ChooseCube/SwitchSound".play()
+			$"Pointer".position = cur_enemy.position
+	#2
+	# Hammer Action
+	if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_SELECTING and Globals.cur_action == Globals.ACTIONS_BLOCKS.HAMMER:
+		if Input.is_action_just_pressed(Globals.cur_brother.bro.action_button):
+			Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_ACTION
+			$"Pointer".visible = false
+
+			Globals.cur_brother.animated_sprite.position = animation_offsets["hammer"]
+			Globals.cur_brother.bro.overrite_animation = true
+			var result : Actions.results = await jump_process._hammer_manual_animation(cur_enemy.position, cur_enemy.get_node(^"./AnimatedSprite3D"))
+			if result == Actions.results.SUCESS:
+				await jump_process._hammer_excellent()
+			elif result == Actions.results.FAIL:
+				await jump_process._hammer_good()
+			else: #if results == NONE
+				await jump_process._hammer_bad()
+			print("Finish")
+			brothers["Mario"].bro.overrite_animation = false
+			brothers["Luigi"].bro.overrite_animation = false
+			Globals.cur_brother.bro.overrite_animation = false
+			Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
+			set_visible_choosecube()
+			
 		if Input.is_action_just_pressed(&"MenuDown"):
 			cur_enemy_index += 1
 			if cur_enemy_index > enemies.size() - 1:
@@ -198,6 +250,13 @@ func hitting_block():
 				await anima.animation_finished
 				anima.play(&"show_itemlist")
 				Globals.is_itemlist_opened = true
+			"HAMMER":
+				cur_cam_pos = camera_position.T_ENEMY
+				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_SELECTING
+				choosecube.is_in_choosing_position = false
+				Globals.cur_brother.bro.can_jump = false
+				anima.play(&"hide_cubes")
+				$"Pointer".visible = true
 			_:
 				$"InvalidSound".play()
 				push_error(error_string(ERR_CANT_RESOLVE), " : Block \"{}\" not found".format([choosecube.selected_block_name],"{}"))

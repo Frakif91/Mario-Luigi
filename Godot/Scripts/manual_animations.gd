@@ -13,13 +13,17 @@ var mario_anim : AnimationPlayer
 var cur_enemy_sprite : AnimatedSprite3D
 var cur_targetted_enemy
 
-var jump_sfx = preload("res://Assets/SFX/SML2_Jump.ogg")
-var stomp_sfx = preload("res://Assets/Sound/SE_BTL_STOMP1.wav")
-var run_sfx = preload("res://Assets/Sound/SE_BTL_RUN.wav")
-var taking_out_sfx = preload("res://Assets/SFX/Mario_&_Luigi_PIT_Special_Item.ogg")
-var recover_sfx = preload("res://Assets/SFX/Mario_&_Luigi_SS_&_BM_Heal.ogg")
-var ass_on_floor_sfx = preload("res://Assets/Sound/SE_BTL_STOMP3.wav")
-var SFX : Dictionary = {JUMP = jump_sfx, STOMP = stomp_sfx, RUN = run_sfx, TAKEOUT = taking_out_sfx, RECOVER = recover_sfx, ASS = ass_on_floor_sfx}
+const jump_sfx = preload("res://Assets/SFX/SML2_Jump.ogg")
+const stomp_sfx = preload("res://Assets/Sound/SE_BTL_STOMP1.wav")
+const run_sfx = preload("res://Assets/Sound/SE_BTL_RUN.wav")
+const taking_out_sfx = preload("res://Assets/SFX/Mario_&_Luigi_PIT_Special_Item.ogg")
+const recover_sfx = preload("res://Assets/SFX/Mario_&_Luigi_SS_&_BM_Heal.ogg")
+const ass_on_floor_sfx = preload("res://Assets/Sound/SE_BTL_STOMP3.wav")
+const hammer_takeout = preload("res://Assets/Sound/SE_BTL_HYOI.wav")
+const hammer_charged = preload("res://Assets/Sound/SE_BTL_KIRARI.wav")
+const hammer_go = preload("res://Assets/Sound/SE_BTL_ML_HAMMER_SHAKE.wav")
+const hammer_hit = preload("res://Assets/Sound/SE_BTL_ML_HAMMER.wav")
+const SFX : Dictionary = {JUMP = jump_sfx, STOMP = stomp_sfx, RUN = run_sfx, TAKEOUT = taking_out_sfx, RECOVER = recover_sfx, ASS = ass_on_floor_sfx}
 
 @onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
 func _play_audio(audio_file):
@@ -152,6 +156,21 @@ func jump_check_hit(progression,jump_minimal_good_window,jump_maximal_good_windo
             return results.FAIL
         else:
             return results.NONE
+
+# #region Bro Attack
+# func bro1_multiple_jump_check(progression,jump_minimal_good_window,jump_maximal_good_window):
+#     if Input.is_action_just_pressed(Globals.cur_brother.bro.action_button):
+#         print_debug("Sucess or not >>>  ",jump_minimal_good_window,"<",progression,"<",jump_maximal_good_window)
+#             #print("Test Variable", _jump_minimal_window, _jump_timing, _jump_maximal_window)
+#         if progression >= jump_minimal_good_window and progression <= jump_maximal_good_window:
+#             return results.SUCESS
+#         else:
+#             return results.FAIL
+#     else:
+#         if progression > jump_maximal_good_window:
+#             return results.FAIL
+#         else:
+#             return results.NONE
 
 #region Results    
 func result_todo(result):
@@ -315,9 +334,9 @@ func _double_jump_manual(enemy_position : Vector3):
         progression = (animation_timer.wait_time - animation_timer.time_left)/animation_speed
 
         if (progression < 0.3):
-            action_brother.animated_sprite.play(&"jump-pirouette")
+            action_brother.animated_sprite.play(&"jump_pirouette")
         elif (progression < 0.6):
-            action_brother.animated_sprite.play(&"jump-pirouette2")
+            action_brother.animated_sprite.play(&"jump_pirouette2")
         elif (progression < 0.95):
             action_brother.animated_sprite.play(&"jump-second-falling")
         #jump_pirouette 0
@@ -383,6 +402,7 @@ func _jump_manual_succesful():
             action_brother.position.z = lerp(cur_position.z,og_position.z,get_percentage(progression,0,1))
         elif (progression > 1 and not succes_anim_played):
             succes_anim_played = true
+            action_brother.position.y = og_position.y
             action_brother.animated_sprite.rotation.z = 0
             action_brother.animated_sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
             action_brother.animated_sprite.play(&"jump-succesful")
@@ -409,7 +429,7 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
     #open-mouth
     #close-mouth
     #tummy
-    sprite.position.x = 0.3
+    sprite.position.x = 0.2
     action_brother.animated_sprite.play(&"taking-out-item")
     while (animation_timer.time_left > 0 and not stop_animation):
         progression = total_time - animation_timer.time_left
@@ -445,7 +465,7 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
             action_brother.animated_sprite.modulate = lerp(action_brother.animated_sprite.modulate,Color(1,1,1,1),get_process_delta_time()*2)
 
         if (progression > 1.8 and progression < 2.65):
-            sprite.position.x = og_position.x + get_percentage_value(get_percentage(progression,1.8,2.65),0.3,0.05)
+            sprite.position.x = og_position.x + get_percentage_value(get_percentage(progression,1.8,2.65),0.2,-0.05)
             
         if (progression > 1.8 and progression < 2.225):
             #action_brother.animated_sprite.play(&"jump-pirouette2")
@@ -454,4 +474,218 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
             #action_brother.animated_sprite.play(&"jump-pirouette2")
             sprite.position.y = get_percentage_value(ease(get_percentage(progression,2.225,2.65) ,2),1.5,og_position.y)
 
+        await Globals.wait(0.001)
+
+
+#region Hammer
+func _hammer_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSprite3D):
+    #0.8 hammer_walk
+    #1.9 hammer_ready
+    #2.3 hammer_charge
+    #3.2 hammer_readystand
+    var animation_speed = (1.1)**-1
+    animation_timer.start(3.7*animation_speed)
+    var total_time = 3.5
+    var progression = 0
+    var hammer_minimal_window = 2.5
+    var hammer_minimal_good_window = 3.1
+    var hammer_maximal_window = 3.3
+    var hammer_maximal_good_window = 3.3
+    var does_have_result = false
+    var result
+    cur_enemy_sprite = enemy_sprite
+    var step : int = 0
+
+    var init_anima = _init_animation(true) 
+    var action_brother : BrotherCB3 = init_anima[0]
+    var og_position : Vector3 = init_anima[1]
+
+    action_brother.animated_sprite.play(&"hammer_taking_out")
+    _play_audio(hammer_takeout)
+    while (animation_timer.time_left > 0 and not stop_animation):
+        progression = (total_time - animation_timer.time_left/animation_speed)
+
+        if (progression > 0.8 and progression < 1.9):
+            action_brother.position.x = lerp(og_position.x,enemy_position.x - 0.08,get_percentage(progression,0.8,1.9))
+            action_brother.position.z = lerp(og_position.z,enemy_position.z,get_percentage(progression,0.8,1.9))
+        
+        if (step == 0 and progression > 0.8):
+            step = 1
+            action_brother.animated_sprite.play(&"hammer_walk")
+            #action_brother.animated_sprite.play(&"hammer_ready")
+            _play_audio(SFX.RUN)
+
+        elif (step == 1 and progression > 1.9):
+            step = 2
+            action_brother.animated_sprite.play(&"hammer_ready")
+            action_brother.position.z -= 0.01 #Stay infront of enemy
+            _play_audio(hammer_go)
+        elif (step == 2 and progression > 2.3):
+            step = 3
+            action_brother.animated_sprite.play(&"hammer_charge")
+        elif (step == 3 and progression > 2.5):
+            step = 4
+            audio_player.pitch_scale = 0.9
+            _play_audio(hammer_charged)
+
+        elif (step == 4 and progression > 2.8):
+            step = 5
+            audio_player.pitch_scale = 0.95
+            _play_audio(hammer_charged)
+
+        elif (step == 5 and progression > hammer_minimal_good_window):
+            step = 6
+            audio_player.pitch_scale = 1.0
+            _play_audio(hammer_charged)
+            action_brother.animated_sprite.play(&"hammer_readystand")
+
+        if (progression > hammer_minimal_window and progression < hammer_maximal_window and not does_have_result):
+            result = jump_check_hit(progression,hammer_minimal_good_window,hammer_maximal_good_window)
+            if result:
+                return result
+        
+        if (progression > hammer_maximal_window):
+            return Actions.results.NONE
+
+        await Globals.wait(0.001)
+
+func _hammer_bad():
+    _play_audio(hammer_go)
+    Globals.cur_brother.animated_sprite.play(&"hammer_fail")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    show_damage(2, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
+    ratings_variable.play(&"Ok")
+    shake_object(cur_enemy_sprite,0.07,0.4)
+    Globals.cur_brother.animated_sprite.play(&"hammer_failstand")
+    await Globals.cur_brother.animated_sprite.animation_finished
+
+    await Globals.wait(1)
+    Globals.cur_brother.animated_sprite.play(&"walking")
+    Globals.cur_brother.animated_sprite.flip_h = true
+    _play_audio(SFX.RUN)
+
+    animation_timer.start(0.8)
+    var total_time = 0.8
+    var init_anima = _init_animation(true)
+    var action_brother : BrotherCB3 = init_anima[0]
+    var og_position : Vector3 = init_anima[1]
+    var cur_position = action_brother.position
+    while (animation_timer.time_left > 0 and not stop_animation):
+        var progression = (total_time - animation_timer.time_left)
+        if (progression < 0.8):
+            action_brother.position.x = lerp(cur_position.x,og_position.x,get_percentage(progression,0,0.8))
+            action_brother.position.z = lerp(cur_position.z,og_position.z,get_percentage(progression,0,0.8))
+        await Globals.wait(0.001)
+    Globals.cur_brother.animated_sprite.flip_h = false
+
+func _hammer_good():
+    _play_audio(hammer_go)
+    Globals.cur_brother.animated_sprite.play(&"hammer_attack")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    _play_audio(hammer_hit)
+    show_damage(14, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
+    ratings_variable.play(&"Good")
+    shake_object(cur_enemy_sprite,0.07,0.4)
+    Globals.cur_brother.animated_sprite.play(&"hammer_attack_stand")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    Globals.cur_brother.animated_sprite.play(&"hammer_attack_stand")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    Globals.cur_brother.animated_sprite.play(&"hammer_stop")
+    await Globals.cur_brother.animated_sprite.animation_finished
+
+    await Globals.wait(0.1)
+    Globals.cur_brother.animated_sprite.play(&"walking")
+    Globals.cur_brother.animated_sprite.flip_h = true
+    _play_audio(SFX.RUN)
+
+    animation_timer.start(0.8)
+    var total_time = 0.8
+    var init_anima = _init_animation(true)
+    var action_brother : BrotherCB3 = init_anima[0]
+    var og_position : Vector3 = init_anima[1]
+    var cur_position = action_brother.position
+    while (animation_timer.time_left > 0 and not stop_animation):
+        var progression = (total_time - animation_timer.time_left)
+        if (progression < 0.8):
+            action_brother.position.x = lerp(cur_position.x,og_position.x,get_percentage(progression,0,0.8))
+            action_brother.position.z = lerp(cur_position.z,og_position.z,get_percentage(progression,0,0.8))
+        await Globals.wait(0.001)
+    Globals.cur_brother.animated_sprite.flip_h = false
+        
+
+func _hammer_excellent():
+    audio_player.pitch_scale = 1.1
+    _play_audio(hammer_charged)
+    for o in range(5):
+        Globals.cur_brother.animated_sprite.play(&"hammer_readystand")
+        await Globals.cur_brother.animated_sprite.animation_finished
+    _play_audio(hammer_go)
+    Globals.cur_brother.animated_sprite.play(&"hammer_exellent_attack")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    
+    _play_audio(hammer_hit)
+    show_damage(20, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
+    ratings_variable.play(&"Excellent")
+    shake_object(cur_enemy_sprite,0.07,0.4)
+
+    for o in range(3):
+        Globals.cur_brother.animated_sprite.play(&"hammer_attack_stand")
+        await Globals.cur_brother.animated_sprite.animation_finished
+    Globals.cur_brother.animated_sprite.play(&"hammer_stop")
+    await Globals.cur_brother.animated_sprite.animation_finished
+    await Globals.wait(0.1)
+    Globals.cur_brother.animated_sprite.play(&"walking")
+    Globals.cur_brother.animated_sprite.flip_h = true
+    _play_audio(SFX.RUN)
+
+    animation_timer.start(0.8)
+    var total_time = 0.8
+    var init_anima = _init_animation(true)
+    var action_brother : BrotherCB3 = init_anima[0]
+    var og_position : Vector3 = init_anima[1]
+    var cur_position = action_brother.position
+    while (animation_timer.time_left > 0 and not stop_animation):
+        var progression = (total_time - animation_timer.time_left)
+        if (progression < 0.8):
+            action_brother.position.x = lerp(cur_position.x,og_position.x,get_percentage(progression,0,0.8))
+            action_brother.position.z = lerp(cur_position.z,og_position.z,get_percentage(progression,0,0.8))
+        await Globals.wait(0.001)
+    Globals.cur_brother.animated_sprite.flip_h = false
+    #     if (progression > hammer_minimal_window and progression < hammer_maximal_window and not does_have_result):
+    #         if step == 2:
+    #             step = 3
+    #             action_brother.animated_sprite.play(&"jump_on_enemy")
+    #         result = jump_check_hit(progression,hammer_minimal_good_window,hammer_maximal_good_window)
+    #         if result:
+    #             does_have_result = true
+    #     await Globals.wait(0.001)
+    # if result:
+    #     return result
+    # else:
+    #     return results.FAIL
+    #action_brother.position = og_position
+    #_jump_disable_hit()
+
+func _victory_screen():
+    animation_timer.start(2)
+    var total_time = 0.8
+    var init_anima = _init_animation(true)
+    var action_brother : BrotherCB3 = init_anima[0]
+    var og_position : Vector3 = init_anima[1]
+    var cur_position = action_brother.position
+    var target_position = get_viewport().get_camera_3d().position
+    target_position.z = 0
+    action_brother.animated_sprite.play("victory")
+    while (animation_timer.time_left > 0 and not stop_animation):
+        var progression = (total_time - animation_timer.time_left)
+
+        if (progression <= 0.3):
+            action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0,0.3) ,0.5),og_position.y,1.5)
+        if (progression > 0.3 and progression <= 6):
+            action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0.3,0.6) ,2),1.5,og_position.y + 0.5)
+
+        if (progression <= 0.6):
+            action_brother.position.x = lerp(og_position.x,target_position.x,get_percentage(progression,0,0.6))
+            action_brother.position.z = lerp(og_position.z,target_position.z,get_percentage(progression,0,0.6))
+        
         await Globals.wait(0.001)
