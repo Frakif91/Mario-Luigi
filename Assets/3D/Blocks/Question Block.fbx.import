@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkhwnk0fqqinx"
-path="res://.godot/imported/Furniture.glb-1f14e951b6b1068c7a8623b177cb9ff2.scn"
+uid="uid://dxio2tgsy1w36"
+path="res://.godot/imported/Question Block.fbx-482f92ad987b432fed16e068aa7984f9.scn"
 
 [deps]
 
-source_file="res://Assets/3D/Nouveau dossier/Furniture.glb"
-dest_files=["res://.godot/imported/Furniture.glb-1f14e951b6b1068c7a8623b177cb9ff2.scn"]
+source_file="res://Assets/3D/Blocks/Question Block.fbx"
+dest_files=["res://.godot/imported/Question Block.fbx-482f92ad987b432fed16e068aa7984f9.scn"]
 
 [params]
 
@@ -27,10 +27,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

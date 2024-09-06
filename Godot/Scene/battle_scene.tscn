@@ -1,7 +1,8 @@
-[gd_scene load_steps=151 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=154 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="Script" path="res://Godot/Scripts/game.gd" id="1_k43w1"]
+[ext_resource type="Script" path="res://Godot/Scripts/BattleCamera.gd" id="2_awofa"]
 [ext_resource type="PackedScene" uid="uid://dpwo8kvrumeym" path="res://Godot/Nodes/HP.tscn" id="2_fjly1"]
 [ext_resource type="Texture2D" uid="uid://ta5n0q1nftb0" path="res://Assets/Goomba.png" id="2_sh7xv"]
 [ext_resource type="SpriteFrames" uid="uid://cblna1laxmsm0" path="res://luigis_spriteframe.tres" id="4_mug6a"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" path="res://Godot/Scene/automatic_animation.gd" id="5_0xi6g"]
 [ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui.tscn" id="5_k62ue"]
 [ext_resource type="SpriteFrames" uid="uid://cwwx7armsn46q" path="res://luigi_spriteframe.tres" id="6_8wy7m"]
+[ext_resource type="AudioStream" uid="uid://bk8meh8lcj1qb" path="res://Assets/Sound/SE_BTL_KIRARI.wav" id="7_b6ohp"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="7_obbi1"]
 [ext_resource type="PackedScene" uid="uid://p4r5g73ddt6g" path="res://Godot/Nodes/choosecubes.tscn" id="8_3g76q"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="9_12403"]
@@ -755,6 +757,47 @@ tracks/6/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_rhfwm"]
+resource_name = "Hammer"
+length = 5.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Characters/Mario/AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.9, 2.3, 3.2, 4.2, 4.7, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"hammer_taking_out", &"hammer_walk", &"hammer_ready", &"hammer_charge", &"hammer_readystand", &"hammer_exellent_ready", &"hammer_attack_stand", &"hammer_stop"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Characters/Mario/AnimatedSprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.08, 0, 0), Vector3(0.08, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Characters/Mario:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.33174, 0), Vector3(0, 0.33174, 0), Vector3(1.62416, 0.33174, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ybrqg"]
 resource_name = "Jump_on_goomba"
 length = 1.5
@@ -1011,6 +1054,18 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Characters/Mario:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.33174, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jp8ui"]
@@ -1281,6 +1336,7 @@ tracks/5/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_quky8"]
 _data = {
 "Eat": SubResource("Animation_08v1m"),
+"Hammer": SubResource("Animation_rhfwm"),
 "Jump_on_goomba": SubResource("Animation_ybrqg"),
 "RESET": SubResource("Animation_n4v3o"),
 "_jump_sucess": SubResource("Animation_jp8ui"),
@@ -2080,9 +2136,10 @@ filter_clip = true
 script = ExtResource("1_k43w1")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0.5, 1.8, 2.5)
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0.5, 1.545, 2.5)
 doppler_tracking = 2
 current = true
+script = ExtResource("2_awofa")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ej0ly")
@@ -2144,6 +2201,10 @@ mesh = SubResource("CylinderMesh_hqrsi")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Characters/Mario"]
 stream = ExtResource("7_obbi1")
 volume_db = -16.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Characters/Mario"]
+stream = ExtResource("7_b6ohp")
+pitch_scale = 1.05
 
 [node name="Luigi" type="CharacterBody3D" parent="Characters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.408896, 0.311155, 0.760046)
