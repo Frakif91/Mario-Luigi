@@ -4,6 +4,11 @@ signal block_hit()
 
 var block_has_been_hit = false
 
+@export_category("Cube Reward")
+@export_enum("Coin","Object") var reward_type = "Coin"
+@export var coin_quantity : int = 1
+@export var inventory_item : UniqueItem = preload("res://Godot/Assets/UniqueItem/health_shroom.tres") as UniqueItem
+
 @onready var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
 @onready var question_block = $"Question Block"
 @onready var used_cube = $"Used Block 1"

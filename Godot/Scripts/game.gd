@@ -32,7 +32,7 @@ var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), 
 var animation_offsets = {"idle" = Vector3(-0.1,0,0),"hammer" = Vector3(-0.1,0.05,-0.1), "none" = Vector3(0,0,0)}
 var chooseblocks_offsets = {MARIO = Vector2(-0.5,-1), LUIGI = Vector2(-1.25,0.6)}
 var chooseblock_global_of = {"Mario" = Vector3(-0.1,1,0), "Luigi" = Vector3(-0.55, 1, 0.73)}
-var cur_cam_pos = camera_position.OG
+var cur_camera_pos = camera_position.OG
 var action_who : BrotherCB3
 var jump_process : Actions
 
@@ -76,7 +76,7 @@ func _ready():
 func change_character(brother : BrotherCB3):
 	Globals.cur_brother = brother
 
-	cur_cam_pos = Globals.cur_brother.bro.camera_position
+	($"MainCamera" as BattleCamera).target_position = Globals.cur_brother.bro.camera_position
 	choosecube.center_point = Globals.cur_brother.bro.chooseblock_offset
 	choosecube.position = chooseblock_global_of[Globals.cur_brother.bro.character_name]
 	action_who = $"Characters/Luigi"
@@ -97,7 +97,7 @@ func _input(_event):
 		$"UI/S2D_to_3D".position = Globals.cur_brother.position + Vector3(-0.3,0.2,0.05)
 
 	if Input.is_action_just_pressed(&"Test4"):
-		cur_cam_pos = camera_position.T_ENEMY
+		($"MainCamera" as BattleCamera).target_position = camera_position.T_ENEMY
 	
 	if Input.is_action_just_pressed(&"Test5"):
 		Globals.cur_brother.bro.overrite_animation = true
@@ -150,12 +150,14 @@ func _input(_event):
 			Globals.cur_brother.bro.overrite_animation = true
 			var result : Actions.results = await jump_process._hammer_manual_animation(cur_enemy.position, cur_enemy.get_node(^"./AnimatedSprite3D"))
 			if result == Actions.results.SUCESS:
+				#($"MainCamera" as BattleCamera).target_position = Globals.cur_brother.position + Vector3(0,1,1)
 				await jump_process._hammer_excellent()
 			elif result == Actions.results.FAIL:
 				await jump_process._hammer_good()
 			else: #if results == NONE
 				await jump_process._hammer_bad()
 			print("Finish")
+			#($"MainCamera" as BattleCamera).target_position = Globals.cur_brother.bro.camera_positionv
 			brothers["Mario"].bro.overrite_animation = false
 			brothers["Luigi"].bro.overrite_animation = false
 			Globals.cur_brother.bro.overrite_animation = false
@@ -183,7 +185,7 @@ func set_visible_choosecube():
 		Globals.is_itemlist_opened = false
 		await anima.animation_finished
 	
-	cur_cam_pos = Globals.cur_brother.bro.camera_position
+	($"MainCamera" as BattleCamera).target_position = Globals.cur_brother.bro.camera_position
 	set_property_on_brothers(brothers.values(),&"overrite_animation",false)
 	Globals.cur_action = Globals.ACTIONS_BLOCKS.NONE
 	$"Pointer".visible = false
@@ -211,7 +213,7 @@ func set_property_on_brothers(brother_array : Array, target_property : StringNam
 #region Process
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$"MainCamera".position = lerp($"MainCamera".position,cur_cam_pos,_delta*7.5)
+	#($"MainCamera" as BattleCamera).target_position
 	_jump_process(_delta)
 	if (label_change_effect_timer.time_left):
 		label.position.y = label_change_effect_timer.time_left * transition_direction
@@ -222,20 +224,19 @@ func _process(_delta):
 
 func changed_block(_curent_index: int, direction : int):
 	label_change_effect_timer.start(transition_time)
-	label_change_effect_timer
+	label_change_effect_timer.one_shot = true
 	transition_direction = direction
 	label.position.y = transition_time * direction
 	label.modulate.a = 0
 	label.text = choosecube.get_choose_cube_name()
 	#label.text = BLOCKS_NAMES[-_curent_index % choosecube.blocks_nb]
 
-#region Hit Block
 func hitting_block():
 	#print_debug("AAAAAAAAAAAAAAAAAAAA")
 	if Globals.RPG.combat_state == Globals.RPG.combat_turn.PLAYER_CHOOSING:
 		match (choosecube.selected_block_name):
 			"JUMP":
-				cur_cam_pos = camera_position.T_ENEMY
+				($"MainCamera" as BattleCamera).target_position = camera_position.T_ENEMY
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_SELECTING
 				choosecube.is_in_choosing_position = false
 				Globals.cur_brother.bro.can_jump = false
@@ -251,7 +252,7 @@ func hitting_block():
 				anima.play(&"show_itemlist")
 				Globals.is_itemlist_opened = true
 			"HAMMER":
-				cur_cam_pos = camera_position.T_ENEMY
+				($"MainCamera" as BattleCamera).target_position = camera_position.T_ENEMY
 				Globals.RPG.combat_state = Globals.RPG.combat_turn.PLAYER_SELECTING
 				choosecube.is_in_choosing_position = false
 				Globals.cur_brother.bro.can_jump = false
@@ -333,6 +334,7 @@ func show_damage(damage : int, posin3d : Vector3, damage_type : int):
 	di.show()
 	di.showup()
 
+## Not used anymore
 func _jump_process(_delta):
 	if _jump_can_hit:
 		_jump_timing += _delta

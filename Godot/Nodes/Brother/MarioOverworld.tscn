@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://cg5cphpkwg8ve"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_ehyyf"]
+[ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_fnsjw"]
+[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="3_8dsqk"]
+[ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="4_bf2cq"]
+[ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="5_800kh"]
+[ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="6_dhej2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
+radius = 0.125
+height = 0.49
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3veek"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.001
+
+[node name="Mario" type="CharacterBody3D"]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
+collision_layer = 4
+slide_on_ceiling = false
+script = ExtResource("1_ehyyf")
+luigi_np = NodePath("../Luigi")
+SPEED = 2.0
+
+[node name="ASprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+billboard = 1
+texture_filter = 4
+render_priority = 1
+sprite_frames = ExtResource("2_fnsjw")
+animation = &"jump-SE-0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
+shape = SubResource("CapsuleShape3D_qf3ef")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
+attributes = SubResource("CameraAttributesPractical_e1eit")
+doppler_tracking = 2
+current = true
+script = ExtResource("3_8dsqk")
+speed = 5.0
+follow_offset = Vector3(0, 1.63535, 1.5)
+
+[node name="FakeShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+layers = 2
+transparency = 1.0
+mesh = SubResource("CylinderMesh_3veek")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bf2cq")
+
+[node name="RightFoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_800kh")
+volume_db = -10.0
+
+[node name="RightFoot2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dhej2")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]

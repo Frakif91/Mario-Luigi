@@ -412,7 +412,7 @@ func _jump_manual_succesful():
 func hammer_enable_hit():
     pass
 
-func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : AudioStreamPlayer, apply : Callable, item : Globals.Inventory.UniqueItem):
+func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : AudioStreamPlayer, apply : Callable, item : UniqueItem):
     animation_timer.start(5.3)
     var total_time = 5.3
     var progression = 0
@@ -517,7 +517,7 @@ func _hammer_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSp
 
         elif (step == 1 and progression > 1.9):
             step = 2
-            action_brother.animated_sprite.play(&"hammer_ready")
+            action_brother.animated_sprite.play(&"hammer_start_charge")
             action_brother.position.z -= 0.01 #Stay infront of enemy
             _play_audio(hammer_go)
         elif (step == 2 and progression > 2.3):
@@ -537,7 +537,7 @@ func _hammer_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSp
             step = 6
             audio_player.pitch_scale = 1.0
             _play_audio(hammer_charged)
-            action_brother.animated_sprite.play(&"hammer_readystand")
+            action_brother.animated_sprite.play(&"hammer_charged")
 
         if (progression > hammer_minimal_window and progression < hammer_maximal_window and not does_have_result):
             result = jump_check_hit(progression,hammer_minimal_good_window,hammer_maximal_good_window)
@@ -552,14 +552,15 @@ func _hammer_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSp
 func _hammer_bad():
     _play_audio(hammer_go)
     Globals.cur_brother.animated_sprite.play(&"hammer_fail")
-    await Globals.cur_brother.animated_sprite.animation_finished
+    await Globals.wait(0.05)
+    #await Globals.cur_brother.animated_sprite.animation_finished
     show_damage(2, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
     ratings_variable.play(&"Ok")
-    shake_object(cur_enemy_sprite,0.07,0.4)
-    Globals.cur_brother.animated_sprite.play(&"hammer_failstand")
+    shake_object(cur_enemy_sprite,0.07,0.2)
+    #Globals.cur_brother.animated_sprite.play(&"hammer_failstand")
     await Globals.cur_brother.animated_sprite.animation_finished
 
-    await Globals.wait(1)
+    await Globals.wait(0.1)
     Globals.cur_brother.animated_sprite.play(&"walking")
     Globals.cur_brother.animated_sprite.flip_h = true
     _play_audio(SFX.RUN)
@@ -615,9 +616,10 @@ func _hammer_good():
 
 func _hammer_excellent():
     audio_player.pitch_scale = 1.1
-    _play_audio(hammer_charged)
-    for o in range(5):
-        Globals.cur_brother.animated_sprite.play(&"hammer_readystand")
+    (get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.position + Vector3(0,0.7,1)
+    _play_audio(preload("res://Assets/Sound/SE_BTL_JINGLE1.wav"))
+    for o in range(4):
+        Globals.cur_brother.animated_sprite.play(&"hammer_charged")
         await Globals.cur_brother.animated_sprite.animation_finished
     _play_audio(hammer_go)
     Globals.cur_brother.animated_sprite.play(&"hammer_exellent_attack")
@@ -627,6 +629,7 @@ func _hammer_excellent():
     show_damage(20, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
     ratings_variable.play(&"Excellent")
     shake_object(cur_enemy_sprite,0.07,0.4)
+    (get_viewport().get_camera_3d() as BattleCamera).shake_camera(0.1,0.3)
 
     for o in range(3):
         Globals.cur_brother.animated_sprite.play(&"hammer_attack_stand")
@@ -634,6 +637,7 @@ func _hammer_excellent():
     Globals.cur_brother.animated_sprite.play(&"hammer_stop")
     await Globals.cur_brother.animated_sprite.animation_finished
     await Globals.wait(0.1)
+    (get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.bro.camera_position
     Globals.cur_brother.animated_sprite.play(&"walking")
     Globals.cur_brother.animated_sprite.flip_h = true
     _play_audio(SFX.RUN)

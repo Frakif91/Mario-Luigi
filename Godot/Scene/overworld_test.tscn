@@ -1,17 +1,12 @@
 [gd_scene load_steps=34 format=3 uid="uid://cw42wwxj6egks"]
 
-[ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_e50fe"]
-[ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_xqjho"]
-[ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="3_4lsss"]
+[ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
+[ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
-[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="3_fjnjp"]
-[ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="4_et8cy"]
-[ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="5_4popt"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
-[ext_resource type="SpriteFrames" uid="uid://v4pbu477uses" path="res://Godot/overworld_test_luigi_animations.tres" id="7_5gott"]
-[ext_resource type="Script" path="res://Godot/Scripts/LuigiOverworld_Movement.gd" id="7_iq67v"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
+[ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
@@ -36,17 +31,6 @@ texture_filter = 2
 material = SubResource("StandardMaterial3D_nisup")
 size = Vector3(50, 1, 50)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
-radius = 0.125
-height = 0.49
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_3veek"]
-top_radius = 0.13
-bottom_radius = 0.13
-height = 0.001
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h10to"]
 sky_top_color = Color(0.135667, 0.443506, 0.809005, 1)
 sky_horizon_color = Color(0.430744, 0.712302, 1, 1)
@@ -59,16 +43,41 @@ sky_material = SubResource("ProceduralSkyMaterial_h10to")
 background_mode = 2
 sky = SubResource("Sky_qh3nn")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqnw"]
-albedo_texture = ExtResource("3_6yqkb")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_abtr7"]
+load_path = "res://.godot/imported/texture_01.svg-9d7c0509e7338d40f8ea4d52e5c74125.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4wnx"]
+albedo_texture = SubResource("CompressedTexture2D_abtr7")
+clearcoat_enabled = true
+clearcoat = 0.85
+clearcoat_roughness = 1.0
 uv1_scale = Vector3(3, 2, 3)
+point_size = 128.0
+proximity_fade_distance = 123.88
 
 [sub_resource type="BoxMesh" id="BoxMesh_xu6od"]
 lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_2cqnw")
+material = SubResource("StandardMaterial3D_q4wnx")
 add_uv2 = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mq3p0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqxfh"]
+load_path = "res://.godot/imported/texture_01.svg-9d7c0509e7338d40f8ea4d52e5c74125.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtno8"]
+albedo_texture = SubResource("CompressedTexture2D_tqxfh")
+clearcoat_enabled = true
+clearcoat = 0.85
+clearcoat_roughness = 1.0
+uv1_scale = Vector3(15, 10, 15)
+point_size = 128.0
+proximity_fade_distance = 123.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_duhrc"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_qtno8")
+add_uv2 = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lta0e"]
 albedo_texture = ExtResource("3_6yqkb")
@@ -82,6 +91,28 @@ size = Vector3(2, 0.2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ooja"]
 size = Vector3(2, 0.2, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ukp3r"]
+load_path = "res://.godot/imported/texture_01.svg-9d7c0509e7338d40f8ea4d52e5c74125.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfacu"]
+albedo_texture = SubResource("CompressedTexture2D_ukp3r")
+uv1_scale = Vector3(13.5, 2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_grvyo"]
+lightmap_size_hint = Vector2i(31, 30)
+material = SubResource("StandardMaterial3D_bfacu")
+add_uv2 = true
+size = Vector3(4.5, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqnw"]
+albedo_texture = ExtResource("3_6yqkb")
+clearcoat_enabled = true
+clearcoat = 0.85
+clearcoat_roughness = 1.0
+uv1_scale = Vector3(3, 2, 3)
+point_size = 128.0
+proximity_fade_distance = 123.88
 
 [sub_resource type="BoxMesh" id="BoxMesh_8txig"]
 lightmap_size_hint = Vector2i(14, 12)
@@ -107,86 +138,9 @@ shape = SubResource("WorldBoundaryShape3D_j3u2c")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_k7rf6")
 
-[node name="Mario" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
-slide_on_ceiling = false
-script = ExtResource("1_e50fe")
-luigi_np = NodePath("../Luigi")
-SPEED = 2.0
+[node name="Mario" parent="." instance=ExtResource("1_1nj15")]
 
-[node name="ASprite3D" type="AnimatedSprite3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
-billboard = 1
-texture_filter = 4
-render_priority = 1
-sprite_frames = ExtResource("2_xqjho")
-animation = &"walk-N"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
-shape = SubResource("CapsuleShape3D_qf3ef")
-
-[node name="Camera3D" type="Camera3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
-attributes = SubResource("CameraAttributesPractical_e1eit")
-doppler_tracking = 2
-current = true
-script = ExtResource("3_fjnjp")
-speed = 5.0
-follow_offset = Vector3(0, 1.63535, 1.5)
-
-[node name="FakeShadow" type="MeshInstance3D" parent="Mario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
-layers = 2
-transparency = 1.0
-mesh = SubResource("CylinderMesh_3veek")
-
-[node name="JumpSFX" type="AudioStreamPlayer" parent="Mario"]
-stream = ExtResource("3_4lsss")
-
-[node name="RightFoot" type="AudioStreamPlayer" parent="Mario"]
-stream = ExtResource("4_et8cy")
-
-[node name="RightFoot2" type="AudioStreamPlayer" parent="Mario"]
-stream = ExtResource("5_4popt")
-
-[node name="Timer" type="Timer" parent="Mario"]
-
-[node name="Luigi" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06279, -0.376311)
-slide_on_ceiling = false
-script = ExtResource("7_iq67v")
-array_lenght = 15
-mario_np = NodePath("../Mario")
-
-[node name="ASprite3D" type="AnimatedSprite3D" parent="Luigi"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
-billboard = 1
-texture_filter = 4
-render_priority = 1
-sprite_frames = ExtResource("7_5gott")
-animation = &"walk-SL"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Luigi"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
-shape = SubResource("CapsuleShape3D_qf3ef")
-
-[node name="FakeShadow" type="MeshInstance3D" parent="Luigi"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
-layers = 2
-transparency = 1.0
-mesh = SubResource("CylinderMesh_3veek")
-
-[node name="JumpSFX" type="AudioStreamPlayer" parent="Luigi"]
-stream = ExtResource("3_4lsss")
-
-[node name="RightFoot" type="AudioStreamPlayer" parent="Luigi"]
-stream = ExtResource("4_et8cy")
-
-[node name="RightFoot2" type="AudioStreamPlayer" parent="Luigi"]
-stream = ExtResource("5_4popt")
-
-[node name="Timer" type="Timer" parent="Luigi"]
+[node name="Luigi" parent="." instance=ExtResource("2_7i1dn")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nf4br")
@@ -204,63 +158,6 @@ light_cull_mask = 4293918721
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_xu6od")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_mq3p0")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8905, 0.995374, 3.62524)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
-mesh = SubResource("BoxMesh_xu6od")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-shape = SubResource("BoxShape3D_mq3p0")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.036, 1, 3.625)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
-transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
-mesh = SubResource("BoxMesh_42v04")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
-shape = SubResource("BoxShape3D_6ooja")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, 1.5, -3.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
-mesh = SubResource("BoxMesh_xu6od")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
-shape = SubResource("BoxShape3D_mq3p0")
-
-[node name="Spinning" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.55, -3.5)
-constant_angular_velocity = Vector3(0, 0.523599, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Spinning"]
-mesh = SubResource("BoxMesh_8txig")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Spinning"]
-shape = SubResource("BoxShape3D_8y1u6")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Spinning"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.051, 0)
-mesh = SubResource("CylinderMesh_so13y")
-
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_04ykq")
 volume_db = -16.0
@@ -272,8 +169,105 @@ offset_right = 8.0
 offset_bottom = 8.0
 icon = ExtResource("8_v1amf")
 
-[node name="Node3D" parent="." instance=ExtResource("9_qnxvs")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1, 1.7652, -4)
+[node name="Level" type="Node3D" parent="."]
 
-[node name="Node3D2" parent="." instance=ExtResource("9_qnxvs")]
+[node name="Cube" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube"]
+mesh = SubResource("BoxMesh_xu6od")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube"]
+shape = SubResource("BoxShape3D_mq3p0")
+
+[node name="Cube3" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84261, 2.1507, 2.99969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00947547)
+mesh = SubResource("BoxMesh_xu6od")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube3"]
+shape = SubResource("BoxShape3D_mq3p0")
+
+[node name="Cube4" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8905, 0.995374, 3.62524)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube4"]
+mesh = SubResource("BoxMesh_xu6od")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube4"]
+shape = SubResource("BoxShape3D_mq3p0")
+
+[node name="Cube5" type="StaticBody3D" parent="Level"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6, 0.150173, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube5"]
+mesh = SubResource("BoxMesh_duhrc")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube5"]
+shape = SubResource("BoxShape3D_mq3p0")
+
+[node name="Slide2" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.036, 1, 3.625)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide2"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
+mesh = SubResource("BoxMesh_42v04")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide2"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
+shape = SubResource("BoxShape3D_6ooja")
+
+[node name="Slide" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61087, 1.54811, 3.00867)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
+mesh = SubResource("BoxMesh_grvyo")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.171279, -0.0930316, -0.00510645)
+shape = SubResource("BoxShape3D_6ooja")
+
+[node name="Cube8" type="StaticBody3D" parent="Level"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, 1.5, -3.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube8"]
+mesh = SubResource("BoxMesh_xu6od")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube8"]
+shape = SubResource("BoxShape3D_mq3p0")
+
+[node name="Spinning" type="StaticBody3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.55, -3.5)
+constant_angular_velocity = Vector3(0, 0.523599, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Spinning"]
+mesh = SubResource("BoxMesh_8txig")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Spinning"]
+shape = SubResource("BoxShape3D_8y1u6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level/Spinning"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.051, 0)
+mesh = SubResource("CylinderMesh_so13y")
+
+[node name="QCube" parent="Level" instance=ExtResource("9_qnxvs")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.49737, 3.88273, -3.50912)
+collision_layer = 5
+collision_mask = 5
+coin_quantity = 2
+
+[node name="QCube2" parent="Level" instance=ExtResource("9_qnxvs")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.89309, 2.92022, 3.60702)
+
+[node name="Control" parent="." instance=ExtResource("13_1ll5n")]

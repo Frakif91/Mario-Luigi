@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjjpe37f5pkl"]
+
+[ext_resource type="Texture2D" uid="uid://bodm4h3g2h0uv" path="res://Assets/Sprites/Mario Battle 1o2.png" id="1_5k5lc"]
+[ext_resource type="Texture2D" uid="uid://cmdqo4jnirxyd" path="res://Assets/Effects/136.ctpk.00.png" id="2_nk5iu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvjwq"]
+atlas = ExtResource("1_5k5lc")
+region = Rect2(46, 10598, 30, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8a06"]
+transparency = 1
+albedo_texture = ExtResource("2_nk5iu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2nut6"]
+material = SubResource("StandardMaterial3D_n8a06")
+size = Vector2(0.1, 0.1)
+
+[node name="Hammer" type="Sprite3D"]
+billboard = 1
+texture_filter = 4
+texture = SubResource("AtlasTexture_wvjwq")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+cast_shadow = 0
+preprocess = 0.1
+mesh = SubResource("QuadMesh_2nut6")
+emission_shape = 4
+emission_points = PackedVector3Array(1, 0, 0)
+emission_colors = PackedColorArray(0, 1, 0, 1, 1, 0, 0, 1)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+radial_accel_min = -3.0
+radial_accel_max = -3.0
+damping_min = 2.0
+damping_max = 2.0
+angle_min = -263.1
+angle_max = 297.7

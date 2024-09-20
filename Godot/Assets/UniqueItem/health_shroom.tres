@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=2 format=3 uid="uid://1an1k48rnvrb"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/UniqueItem.gd" id="1_se4tu"]
+
+[resource]
+script = ExtResource("1_se4tu")
+name = &""
+description = ""

@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bleaj1an8o3dw"]
+
+[ext_resource type="Texture2D" uid="uid://b8diw05q7iaxj" path="res://gamepad-icon-27.png" id="1_nn77e"]
+
+[sub_resource type="GDScript" id="GDScript_cdpha"]
+resource_name = "connected_controller"
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	visible = not Input.get_connected_joypads().is_empty()
+	$\"PanelContainer/HFlowContainer/MarginContainer2/Label\".text = \"Controller connected : \" + str(Input.get_connected_joypads().size())
+	if not Input.get_connected_joypads().is_empty():
+		var joy = Input.get_connected_joypads()[0]
+		$\"PanelContainer/HFlowContainer/MarginContainer2/Label\".text += \"\\n\" + \"Name : \" + str(Input.get_joy_name(joy))
+		var joy_info = Input.get_joy_info(joy)
+		for info in joy_info:
+			$\"PanelContainer/HFlowContainer/MarginContainer2/Label\".text += \"\\n\" + str(info) + \" : \" + str(joy_info[info])
+	
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_cdpha")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="PanelContainer/HFlowContainer/MarginContainer2"]
+layout_mode = 2
+text = " Controller connected :"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HFlowContainer/MarginContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("1_nn77e")
+expand_mode = 1

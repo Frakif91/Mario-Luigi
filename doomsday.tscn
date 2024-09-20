@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://blysuxup3ng87"]
+
+[sub_resource type="Environment" id="Environment_n8ek4"]
+background_mode = 1
+ambient_light_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neprh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqcov"]
+material = SubResource("StandardMaterial3D_neprh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0gbh4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n8ek4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_dqcov")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_0gbh4")

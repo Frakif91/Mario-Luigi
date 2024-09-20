@@ -9,7 +9,7 @@ var movement_buffer : Array[Vector3]
 @export_node_path("MarioOW_Movement") var mario_np
 @onready var mario : MarioOW_Movement = get_node(mario_np)
 
-var not_that_useful_velocity_guesser : Vector3
+var old_position : Vector3
 var is_mario_walking
 
 
@@ -18,9 +18,10 @@ func _ready() -> void:
 	print(Globals.Bros)
 	mario.did_move.connect(_luigi_global_movement)
 	mario.start_move.connect(func():is_mario_walking = true)
-	mario.stop_move.connect(func():is_mario_walking = false)
+	mario.stop_move.connect(func():is_mario_walking = false; velocity.x = 0; velocity.z = 0)
 
 func _luigi_relative_movement(_velocity : Vector3):
+	old_position = global_position
 	movement_buffer.push_front(_velocity)
 
 	if movement_buffer.size() >= array_lenght:
@@ -28,6 +29,7 @@ func _luigi_relative_movement(_velocity : Vector3):
 		r_movement(movement.x, movement.z)
 
 func _luigi_global_movement(_position):
+	old_position = global_position
 	movement_buffer.push_front(_position)
 	
 	if movement_buffer.size() >= array_lenght:
@@ -40,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += delta * get_gravity().y
 	move_and_slide()
 
-	if is_on_floor() and Input.is_action_just_pressed((Globals.Bros.get("Luigi") as Globals.Brother).action_button):
+	if is_on_floor() and Input.is_action_just_pressed((Globals.Bros.get("Luigi") as Brother).action_button):
 		velocity.y = 4.5
 		$"JumpSFX".play()
 
@@ -56,19 +58,21 @@ var just_touched_floor : bool
 var jump_alt = 0
 var can_play_animation = true
 
+const SORTED_DIRECTION = ["E", "NE", "N", "NW", "W", "SW", "S", "SE"]
+
 func g_movement(inputx,inputy):
 	global_position.x += clampf(inputx - global_position.x, -SPEED, SPEED)
 	global_position.z += clampf(inputy - global_position.z, -SPEED, SPEED)
-	animation_process(inputx - global_position.x, inputy - global_position.z)
+	#animation_process(global_position.x, global_position.z)
 
 func r_movement(inputx, inputy):
 	#var move = (transform.basis * Vector3(inputx, 0, inputy)).normalized()
 	velocity.x = clampf(inputx - global_position.x, -SPEED, SPEED)
 	velocity.z = clampf(inputy - global_position.z, -SPEED, SPEED)
-	animation_process(inputx - global_position.x, inputy - global_position.z)
+	#animation_process(global_position.x, global_position.z)
 
 func animation_process(inputx,inputy):
-	get_action_and_direction(Vector2(sign(inputx),sign(inputy)))
+	get_action_and_direction(Vector2(sign(old_position.x - inputx),sign( old_position.z - inputy)))
 
 	# if just_touched_floor:
 	# 	play_animation(ACTIONS.JUMP,state_direction,&"2")
@@ -85,33 +89,30 @@ func animation_process(inputx,inputy):
 	elif state_action == ACTIONS.JUMP:
 		play_animation(state_action,state_direction,str(jump_alt))
 
-# func _process(_delta):
-# 	if can_play_animation:
-# 		await animation_process()
+func _process(_delta):
+	if can_play_animation:
+		await animation_process(global_position.x, global_position.z)
 
 
 func get_action_and_direction(cur_direction : Vector2):
 	#var last_angle = movement_buffer
-	var direction_angle = rad_to_deg(cur_direction.angle())
+	if not is_on_floor():
+		state_action = ACTIONS.JUMP
 
-	var max_angles = 8
-	var each_angle = 360/float(max_angles)
-	for angle in range(1,max_angles + 1):
-		if direction_angle > (angle*each_angle)-(each_angle*0.5) and direction_angle < (angle*each_angle)+(each_angle*0.5):
-			print_debug("Luigi -> Cur Angle : ",angle * each_angle)
-			return
+	elif not is_mario_walking: #NO DIRECTION
+		state_action = ACTIONS.IDLE
+		return
 
-	# if cur_direction:
-	# 	match cur_direction:
-	# 		Vector2(1,0): state_direction = DIRECTION.RIGHT
-	# 		Vector2(-1,0): state_direction = DIRECTION.LEFT
-	# 		Vector2(0,-1): state_direction = DIRECTION.UP
-	# 		Vector2(0,1): state_direction = DIRECTION.DOWN
-			
-	# 		Vector2(1,1): state_direction = DIRECTION.DOWNRIGHT
-	# 		Vector2(-1,1): state_direction = DIRECTION.DOWNLEFT
-	# 		Vector2(1,-1): state_direction = DIRECTION.UPRIGHT
-	# 		Vector2(-1,-1): state_direction = DIRECTION.UPLEFT
+	elif is_mario_walking:
+		state_action = ACTIONS.WALK
+	
+
+	#thx to (https://gamedev.stackexchange.com/questions/49290/whats-the-best-way-of-transforming-a-2d-vector-into-the-closest-8-way-compass-d)
+	if cur_direction:
+		var cur_angle = atan2( cur_direction.y * -1, cur_direction.x);
+		var octant = roundi( 8 * cur_angle / (2*PI) + 4 ) % 8;
+	
+		state_direction = SORTED_DIRECTION[octant]
 
 func play_animation(action : StringName, _direction : StringName, _animation_alt : StringName):
 	var does_have_alt : bool = false

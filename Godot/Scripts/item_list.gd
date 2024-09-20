@@ -39,9 +39,9 @@ const DESCRIPTIONS = ["Revives a down brother with half of his HP.",
 const QUANTITIES = [4,3,8,6,1,1,9]
 
 #@onready var Items = Globals.ItemInventory.items
-var default_shroom = Globals.itemQuantityEmpty
-var health_shroom  = Globals.Inventory.Item_Quantity.new(Globals.Inventory.UniqueItem.new(load("res://Assets/HP.png"), "Health Shroom", "HAAAAA"),3)
-var null_shroom    = Globals.Inventory.Item_Quantity.new(Globals.Inventory.UniqueItem.new(load("res://Godot/Assets/placeholder.tres"), "Null Shroom", "HEEEE"),69)
+var default_shroom = preload("res://Godot/Assets/UniqueItem/defaultItemQuantity.tres")
+var health_shroom  = preload("res://Godot/Assets/UniqueItem/health_shroom.tres")
+var null_shroom    = preload("res://Godot/Assets/UniqueItem/null_shroom.tres")
 
 var sounds = [preload("res://Assets/Sound/SE_BTL_1UP.wav"),preload("res://Assets/SFX/Mario_&_Luigi_DT_Heal.ogg"),preload("res://Assets/SFX/Mario_&_Luigi_SS_&_BM_Heal.ogg")]
 
@@ -62,8 +62,8 @@ func _ready():
 	item_have_been_choosed.connect(_item_choosed)
 	move_finger.connect(_move_pf_to.bind(3))
 	for index in range(7):
-		Items.append(Globals.Inventory.Item_Quantity.new(
-			Globals.Inventory.UniqueItem.new(TEXTURES[index],NAMES[index],DESCRIPTIONS[index]),QUANTITIES[index]))
+		Items.append(Item_Quantity.new(
+			UniqueItem.create(TEXTURES[index],NAMES[index],DESCRIPTIONS[index]),QUANTITIES[index]))
 	%Description.text = " " + DESCRIPTIONS[0]
 	description_label_size = %Description.get_end()
 	item_list_init()
@@ -162,7 +162,7 @@ func _play_audio(audio_file : AudioStream):
 	audio_player.stream = audio_file
 	audio_player.play()
 
-func item_power_application(item : Globals.Inventory.UniqueItem):
+func item_power_application(item : UniqueItem):
 	match(item.name):
 		"1UP Mushroom":
 			_play_audio(sounds[0])

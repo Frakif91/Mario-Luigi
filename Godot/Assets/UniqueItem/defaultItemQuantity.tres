@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item_Quantity" load_steps=5 format=3 uid="uid://cm0btovxdp5yj"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/UniqueItem.gd" id="1_3cfe4"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ItemQuantity.gd" id="1_vooci"]
+[ext_resource type="Texture2D" uid="uid://cixk6qk31vwlc" path="res://Godot/Assets/shroom_default.tres" id="2_rk7py"]
+
+[sub_resource type="Resource" id="Resource_mxg3p"]
+script = ExtResource("1_3cfe4")
+texture = ExtResource("2_rk7py")
+name = &"Default Shroom"
+description = "Useless"
+
+[resource]
+script = ExtResource("1_vooci")
+item = SubResource("Resource_mxg3p")
+quantity = 0

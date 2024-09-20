@@ -24,7 +24,7 @@ func update_state() -> states:
 	else: cur_state = states.IDLE
 	return cur_state
 
-var bro : Globals.Brother
+var bro : Brother
 
 func _ready():
 	if who == "Mario":

@@ -21,10 +21,10 @@ class MarioMovement:
 	var glb_position
 	var rel_position
 
-const DIRECTION : Dictionary = {UP = &"N", DOWN = &"S", LEFT = &"L", RIGHT = &"R",
-								UPLEFT = &"NL", UPRIGHT = &"NR", DOWNLEFT = &"SL", DOWNRIGHT = &"SR"}
+const DIRECTION : Dictionary = {UP = &"N", DOWN = &"S", LEFT = &"W", RIGHT = &"E",
+								UPLEFT = &"NW", UPRIGHT = &"NE", DOWNLEFT = &"SW", DOWNRIGHT = &"SE"}
 
-const SORTED_DIRECTION = ["N","NR","R","SR","S","SL","L","NL"]
+const SORTED_DIRECTION = ["E", "NE", "N", "NW", "W", "SW", "S", "SE"]
 
 const ACTIONS : Dictionary = {JUMP = &"jump", IDLE = &"idle", WALK = &"walk"}
 enum ALTERNATIVE {NORMAL,ALT,ALT2,ALT3}
@@ -155,8 +155,6 @@ func _physics_process(delta):
 		
 
 func get_action_and_direction(cur_direction : Vector2):
-	var direction_angle = floorf(rad_to_deg(cur_direction.angle()))
-
 	if not cur_direction and is_on_floor(): #NO DIRECTION
 		state_action = ACTIONS.IDLE
 		return
@@ -166,12 +164,14 @@ func get_action_and_direction(cur_direction : Vector2):
 	elif not is_on_floor():
 		state_action = ACTIONS.JUMP
 
-	var max_angles = 8.0
-	var each_index = 360/max_angles
-
-	state_direction = SORTED_DIRECTION[floor(direction_angle/each_index)]
+	#thx to (https://gamedev.stackexchange.com/questions/49290/whats-the-best-way-of-transforming-a-2d-vector-into-the-closest-8-way-compass-d)
+	if cur_direction:
+		var cur_angle = atan2( cur_direction.y * -1, cur_direction.x);
+		var octant = roundi( 8 * cur_angle / (2*PI) + 8 ) % 8;
 	
-	print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
+		state_direction = SORTED_DIRECTION[octant]
+
+	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
 
 	# if cur_direction:
 	# 	match cur_direction:

@@ -36,7 +36,7 @@ func _do_tricky_animation():
 	$Control.add_child(fake_load_info)
 	for i in range(100):
 		new_loading_pg.value = i
-		await Globals.wait(randf_range(0.15,0.01))
+		await Globals.wait(randf_range(0.07,0.01))
 	await Globals.wait(0.1)
 
 func _on_button_battle_pressed():

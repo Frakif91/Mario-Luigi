@@ -2,8 +2,8 @@ class_name CharacterDefaultStats
 
 enum available {MARIO, LUIGI, WARIO, WALUIGI, PEACH}
 
-func create_character(chosed_character : available) -> Globals.Brother:
-    var bros = Globals.Brother.new("Dummy",1,1)
+func create_character(chosed_character : available) -> Brother:
+    var bros = Brother.new("Dummy",1,1)
 
     match(chosed_character):
         available.MARIO:
