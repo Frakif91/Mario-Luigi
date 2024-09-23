@@ -15,8 +15,8 @@
 [ext_resource type="FontFile" uid="uid://b7lu2exjpd0hf" path="res://Fonts/Daydream.ttf" id="8_vo4rf"]
 [ext_resource type="Texture2D" uid="uid://cjooen3kd8i6e" path="res://Assets/Sprites/Wii U - Paper Mario Color Splash - Toad Green.png" id="9_6rb8r"]
 [ext_resource type="Texture2D" uid="uid://0tcuoypplm1p" path="res://Assets/Textbox/3DS - Mario & Luigi Dream Team - Text Box.png" id="12_c5txx"]
-[ext_resource type="Texture2D" uid="uid://dv24wmg0mqlm4" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="13_y16jp"]
-[ext_resource type="Texture2D" uid="uid://wkrpyrs4ypgu" path="res://Assets/Textbox/bluebox_glued_x3.png" id="15_eofu3"]
+[ext_resource type="Texture2D" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="13_y16jp"]
+[ext_resource type="Texture2D" path="res://Assets/Textbox/bluebox_glued_x3.png" id="15_eofu3"]
 [ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="16_beohj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7aqa"]

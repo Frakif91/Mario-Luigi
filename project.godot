@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mario & Luigi : Hotel Mania"
-config/version="1.0.0"
+config/version="1.2.5"
 run/main_scene="res://Godot/Scene/title.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://Assets/load.png"
@@ -20,6 +20,12 @@ config/icon="res://n_icon.png"
 [autoload]
 
 Globals="*res://Godot/Scripts/globals.gd"
+
+[debug]
+
+multirun/number_of_windows=2
+multirun/add_custom_args=false
+multirun/window_args=["listen", "join"]
 
 [display]
 
@@ -31,12 +37,12 @@ project/assembly_name="Mario & Luigi"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/asus/Documents/Mario & Luigi/Example.avi"
+movie_writer/movie_file="D:/Mario & Luigi/Mario-Luigi/Movie.avi"
 movie_writer/fps=30
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
 
 [file_customization]
 
@@ -153,6 +159,12 @@ LuigiButton={
 ]
 }
 
+[input_devices]
+
+pen_tablet/driver.windows="winink"
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=1
+2d/snap/snap_2d_transforms_to_pixel=true
