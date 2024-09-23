@@ -1,0 +1,18 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ye4hs0oxj680"
+valid=false
+
+[deps]
+
+source_file="res://Assets/Music/Mario And Luigi Paper Jam Bros OST - Mixed-Up Scramble (Trio Battle Theme).ogg"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

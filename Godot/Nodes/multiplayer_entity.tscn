@@ -1,0 +1,157 @@
+[gd_scene load_steps=18 format=3 uid="uid://23mv57i8kyyk"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/multiplayer_entity.gd" id="1_sni1r"]
+[ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/MarioMOWM.gd" id="2_ghouj"]
+[ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="2_tg1x1"]
+[ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="3_r4voj"]
+[ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/multiplayer_info.gd" id="4_02nal"]
+[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="4_oopw4"]
+[ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="5_y1h8l"]
+[ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="6_ydqhb"]
+[ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="7_ddcp5"]
+[ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/LuigiMOWM.gd" id="9_07vh1"]
+[ext_resource type="SpriteFrames" uid="uid://v4pbu477uses" path="res://Godot/overworld_test_luigi_animations.tres" id="10_tyei4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
+radius = 0.125
+height = 0.49
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3veek"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.001
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uc46f"]
+radius = 0.125
+height = 0.49
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mp41o"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.001
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nqkgm"]
+properties/0/path = NodePath("Mario:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Luigi:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Mario/ASprite3D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Mario/ASprite3D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Luigi/ASprite3D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Luigi/ASprite3D:frame")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Info:username")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+
+[node name="Node3D" type="Node"]
+script = ExtResource("1_sni1r")
+
+[node name="Mario" type="CharacterBody3D" parent="."]
+physics_interpolation_mode = 1
+collision_layer = 4
+slide_on_ceiling = false
+script = ExtResource("2_ghouj")
+SPEED = 2.0
+
+[node name="ASprite3D" type="AnimatedSprite3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+billboard = 1
+texture_filter = 4
+render_priority = 1
+sprite_frames = ExtResource("3_r4voj")
+animation = &"jump-SE-0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
+shape = SubResource("CapsuleShape3D_qf3ef")
+
+[node name="Camera3D" type="Camera3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
+attributes = SubResource("CameraAttributesPractical_e1eit")
+doppler_tracking = 2
+script = ExtResource("4_oopw4")
+speed = 5.0
+follow_offset = Vector3(0, 1.63535, 1.5)
+
+[node name="FakeShadow" type="MeshInstance3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+layers = 2
+transparency = 1.0
+mesh = SubResource("CylinderMesh_3veek")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource("5_y1h8l")
+
+[node name="RightFoot" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource("6_ydqhb")
+volume_db = -10.0
+
+[node name="RightFoot2" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource("7_ddcp5")
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="Mario"]
+
+[node name="Label3D" type="Label3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+pixel_size = 0.003
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "Mario"
+font = ExtResource("2_tg1x1")
+
+[node name="Luigi" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.376)
+collision_layer = 4
+slide_on_ceiling = false
+script = ExtResource("9_07vh1")
+array_lenght = 15
+mario_np = NodePath("../Mario")
+
+[node name="ASprite3D" type="AnimatedSprite3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+billboard = 1
+texture_filter = 4
+render_priority = 1
+sprite_frames = ExtResource("10_tyei4")
+animation = &"idle-S-0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
+shape = SubResource("CapsuleShape3D_uc46f")
+
+[node name="FakeShadow" type="MeshInstance3D" parent="Luigi"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+layers = 2
+transparency = 1.0
+mesh = SubResource("CylinderMesh_mp41o")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("5_y1h8l")
+
+[node name="RightFoot" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("6_ydqhb")
+
+[node name="RightFoot2" type="AudioStreamPlayer" parent="Luigi"]
+stream = ExtResource("7_ddcp5")
+
+[node name="Timer" type="Timer" parent="Luigi"]
+
+[node name="Info" type="Node" parent="."]
+script = ExtResource("4_02nal")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nqkgm")

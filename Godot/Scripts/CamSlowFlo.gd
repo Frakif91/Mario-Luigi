@@ -8,6 +8,8 @@ var old_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_multiplayer_authority():
+		current = true
 	target_position = get_parent_node_3d().global_position + follow_offset
 	old_position = target_position
 

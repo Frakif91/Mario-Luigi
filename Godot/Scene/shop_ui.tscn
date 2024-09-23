@@ -1,13 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://byc7h6wus1q0c"]
+[gd_scene load_steps=41 format=3 uid="uid://byc7h6wus1q0c"]
 
 [ext_resource type="Texture2D" uid="uid://cx77cyafeenlf" path="res://Assets/Handmade/New_Piskel-1.png_23-3.png.png" id="1_b2ig8"]
 [ext_resource type="Texture2D" uid="uid://bsft2xn518qo2" path="res://Assets/Wii U - Paper Mario Color Splash - Eyecatch Backgrounds.png" id="1_g5id2"]
+[ext_resource type="Script" path="res://Godot/Scripts/Shop.gd" id="1_hhwh8"]
 [ext_resource type="FontFile" uid="uid://dj61wo6cxj6ay" path="res://Fonts/MarioLuigi2.ttf" id="2_m6kdi"]
+[ext_resource type="Theme" uid="uid://yo0in4d3loih" path="res://Godot/shop_theme.tres" id="4_mcaqf"]
 [ext_resource type="Texture2D" uid="uid://bk8f4b2te1udb" path="res://Assets/Handmade/Currency_Tabs-1.png.png" id="4_ok4tu"]
 [ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="5_160gv"]
+[ext_resource type="Texture2D" uid="uid://dwrkccoxq3rjx" path="res://n_icon.png" id="5_teqtq"]
 [ext_resource type="Texture2D" uid="uid://ffi84h2sqdul" path="res://Assets/Handmade/Currency_Number_Font-1.png.png" id="6_hufbe"]
+[ext_resource type="Texture2D" uid="uid://bp61hwbohrbf2" path="res://Godot/Assets/mushroom.tres" id="6_unfbp"]
+[ext_resource type="Texture2D" uid="uid://iisdj2eydimq" path="res://Godot/Assets/Sirop.tres" id="7_guw3m"]
 [ext_resource type="Texture2D" uid="uid://bd6gvjypdoo8g" path="res://Assets/Textbox/textbox_glued_x3.png" id="7_lg4jx"]
 [ext_resource type="FontFile" uid="uid://b7lu2exjpd0hf" path="res://Fonts/Daydream.ttf" id="8_vo4rf"]
+[ext_resource type="Texture2D" uid="uid://cjooen3kd8i6e" path="res://Assets/Sprites/Wii U - Paper Mario Color Splash - Toad Green.png" id="9_6rb8r"]
+[ext_resource type="Texture2D" uid="uid://0tcuoypplm1p" path="res://Assets/Textbox/3DS - Mario & Luigi Dream Team - Text Box.png" id="12_c5txx"]
+[ext_resource type="Texture2D" uid="uid://dv24wmg0mqlm4" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="13_y16jp"]
+[ext_resource type="Texture2D" uid="uid://wkrpyrs4ypgu" path="res://Assets/Textbox/bluebox_glued_x3.png" id="15_eofu3"]
+[ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="16_beohj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7aqa"]
 atlas = ExtResource("1_g5id2")
@@ -86,6 +96,61 @@ font = ExtResource("8_vo4rf")
 font_size = 10
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_10ari"]
+atlas = ExtResource("12_c5txx")
+region = Rect2(55, 37, 30, 30)
+filter_clip = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6embc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7xq"]
+atlas = ExtResource("9_6rb8r")
+region = Rect2(293, 1, 144, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjjx2"]
+atlas = ExtResource("9_6rb8r")
+region = Rect2(438, 1, 144, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpj06"]
+atlas = ExtResource("9_6rb8r")
+region = Rect2(583, 1, 146, 190)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6h8hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjjx2")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjjx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpj06")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_65jke"]
+line_spacing = 4.0
+font = ExtResource("16_beohj")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="ShopUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -93,6 +158,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hhwh8")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -112,7 +178,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShopCategoryConainter" type="MarginContainer" parent="Background/HContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -122,15 +188,16 @@ theme_override_constants/margin_bottom = 20
 [node name="ItemTypeList" type="VBoxContainer" parent="Background/HContainer/ShopCategoryConainter"]
 layout_mode = 2
 
-[node name="ItemCategory" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Items" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList" groups=["ShopCategoryButton"]]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture_normal = ExtResource("1_b2ig8")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/ItemCategory"]
+[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/Items"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,15 +215,16 @@ label_settings = SubResource("LabelSettings_wpdyx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EquipCategory2" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Equipement" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList" groups=["ShopCategoryButton"]]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture_normal = ExtResource("1_b2ig8")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/EquipCategory2"]
+[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/Equipement"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,15 +242,16 @@ label_settings = SubResource("LabelSettings_wpdyx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ItemCategory3" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Unknown" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList" groups=["ShopCategoryButton"]]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture_normal = ExtResource("1_b2ig8")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/ItemCategory3"]
+[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/Unknown"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -200,15 +269,16 @@ label_settings = SubResource("LabelSettings_wpdyx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer3" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Allies" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList" groups=["ShopCategoryButton"]]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture_normal = ExtResource("1_b2ig8")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/PanelContainer3"]
+[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/Allies"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,15 +296,16 @@ label_settings = SubResource("LabelSettings_wpdyx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer4" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Pet" type="TextureButton" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList" groups=["ShopCategoryButton"]]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture_normal = ExtResource("1_b2ig8")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/PanelContainer4"]
+[node name="Label" type="Label" parent="Background/HContainer/ShopCategoryConainter/ItemTypeList/Pet"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -265,18 +336,135 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Background/HContainer/ObjectSelector"]
+[node name="ReferenceRect" type="ReferenceRect" parent="Background/HContainer/ObjectSelector"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+border_width = 0.0
 
-[node name="GridContainer" type="GridContainer" parent="Background/HContainer/ObjectSelector/ScrollContainer"]
+[node name="Background" type="Panel" parent="Background/HContainer/ObjectSelector"]
+clip_children = 2
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+theme_type_variation = &"Shop_button_buy"
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/HContainer/ObjectSelector/Background"]
+layout_mode = 2
+offset_right = 470.0
+offset_bottom = 610.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer"]
 custom_minimum_size = Vector2(450, 600)
 layout_mode = 2
-columns = 4
+
+[node name="GridContainer" type="GridContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(450, 600)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="itemContainer" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer"]
+layout_mode = 2
+text = "This is a button
+ test behaviours"
+icon = ExtResource("5_teqtq")
+text_overrun_behavior = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="itemContainer2" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer2"]
+layout_mode = 2
+text = "I'm Number 2 
+AHHHHHHHHHHHH"
+icon = ExtResource("5_teqtq")
+text_overrun_behavior = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="itemContainer3" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer3"]
+layout_mode = 2
+text = "This is a button
+ test behaviours"
+icon = ExtResource("5_teqtq")
+text_overrun_behavior = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="itemContainer4" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer4"]
+layout_mode = 2
+text = "This is a button
+ test behaviours"
+icon = ExtResource("5_teqtq")
+text_overrun_behavior = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="itemContainer5" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer5"]
+texture_filter = 5
+layout_mode = 2
+text = "Simple
+ Sirop"
+icon = ExtResource("7_guw3m")
+text_overrun_behavior = 3
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="itemContainer6" type="PanelContainer" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme = ExtResource("4_mcaqf")
+
+[node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer6"]
+texture_filter = 5
+layout_mode = 2
+text = "Hyper Mushroom"
+icon = ExtResource("6_unfbp")
+text_overrun_behavior = 3
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="VSeparator2" type="VSeparator" parent="Background/HContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/HContainer"]
+[node name="RightContainer" type="MarginContainer" parent="Background/HContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -284,10 +472,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/HContainer/MarginContainer"]
+[node name="RightContainer" type="VBoxContainer" parent="Background/HContainer/RightContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background/HContainer/MarginContainer/VBoxContainer"]
+[node name="MoneyDisplay" type="TextureRect" parent="Background/HContainer/RightContainer/RightContainer"]
 texture_filter = 5
 layout_mode = 2
 size_flags_horizontal = 8
@@ -295,7 +483,8 @@ size_flags_vertical = 0
 texture = SubResource("AtlasTexture_m5i7c")
 stretch_mode = 2
 
-[node name="TextureNumber" type="Control" parent="Background/HContainer/MarginContainer/VBoxContainer/TextureRect"]
+[node name="TextureNumber" type="Control" parent="Background/HContainer/RightContainer/RightContainer/MoneyDisplay"]
+modulate = Color(0.239216, 1, 1, 1)
 anchors_preset = 0
 offset_left = 19.0
 offset_top = 3.0
@@ -307,7 +496,7 @@ do_hide_zero = true
 value = 189
 images_slot = Array[Texture2D]([SubResource("AtlasTexture_p6nn2"), SubResource("AtlasTexture_71352"), SubResource("AtlasTexture_kmub5")])
 
-[node name="PanelContainer" type="NinePatchRect" parent="Background/HContainer/MarginContainer/VBoxContainer"]
+[node name="ToadText" type="NinePatchRect" parent="Background/HContainer/RightContainer/RightContainer"]
 texture_filter = 5
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -318,7 +507,7 @@ patch_margin_top = 38
 patch_margin_right = 48
 patch_margin_bottom = 38
 
-[node name="Label" type="Label" parent="Background/HContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="Label" type="Label" parent="Background/HContainer/RightContainer/RightContainer/ToadText"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,3 +521,60 @@ grow_vertical = 2
 text = "This is a placeholder text, although it is not final, it is very useful in demonstrations purposes so that's good at least, right ?"
 label_settings = SubResource("LabelSettings_2qcki")
 autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/HContainer/RightContainer/RightContainer/ToadText"]
+position = Vector2(329, 103)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_10ari")
+flip_v = true
+
+[node name="Podium" type="Sprite2D" parent="Background/HContainer/RightContainer/RightContainer"]
+position = Vector2(206, 349)
+texture = ExtResource("13_y16jp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/HContainer/RightContainer/RightContainer/Podium"]
+texture_filter = 6
+material = SubResource("CanvasItemMaterial_6embc")
+position = Vector2(69, 0)
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_6h8hp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.531905
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="PanelContainer2" type="NinePatchRect" parent="Background/HContainer/RightContainer/RightContainer"]
+texture_filter = 5
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 6.9
+texture = ExtResource("15_eofu3")
+patch_margin_left = 48
+patch_margin_top = 38
+patch_margin_right = 48
+patch_margin_bottom = 38
+
+[node name="Label" type="Label" parent="Background/HContainer/RightContainer/RightContainer/PanelContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = -19.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is a placeholder text, although it is not final, it is very useful in demonstrations purposes so that's good at least, right ?"
+label_settings = SubResource("LabelSettings_65jke")
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/HContainer/RightContainer/RightContainer/PanelContainer2"]
+visible = false
+position = Vector2(329, 103)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_10ari")
+flip_v = true

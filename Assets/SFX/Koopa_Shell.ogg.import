@@ -3,12 +3,11 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cyatvrq07je3f"
-path="res://.godot/imported/Koopa_Shell.ogg-748367b421864f29172290a7d27ccfe8.oggvorbisstr"
+valid=false
 
 [deps]
 
 source_file="res://Assets/SFX/Koopa_Shell.ogg"
-dest_files=["res://.godot/imported/Koopa_Shell.ogg-748367b421864f29172290a7d27ccfe8.oggvorbisstr"]
 
 [params]
 

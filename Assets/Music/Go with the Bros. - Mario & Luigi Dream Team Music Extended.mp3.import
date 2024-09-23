@@ -3,12 +3,11 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bxi6inw3a2d7p"
-path="res://.godot/imported/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3-e902bc36f8cc271c9ebe38711db0be88.mp3str"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Music/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3"
-dest_files=["res://.godot/imported/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3-e902bc36f8cc271c9ebe38711db0be88.mp3str"]
 
 [params]
 

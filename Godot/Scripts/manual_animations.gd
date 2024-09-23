@@ -238,10 +238,10 @@ var test1var = Vector3(0,0.4,0)
 var test2var = Vector3(0.2,0.4,0)
 
 func _input(_event):
-    if Input.is_action_just_pressed(&"Test5"):
-        mario_variable.position = enemies_variable[0].position + Vector3(0,0.3,0)
-        await fail_stomp()
-        choosecube_visible.call()
+    # if Input.is_action_just_pressed(&"Test5"):
+    #     mario_variable.position = enemies_variable[0].position + Vector3(0,0.3,0)
+    #     await fail_stomp()
+    #     choosecube_visible.call()
     if Input.is_action_just_pressed(&"Test6"):
         test2var = _init_animation(false)[1]
         mario_variable.position = test2var
@@ -685,10 +685,10 @@ func _victory_screen():
 
         if (progression <= 0.3):
             action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0,0.3) ,0.5),og_position.y,1.5)
-        if (progression > 0.3 and progression <= 6):
+        if (progression > 0.3 and progression <= 0.6):
             action_brother.position.y = get_percentage_value(ease(get_percentage(progression,0.3,0.6) ,2),1.5,og_position.y + 0.5)
 
-        if (progression <= 0.6):
+        if (progression >= 0.6):
             action_brother.position.x = lerp(og_position.x,target_position.x,get_percentage(progression,0,0.6))
             action_brother.position.z = lerp(og_position.z,target_position.z,get_percentage(progression,0,0.6))
         

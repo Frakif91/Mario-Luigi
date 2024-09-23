@@ -3,12 +3,11 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dji7foy04su3r"
-path="res://.godot/imported/Shocking! - Mario & Luigi Dream Team Music.mp3-502c9fccc72df48261b28eb8ff851516.mp3str"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Music/Shocking! - Mario & Luigi Dream Team Music.mp3"
-dest_files=["res://.godot/imported/Shocking! - Mario & Luigi Dream Team Music.mp3-502c9fccc72df48261b28eb8ff851516.mp3str"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=162 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="Script" path="res://Godot/Scripts/game.gd" id="1_k43w1"]
@@ -361,6 +361,38 @@ region = Rect2(220, 200, 55, 40)
 atlas = ExtResource("2_sh7xv")
 region = Rect2(275, 200, 55, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t66ra"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(0, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmf5p"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(55, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2quey"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(110, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16blu"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(165, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgjm8"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(220, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cydw"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(275, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwruc"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(330, 440, 55, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33wtk"]
+atlas = ExtResource("2_sh7xv")
+region = Rect2(385, 440, 55, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_iv0un"]
 animations = [{
 "frames": [{
@@ -576,6 +608,35 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t66ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmf5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2quey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16blu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgjm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cydw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwruc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33wtk")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 15.0
 }]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_s1rb8"]

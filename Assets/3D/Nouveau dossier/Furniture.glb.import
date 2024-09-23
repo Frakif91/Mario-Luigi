@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bkhwnk0fqqinx"
-path="res://.godot/imported/Furniture.glb-1f14e951b6b1068c7a8623b177cb9ff2.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/3D/Nouveau dossier/Furniture.glb"
-dest_files=["res://.godot/imported/Furniture.glb-1f14e951b6b1068c7a8623b177cb9ff2.scn"]
 
 [params]
 

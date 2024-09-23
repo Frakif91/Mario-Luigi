@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dxio2tgsy1w36"
-path="res://.godot/imported/Question Block.fbx-482f92ad987b432fed16e068aa7984f9.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/3D/Blocks/Question Block.fbx"
-dest_files=["res://.godot/imported/Question Block.fbx-482f92ad987b432fed16e068aa7984f9.scn"]
 
 [params]
 

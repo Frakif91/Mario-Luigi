@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bsw2e45bvt6m3"
-path="res://.godot/imported/Mario Block.fbx-c4c09f4ab810c950d8cfe398c7b55db8.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/3D/Blocks/Mario Block.fbx"
-dest_files=["res://.godot/imported/Mario Block.fbx-c4c09f4ab810c950d8cfe398c7b55db8.scn"]
 
 [params]
 

@@ -3,12 +3,11 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bt3jehpf0m7bp"
-path="res://.godot/imported/Under Taco Taker Bell.mp3-f18aec4982a5c32ebf282de9910f05ca.mp3str"
+valid=false
 
 [deps]
 
 source_file="res://Assets/SFX/Under Taco Taker Bell.mp3"
-dest_files=["res://.godot/imported/Under Taco Taker Bell.mp3-f18aec4982a5c32ebf282de9910f05ca.mp3str"]
 
 [params]
 

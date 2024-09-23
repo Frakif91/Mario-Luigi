@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp2lvkik72o7r"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/multiplayer_ui.gd" id="1_6s1gt"]
+[ext_resource type="Texture2D" uid="uid://lm00tpqaaorf" path="res://Assets/logo.png" id="1_pu1wa"]
+[ext_resource type="AudioStream" uid="uid://bxi6inw3a2d7p" path="res://Assets/Music/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3" id="2_5rh2o"]
+[ext_resource type="Texture2D" uid="uid://d3pdnv3xmoojo" path="res://Assets/Icons/captive_portal_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="3_yi4tk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtcto"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 0.356863)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6s1gt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -533.0
+offset_right = 1.0
+offset_bottom = 142.0
+grow_horizontal = 0
+texture = ExtResource("1_pu1wa")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Chat" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="Chat"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gtcto")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Chat/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Chat/PanelContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextChat" type="RichTextLabel" parent="Chat/PanelContainer/VSplitContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "[b]Mario & Luigi : [i]Hotel Mania[/i][/b] Multiplayer test room."
+threaded = true
+selection_enabled = true
+
+[node name="SendChat" type="LineEdit" parent="Chat/PanelContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Enter text here"
+right_icon = ExtResource("3_yi4tk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control"]
+layout_mode = 2
+text = "Connect to another Lobby using
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer/Control"]
+custom_minimum_size = Vector2(0, 114.51)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "LAN (Local Area Network)
+IP Adress :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IP4" type="LineEdit" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "IP Adress"
+max_length = 15
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="Port" type="LineEdit" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+placeholder_text = "Port"
+max_length = 5
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="Username" type="LineEdit" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Username"
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Host a game"
+
+[node name="Button2" type="Button" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Join a game"
+
+[node name="Label3" type="Label" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Currently Offline."
+
+[node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+border_width = 0.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5rh2o")
+volume_db = -13.0
+autoplay = true
+
+[node name="PlayerList" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -31.5
+offset_bottom = 31.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerList"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerList/MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="_on_join_button_pressed"]

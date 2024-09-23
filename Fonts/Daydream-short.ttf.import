@@ -3,12 +3,11 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bjdgtfcm87v6i"
-path="res://.godot/imported/Daydream-short.ttf-0624f9d91978424c0d7851d20d5972dc.fontdata"
+valid=false
 
 [deps]
 
 source_file="res://Fonts/Daydream-short.ttf"
-dest_files=["res://.godot/imported/Daydream-short.ttf-0624f9d91978424c0d7851d20d5972dc.fontdata"]
 
 [params]
 
