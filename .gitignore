@@ -17,3 +17,6 @@ Example.avi
 
 # Custom Ignores
 /build/
+
+# Jetbrains Ignores
+/.idea
