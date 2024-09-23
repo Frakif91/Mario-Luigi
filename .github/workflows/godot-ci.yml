@@ -4,6 +4,7 @@ on: push
 env:
   GODOT_VERSION: 4.3
   EXPORT_NAME: "Mario & Luigi: Hotel Mania"
+  PROJECT_PATH: Mario-Luigi
 
 jobs:
   export-windows:
@@ -27,6 +28,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
+          cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" /build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
