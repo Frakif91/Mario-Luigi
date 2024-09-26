@@ -3,7 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 4.3
-  EXPORT_NAME: "Mario and Luigi Hotel Mania"
+  EXPORT_NAME: Hotel-Mania
   PROJECT_PATH: Mario-Luigi
 
 jobs:
