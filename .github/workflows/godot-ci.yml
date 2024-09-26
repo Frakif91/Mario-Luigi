@@ -58,7 +58,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{env.EXPORT_NAME}} (Windows)
+          name: ${{env.EXPORT_NAME}} (Linux)
           path: build/linux
 
 #  export-web:
