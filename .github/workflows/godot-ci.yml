@@ -36,30 +36,30 @@ jobs:
           name: ${{env.EXPORT_NAME}} (Windows)
           path: build/windows
 
-#  export-linux:
-#    name: Linux Export
-#    runs-on: ubuntu-20.04
-#    container:
-#      image: barichello/godot-ci:mono-4.3
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#        with:
-#          lfs: true
-#      - name: Setup
-#        run: |
-#          mkdir -v -p ~/.local/share/godot/export_templates/
-#          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
-#      - name: Linux Build
-#        run: |
-#          mkdir -v -p build/linux
-#          cd $PROJECT_PATH
-#          godot --headless --verbose --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
-#      - name: Upload Artifact
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: linux
-#          path: build/linux
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:mono-4.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable.mono
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.EXPORT_NAME}} (Windows)
+          path: build/linux
 
 #  export-web:
 #    name: Web Export
