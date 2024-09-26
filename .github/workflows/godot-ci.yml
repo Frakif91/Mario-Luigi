@@ -33,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows
+          name: "Hotel-Mania (Windows)"
           path: build/windows
 
 #  export-linux:
