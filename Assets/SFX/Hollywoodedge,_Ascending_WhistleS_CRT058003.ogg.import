@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://banes0qmrawhh"
-valid=false
+path="res://.godot/imported/Hollywoodedge,_Ascending_WhistleS_CRT058003.ogg-8cbfc869a503334d367112c42100b6c9.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/SFX/Hollywoodedge,_Ascending_WhistleS_CRT058003.ogg"
+dest_files=["res://.godot/imported/Hollywoodedge,_Ascending_WhistleS_CRT058003.ogg-8cbfc869a503334d367112c42100b6c9.oggvorbisstr"]
 
 [params]
 

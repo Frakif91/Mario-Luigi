@@ -3,11 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bia54gcp3jvvb"
-valid=false
+path="res://.godot/imported/SuperMario256.ttf-c6700db31acb6f396e94d4268e8da60e.fontdata"
 
 [deps]
 
 source_file="res://Fonts/SuperMario256.ttf"
+dest_files=["res://.godot/imported/SuperMario256.ttf-c6700db31acb6f396e94d4268e8da60e.fontdata"]
 
 [params]
 

@@ -29,7 +29,7 @@ var jump_class = preload("res://Godot/Scripts/manual_animations.gd")
 var transition_direction = 1
 var transition_time = 0.07
 var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), OUT = Vector3(1,2,3),LUIGI = Vector3(0.5,1.4,2.5)}
-var animation_offsets = {"idle" = Vector3(-0.1,0,0),"hammer" = Vector3(-0.1,0.05,-0.1), "none" = Vector3(0,0,0)}
+var animation_offsets = {"idle" = Vector3(0.0,0,0),"hammer" = Vector3(0.0,0.05,-0.1), "none" = Vector3(0,0,0)}
 var chooseblocks_offsets = {MARIO = Vector2(-0.5,-1), LUIGI = Vector2(-1.25,0.6)}
 var chooseblock_global_of = {"Mario" = Vector3(-0.1,1,0), "Luigi" = Vector3(-0.55, 1, 0.73)}
 var cur_camera_pos = camera_position.OG
@@ -102,7 +102,8 @@ func _input(_event):
 	if Input.is_action_just_pressed(&"Test5"):
 		Globals.cur_brother.bro.overrite_animation = true
 		Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
-		await jump_process._victory_screen()
+		$"MarioAnimations".play(&"victory")
+		#await jump_process._victory_screen()
 		Globals.cur_brother.bro.overrite_animation = false
 		Globals.cur_brother.animated_sprite.position = animation_offsets["idle"]
 	

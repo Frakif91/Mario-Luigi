@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=38 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
+[ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 
@@ -105,6 +106,9 @@ material = SubResource("StandardMaterial3D_bfacu")
 add_uv2 = true
 size = Vector3(4.5, 0.2, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p6hwn"]
+size = Vector3(4.39621, 0.2, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqnw"]
 albedo_texture = ExtResource("3_6yqkb")
 clearcoat_enabled = true
@@ -125,6 +129,13 @@ size = Vector3(1, 0.1, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_so13y"]
 height = 0.01
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1omst"]
+radius = 0.199625
+height = 0.818777
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mkf1i"]
+radius = 0.709963
 
 [node name="Overworld" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, 0)
@@ -152,7 +163,7 @@ light_cull_mask = 4294967293
 shadow_enabled = true
 
 [node name="RoundShadowsLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.04908, 0)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 4.04908, 0)
 layers = 2
 light_cull_mask = 4293918721
 shadow_enabled = true
@@ -233,8 +244,8 @@ mesh = SubResource("BoxMesh_grvyo")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide"]
-transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.171279, -0.0930316, -0.00510645)
-shape = SubResource("BoxShape3D_6ooja")
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.126469, -0.0671604, -0.00510645)
+shape = SubResource("BoxShape3D_p6hwn")
 
 [node name="Cube8" type="StaticBody3D" parent="Level"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, 1.5, -3.5)
@@ -269,5 +280,26 @@ coin_quantity = 2
 
 [node name="QCube2" parent="Level" instance=ExtResource("9_qnxvs")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.89309, 2.92022, 3.60702)
+reward_type = "Object"
 
 [node name="Control" parent="." instance=ExtResource("13_1ll5n")]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228714, 0)
+shape = SubResource("CapsuleShape3D_1omst")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.347092, 0)
+shape = SubResource("SphereShape3D_mkf1i")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.15266, 0)
+sprite_frames = ExtResource("8_xaj1a")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.949584

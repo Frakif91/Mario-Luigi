@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://g1hwhwj40u4t"
-valid=false
+path="res://.godot/imported/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3-37ce028b63bf1a50a45e7290dbc862c5.mp3str"
 
 [deps]
 
 source_file="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3"
+dest_files=["res://.godot/imported/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3-37ce028b63bf1a50a45e7290dbc862c5.mp3str"]
 
 [params]
 

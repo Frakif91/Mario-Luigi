@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://bciy22y5v85i4"
-valid=false
+path="res://.godot/imported/Warp_Pipe.ogg-50b3da9831ffd1679f09a8d59e89b13b.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/SFX/Warp_Pipe.ogg"
+dest_files=["res://.godot/imported/Warp_Pipe.ogg-50b3da9831ffd1679f09a8d59e89b13b.oggvorbisstr"]
 
 [params]
 

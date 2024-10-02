@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="UniqueItem" load_steps=2 format=3 uid="uid://1an1k48rnvrb"]
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://1an1k48rnvrb"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/UniqueItem.gd" id="1_se4tu"]
+[ext_resource type="Texture2D" uid="uid://bp61hwbohrbf2" path="res://Godot/Assets/mushroom.tres" id="2_s55qu"]
 
 [resource]
 script = ExtResource("1_se4tu")
-name = &""
-description = ""
+texture = ExtResource("2_s55qu")
+name = &"Mushroom"
+description = "a mushroom"

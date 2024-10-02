@@ -3,11 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://jpe7nrfftcfi"
-valid=false
+path="res://.godot/imported/04B_30__.TTF-b9a746bac1059642c3e5c5ef7e5ef580.fontdata"
 
 [deps]
 
 source_file="res://Fonts/04B_30__.TTF"
+dest_files=["res://.godot/imported/04B_30__.TTF-b9a746bac1059642c3e5c5ef7e5ef580.fontdata"]
 
 [params]
 

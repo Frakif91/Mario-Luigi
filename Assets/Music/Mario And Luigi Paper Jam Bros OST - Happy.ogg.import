@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dvichabrj7qbc"
-valid=false
+path="res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Happy.ogg-4e394bf03a7a4f6176d661387ab941fb.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/Music/Mario And Luigi Paper Jam Bros OST - Happy.ogg"
+dest_files=["res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Happy.ogg-4e394bf03a7a4f6176d661387ab941fb.oggvorbisstr"]
 
 [params]
 

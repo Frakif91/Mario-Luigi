@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjooen3kd8i6e"
-path.s3tc="res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.s3tc.ctex"
-path.etc2="res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.etc2.ctex"
+path="res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Sprites/Wii U - Paper Mario Color Splash - Toad Green.png"
-dest_files=["res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.s3tc.ctex", "res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.etc2.ctex"]
+dest_files=["res://.godot/imported/Wii U - Paper Mario Color Splash - Toad Green.png-d265a8e9d54c403508a0239ed2acc3c3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

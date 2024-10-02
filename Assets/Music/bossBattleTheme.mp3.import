@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dxhjy2axnolw6"
-valid=false
+path="res://.godot/imported/bossBattleTheme.mp3-f2e5e0e728803a5fd6000f61b52d0ae7.mp3str"
 
 [deps]
 
 source_file="res://Assets/Music/bossBattleTheme.mp3"
+dest_files=["res://.godot/imported/bossBattleTheme.mp3-f2e5e0e728803a5fd6000f61b52d0ae7.mp3str"]
 
 [params]
 

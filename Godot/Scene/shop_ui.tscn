@@ -1,9 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://byc7h6wus1q0c"]
+[gd_scene load_steps=46 format=3 uid="uid://byc7h6wus1q0c"]
 
 [ext_resource type="Texture2D" uid="uid://cx77cyafeenlf" path="res://Assets/Handmade/New_Piskel-1.png_23-3.png.png" id="1_b2ig8"]
 [ext_resource type="Texture2D" uid="uid://bsft2xn518qo2" path="res://Assets/Wii U - Paper Mario Color Splash - Eyecatch Backgrounds.png" id="1_g5id2"]
 [ext_resource type="Script" path="res://Godot/Scripts/Shop.gd" id="1_hhwh8"]
+[ext_resource type="Shader" path="res://Godot/shop_ui.gdshader" id="2_dt4gm"]
 [ext_resource type="FontFile" uid="uid://dj61wo6cxj6ay" path="res://Fonts/MarioLuigi2.ttf" id="2_m6kdi"]
+[ext_resource type="Texture2D" uid="uid://d1drl5rn18xta" path="res://Assets/Handmade/New_Piskel-1.png_24.png" id="3_nhvx5"]
+[ext_resource type="Texture2D" uid="uid://287m2jpj31xv" path="res://Assets/Handmade/New_Piskel-4.png_1.png" id="4_d25hh"]
 [ext_resource type="Theme" uid="uid://yo0in4d3loih" path="res://Godot/shop_theme.tres" id="4_mcaqf"]
 [ext_resource type="Texture2D" uid="uid://bk8f4b2te1udb" path="res://Assets/Handmade/Currency_Tabs-1.png.png" id="4_ok4tu"]
 [ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="5_160gv"]
@@ -15,9 +18,15 @@
 [ext_resource type="FontFile" uid="uid://b7lu2exjpd0hf" path="res://Fonts/Daydream.ttf" id="8_vo4rf"]
 [ext_resource type="Texture2D" uid="uid://cjooen3kd8i6e" path="res://Assets/Sprites/Wii U - Paper Mario Color Splash - Toad Green.png" id="9_6rb8r"]
 [ext_resource type="Texture2D" uid="uid://0tcuoypplm1p" path="res://Assets/Textbox/3DS - Mario & Luigi Dream Team - Text Box.png" id="12_c5txx"]
-[ext_resource type="Texture2D" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="13_y16jp"]
-[ext_resource type="Texture2D" path="res://Assets/Textbox/bluebox_glued_x3.png" id="15_eofu3"]
+[ext_resource type="Texture2D" uid="uid://dv24wmg0mqlm4" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="13_y16jp"]
+[ext_resource type="Texture2D" uid="uid://wkrpyrs4ypgu" path="res://Assets/Textbox/bluebox_glued_x3.png" id="15_eofu3"]
 [ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="16_beohj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afoth"]
+shader = ExtResource("2_dt4gm")
+shader_parameter/first_image_alpha = 0.0
+shader_parameter/f_img_texture = ExtResource("3_nhvx5")
+shader_parameter/s_img_texture = ExtResource("4_d25hh")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7aqa"]
 atlas = ExtResource("1_g5id2")
@@ -35,6 +44,8 @@ grow_begin = -10.0
 grow_end = -10.0
 thickness = 2
 vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3xnx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5i7c"]
 atlas = ExtResource("4_ok4tu")
@@ -161,6 +172,7 @@ grow_vertical = 2
 script = ExtResource("1_hhwh8")
 
 [node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_afoth")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -343,7 +355,7 @@ size_flags_vertical = 3
 border_width = 0.0
 
 [node name="Background" type="Panel" parent="Background/HContainer/ObjectSelector"]
-clip_children = 2
+self_modulate = Color(1, 1, 1, 0.588235)
 layout_mode = 2
 theme = ExtResource("4_mcaqf")
 theme_type_variation = &"Shop_button_buy"
@@ -372,6 +384,7 @@ columns = 3
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme = ExtResource("4_mcaqf")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u3xnx")
 
 [node name="Button" type="Button" parent="Background/HContainer/ObjectSelector/Background/MarginContainer/ScrollContainer/GridContainer/itemContainer"]
 layout_mode = 2
@@ -540,7 +553,7 @@ rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_6h8hp")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.531905
+frame_progress = 0.101607
 centered = false
 flip_h = true
 flip_v = true

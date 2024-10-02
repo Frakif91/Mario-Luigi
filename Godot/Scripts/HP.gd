@@ -68,7 +68,7 @@ func set_values(bros : BrotherCB3, _hp : int, _bp : int):
 	else:
 		HP.modulate = Color.WHITE
 
-	print_debug("Set values")
+	#print_debug("Set values")
 
 	HP.value = _hp
 	BP.value = _bp

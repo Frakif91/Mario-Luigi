@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cwe5ucqbpy4l7"
-valid=false
+path="res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Victory Is For Us !.ogg-24dc881e44ef4eb916dbb0a092bc9b7e.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/Music/Mario And Luigi Paper Jam Bros OST - Victory Is For Us !.ogg"
+dest_files=["res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Victory Is For Us !.ogg-24dc881e44ef4eb916dbb0a092bc9b7e.oggvorbisstr"]
 
 [params]
 

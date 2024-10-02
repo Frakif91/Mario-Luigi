@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dqk03uracp0p8"
-valid=false
+path="res://.godot/imported/Used Block 1.fbx-7e5dfe9ca374be56f579a9cb12bd8b45.scn"
 
 [deps]
 
 source_file="res://Assets/3D/Blocks/Used Block 1.fbx"
+dest_files=["res://.godot/imported/Used Block 1.fbx-7e5dfe9ca374be56f579a9cb12bd8b45.scn"]
 
 [params]
 

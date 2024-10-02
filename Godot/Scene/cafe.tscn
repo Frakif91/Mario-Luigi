@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl4i75ygeyfgj"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0serqilpp86b" path="res://Assets/Handmade/Lobby/tinker.obj" id="1_tws3l"]
+[ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="2_jdea0"]
+[ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="3_klw5a"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_quxxx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqn6q"]
+albedo_texture = ExtResource("2_jdea0")
+uv1_scale = Vector3(6, 2, 3)
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4skyt"]
+material = SubResource("StandardMaterial3D_iqn6q")
+size = Vector3(200, 1, 200)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_14k5k"]
+material = SubResource("StandardMaterial3D_iqn6q")
+radius = 30.0
+radial_steps = 32
+section_length = 5.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("1_tws3l")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_quxxx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("BoxMesh_4skyt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(-1.31134e-08, -1, 0, 0.3, -4.37114e-08, 0, 0, 0, 1, 1, -8.95, 0)
+visible = false
+mesh = SubResource("TubeTrailMesh_14k5k")
+
+[node name="Mario" parent="." instance=ExtResource("3_klw5a")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 36.612, 0.53208, -8.14386)
+SPEED = 60.0
+JUMP_VELOCITY = 135.0

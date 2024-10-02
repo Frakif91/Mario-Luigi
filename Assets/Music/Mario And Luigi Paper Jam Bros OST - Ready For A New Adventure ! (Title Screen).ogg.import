@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://bv7oa2ihls048"
-valid=false
+path="res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Ready For A New Adventure ! (Title Screen).ogg-35d6097bbb392e552313c076055c81e7.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/Music/Mario And Luigi Paper Jam Bros OST - Ready For A New Adventure ! (Title Screen).ogg"
+dest_files=["res://.godot/imported/Mario And Luigi Paper Jam Bros OST - Ready For A New Adventure ! (Title Screen).ogg-35d6097bbb392e552313c076055c81e7.oggvorbisstr"]
 
 [params]
 

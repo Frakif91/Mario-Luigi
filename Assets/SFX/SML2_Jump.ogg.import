@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cm8whqc1dnbfa"
-valid=false
+path="res://.godot/imported/SML2_Jump.ogg-b7f2f59a7a1d57f7ab72f34119cc718b.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/SFX/SML2_Jump.ogg"
+dest_files=["res://.godot/imported/SML2_Jump.ogg-b7f2f59a7a1d57f7ab72f34119cc718b.oggvorbisstr"]
 
 [params]
 

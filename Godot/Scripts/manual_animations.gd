@@ -127,9 +127,14 @@ func _jump_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSpri
         if (progression < 1.4):            
             action_brother.position.x = lerp(og_position.x,enemy_position.x,get_percentage(progression,0,1.4))
             action_brother.position.z = lerp(og_position.z,enemy_position.z,get_percentage(progression,0,1.4))
+        # elif (progression > 1.4 and step == 2):
+        #     step = 3
+            
         if (progression > jump_minimal_window and progression < jump_maximal_window and not does_have_result):
             if step == 2:
                 step = 3
+                action_brother.position.x = enemy_position.x
+                action_brother.position.z = enemy_position.z
                 action_brother.animated_sprite.play(&"jump_on_enemy")
             result = jump_check_hit(progression,jump_minimal_good_window,jump_maximal_good_window)
             if result:

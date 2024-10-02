@@ -3,11 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://2ena4hwkigcj"
-valid=false
+path="res://.godot/imported/Mario_&_Luigi_SS_Fall_Alt.ogg-94bc88a2d0a42afaafcedd808e039303.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/SFX/Mario_&_Luigi_SS_Fall_Alt.ogg"
+dest_files=["res://.godot/imported/Mario_&_Luigi_SS_Fall_Alt.ogg-94bc88a2d0a42afaafcedd808e039303.oggvorbisstr"]
 
 [params]
 
