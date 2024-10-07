@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://287m2jpj31xv" path="res://Assets/Handmade/New_Piskel-4.png_1.png" id="4_d25hh"]
 [ext_resource type="Theme" uid="uid://yo0in4d3loih" path="res://Godot/shop_theme.tres" id="4_mcaqf"]
 [ext_resource type="Texture2D" uid="uid://bk8f4b2te1udb" path="res://Assets/Handmade/Currency_Tabs-1.png.png" id="4_ok4tu"]
-[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="5_160gv"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="5_160gv"]
 [ext_resource type="Texture2D" uid="uid://dwrkccoxq3rjx" path="res://n_icon.png" id="5_teqtq"]
 [ext_resource type="Texture2D" uid="uid://ffi84h2sqdul" path="res://Assets/Handmade/Currency_Number_Font-1.png.png" id="6_hufbe"]
 [ext_resource type="Texture2D" uid="uid://bp61hwbohrbf2" path="res://Godot/Assets/mushroom.tres" id="6_unfbp"]

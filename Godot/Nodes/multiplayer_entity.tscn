@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="2_tg1x1"]
 [ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="3_r4voj"]
 [ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/multiplayer_info.gd" id="4_02nal"]
-[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="4_oopw4"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="4_oopw4"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="5_y1h8l"]
 [ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="6_ydqhb"]
 [ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="7_ddcp5"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Godot/Scripts/Damage_Anouncer.gd" id="1_5pjkn"]
 [ext_resource type="Texture2D" uid="uid://dwiad5hmtb41q" path="res://Assets/Battle UI Paper Mario.png" id="2_gsxcb"]
 [ext_resource type="Script" path="res://Godot/Scripts/DamageAnouncerTexture.gd" id="3_fr5vs"]
-[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="4_ock2l"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="4_ock2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evgwo"]
 atlas = ExtResource("2_gsxcb")

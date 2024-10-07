@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bttlcp3mi0wwr" path="res://Assets/Healths.png" id="1_7bt3t"]
 [ext_resource type="Script" path="res://Godot/Scripts/HP.gd" id="1_amk17"]
 [ext_resource type="Texture2D" uid="uid://56b044xq0dta" path="res://Assets/Numbers/0.png" id="3_gpjy4"]
-[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="3_jgbnl"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="3_jgbnl"]
 [ext_resource type="Texture2D" uid="uid://c8qga18gqccj4" path="res://Assets/Numbers/1.png" id="4_pdakh"]
 [ext_resource type="Texture2D" uid="uid://bipvm1mjnlti" path="res://Assets/Numbers/2.png" id="4_r0ilm"]
 [ext_resource type="Texture2D" uid="uid://j8mocvjm3wcr" path="res://Assets/Numbers/3.png" id="7_ccty3"]

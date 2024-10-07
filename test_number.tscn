@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dop7chg026ap4"]
 
-[ext_resource type="Script" path="res://Godot/Scripts/ImageNumber.gd" id="1_irily"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="1_irily"]
 [ext_resource type="Texture2D" uid="uid://56b044xq0dta" path="res://Assets/Numbers/0.png" id="2_yb43h"]
 [ext_resource type="Texture2D" uid="uid://c8qga18gqccj4" path="res://Assets/Numbers/1.png" id="3_87lsc"]
 [ext_resource type="Texture2D" uid="uid://bipvm1mjnlti" path="res://Assets/Numbers/2.png" id="4_dgf8c"]

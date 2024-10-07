@@ -1,0 +1,173 @@
+[gd_scene load_steps=19 format=3 uid="uid://cdqimmnx0j6kj"]
+
+[ext_resource type="Texture2D" uid="uid://chwn1br1jchb" path="res://Assets/texture_ml_little.png" id="1_7buxi"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/loading_screen.gd" id="1_n37fu"]
+[ext_resource type="Script" path="res://Godot/Scripts/defilling_tiles.gd" id="2_gdgyd"]
+[ext_resource type="Texture2D" uid="uid://dmodglff3fjxv" path="res://Assets/Handmade/IMG_20240927_141423.png" id="3_jtv50"]
+[ext_resource type="FontFile" uid="uid://bjdgtfcm87v6i" path="res://Fonts/Daydream-short.ttf" id="4_wcm7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbsio"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(0, 0, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b4ip"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(450, 0, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnamu"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(900, 0, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwtma"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(0, 672, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vnni"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(450, 672, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju28a"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(900, 672, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwk3w"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(0, 1344, 450, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu6tb"]
+atlas = ExtResource("3_jtv50")
+region = Rect2(450, 1344, 450, 672)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1fo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbsio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b4ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnamu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwtma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vnni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju28a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwk3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu6tb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dps45"]
+font = ExtResource("4_wcm7l")
+font_size = 41
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_x024o"]
+resource_name = "Loading"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ymeuv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jj4j8"]
+_data = {
+"Loading": SubResource("Animation_x024o"),
+"RESET": SubResource("Animation_ymeuv")
+}
+
+[node name="LoadingScreen" type="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n37fu")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_repeat = 2
+layout_mode = 0
+offset_right = 2304.0
+offset_bottom = 1536.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_7buxi")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("2_gdgyd")
+parkour_times = 2
+seconds = 15.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+border_width = 3.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1078, 540)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_y1fo6")
+autoplay = "default"
+frame_progress = 0.193713
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 135.455)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -55.0
+offset_right = 286.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Loading..."
+label_settings = SubResource("LabelSettings_dps45")
+horizontal_alignment = 1
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jj4j8")
+}

@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=40 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="7_mfg47"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
@@ -130,6 +131,8 @@ size = Vector3(1, 0.1, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_so13y"]
 height = 0.01
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tusru"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1omst"]
 radius = 0.199625
 height = 0.818777
@@ -150,6 +153,7 @@ shape = SubResource("WorldBoundaryShape3D_j3u2c")
 mesh = SubResource("BoxMesh_k7rf6")
 
 [node name="Mario" parent="." instance=ExtResource("1_1nj15")]
+luigi_np = NodePath("../Luigi")
 
 [node name="Luigi" parent="." instance=ExtResource("2_7i1dn")]
 
@@ -281,6 +285,21 @@ coin_quantity = 2
 [node name="QCube2" parent="Level" instance=ExtResource("9_qnxvs")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.89309, 2.92022, 3.60702)
 reward_type = "Object"
+
+[node name="Teleporter" type="Area3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26904, 0.607283, 2.36587)
+collision_mask = 5
+script = ExtResource("7_mfg47")
+target_scene = "res://Godot/Scene/cafe.tscn"
+target_pos = Vector3(-2.47973, 0.154164, -1.773)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Teleporter"]
+shape = SubResource("BoxShape3D_tusru")
+
+[node name="Label3D" type="Label3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26904, 1.30289, 2.51169)
+text = "To the Hotel's main Room
+V"
 
 [node name="Control" parent="." instance=ExtResource("13_1ll5n")]
 

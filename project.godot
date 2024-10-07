@@ -19,7 +19,8 @@ config/icon="res://n_icon.png"
 
 [autoload]
 
-Globals="*res://Godot/Scripts/globals.gd"
+Globals="*res://Godot/Scripts/Utility/globals.gd"
+Transitions="*res://Godot/Nodes/transitions.tscn"
 
 [debug]
 
@@ -42,7 +43,7 @@ movie_writer/fps=30
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multirun/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 

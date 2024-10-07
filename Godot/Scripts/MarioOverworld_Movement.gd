@@ -10,7 +10,7 @@ signal stop_move()
 @export var center_fall_anim_rspeed : float = 0.3
 @export var walk_sound_waittime = 12.0/20./2.
 @export_node_path("LuigiOW_Movement") var luigi_np
-@onready var luigi : LuigiOW_Movement = get_node(luigi_np)
+@onready var luigi : LuigiOW_Movement = get_node_or_null(luigi_np)
 @export var max_distance_from_luigi = 0.6
 @export var max_distance_margin = 0.1
 var cur_right_foot = false
@@ -21,10 +21,7 @@ class MarioMovement:
 	var glb_position
 	var rel_position
 
-const DIRECTION : Dictionary = {UP = &"N", DOWN = &"S", LEFT = &"L", RIGHT = &"R",
-								UPLEFT = &"NL", UPRIGHT = &"NR", DOWNLEFT = &"SL", DOWNRIGHT = &"SR"}
-
-const SORTED_DIRECTION = ["N","NR","R","SR","S","SL","L","NL"]
+const SORTED_DIRECTION = ["N","NE","E","SE","S","SW","W","NW"]
 
 const ACTIONS : Dictionary = {JUMP = &"jump", IDLE = &"idle", WALK = &"walk"}
 enum ALTERNATIVE {NORMAL,ALT,ALT2,ALT3}
@@ -155,7 +152,7 @@ func _physics_process(delta):
 		
 
 func get_action_and_direction(cur_direction : Vector2):
-	var direction_angle = floorf(rad_to_deg(cur_direction.angle()))
+	var direction_angle = roundi(rad_to_deg(cur_direction.angle()))
 
 	if not cur_direction and is_on_floor(): #NO DIRECTION
 		state_action = ACTIONS.IDLE
@@ -166,12 +163,12 @@ func get_action_and_direction(cur_direction : Vector2):
 	elif not is_on_floor():
 		state_action = ACTIONS.JUMP
 
-	var max_angles = 8.0
+	var max_angles = 8
 	var each_index = 360/max_angles
 
-	state_direction = SORTED_DIRECTION[floor(direction_angle/each_index)]
+	state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
 	
-	print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
+	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
 
 	# if cur_direction:
 	# 	match cur_direction:

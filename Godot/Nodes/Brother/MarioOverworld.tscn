@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_ehyyf"]
 [ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_fnsjw"]
-[ext_resource type="Script" path="res://Godot/Scripts/CamSlowFlo.gd" id="3_8dsqk"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="3_8dsqk"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="4_bf2cq"]
 [ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="5_800kh"]
 [ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="6_dhej2"]
@@ -24,7 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
 collision_layer = 4
 slide_on_ceiling = false
 script = ExtResource("1_ehyyf")
-luigi_np = NodePath("../Luigi")
 SPEED = 2.0
 
 [node name="ASprite3D" type="AnimatedSprite3D" parent="."]
@@ -46,7 +45,7 @@ doppler_tracking = 2
 current = true
 script = ExtResource("3_8dsqk")
 speed = 5.0
-follow_offset = Vector3(0, 1.63535, 1.5)
+follow_offset = Vector3(0, 1, 1.5)
 
 [node name="FakeShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
