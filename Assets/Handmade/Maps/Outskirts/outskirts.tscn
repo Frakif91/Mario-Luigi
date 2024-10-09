@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxv35thqu84qn"]
+
+[ext_resource type="PackedScene" uid="uid://305ql7t8g2m3" path="res://Assets/Handmade/Maps/Outskirts/Model/Outskirts.dae" id="1_s4ky0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q2qf6"]
+
+[sub_resource type="Sky" id="Sky_a1cww"]
+sky_material = SubResource("ProceduralSkyMaterial_q2qf6")
+
+[sub_resource type="Environment" id="Environment_rpt73"]
+background_mode = 2
+sky = SubResource("Sky_a1cww")
+
+[node name="Outskirts" instance=ExtResource("1_s4ky0")]
+
+[node name="LightmapGI" type="LightmapGI" parent="." index="156"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="157"]
+environment = SubResource("Environment_rpt73")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="158"]
+transform = Transform3D(0.809089, -0.503232, 0.303533, 1.8038e-10, 0.516489, 0.856294, -0.587686, -0.692818, 0.417885, 0, 23.0446, 0)

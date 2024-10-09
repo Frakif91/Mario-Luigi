@@ -1,12 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://byc7h6wus1q0c"]
+[gd_scene load_steps=44 format=3 uid="uid://byc7h6wus1q0c"]
 
 [ext_resource type="Texture2D" uid="uid://cx77cyafeenlf" path="res://Assets/Handmade/New_Piskel-1.png_23-3.png.png" id="1_b2ig8"]
 [ext_resource type="Texture2D" uid="uid://bsft2xn518qo2" path="res://Assets/Wii U - Paper Mario Color Splash - Eyecatch Backgrounds.png" id="1_g5id2"]
 [ext_resource type="Script" path="res://Godot/Scripts/Shop.gd" id="1_hhwh8"]
 [ext_resource type="Shader" path="res://Godot/shop_ui.gdshader" id="2_dt4gm"]
 [ext_resource type="FontFile" uid="uid://dj61wo6cxj6ay" path="res://Fonts/MarioLuigi2.ttf" id="2_m6kdi"]
-[ext_resource type="Texture2D" uid="uid://d1drl5rn18xta" path="res://Assets/Handmade/New_Piskel-1.png_24.png" id="3_nhvx5"]
-[ext_resource type="Texture2D" uid="uid://287m2jpj31xv" path="res://Assets/Handmade/New_Piskel-4.png_1.png" id="4_d25hh"]
 [ext_resource type="Theme" uid="uid://yo0in4d3loih" path="res://Godot/shop_theme.tres" id="4_mcaqf"]
 [ext_resource type="Texture2D" uid="uid://bk8f4b2te1udb" path="res://Assets/Handmade/Currency_Tabs-1.png.png" id="4_ok4tu"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="5_160gv"]
@@ -23,10 +21,8 @@
 [ext_resource type="FontFile" uid="uid://bia54gcp3jvvb" path="res://Fonts/SuperMario256.ttf" id="16_beohj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_afoth"]
+render_priority = 0
 shader = ExtResource("2_dt4gm")
-shader_parameter/first_image_alpha = 0.0
-shader_parameter/f_img_texture = ExtResource("3_nhvx5")
-shader_parameter/s_img_texture = ExtResource("4_d25hh")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7aqa"]
 atlas = ExtResource("1_g5id2")

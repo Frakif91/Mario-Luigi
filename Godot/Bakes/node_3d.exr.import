@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://bjc2xqdhjs7xp"
+path="res://.godot/imported/node_3d.exr-cafe2e0280372c48fe48c12edfb3e183.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Godot/Bakes/node_3d.exr"
+dest_files=["res://.godot/imported/node_3d.exr-cafe2e0280372c48fe48c12edfb3e183.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1

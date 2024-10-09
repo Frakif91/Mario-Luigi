@@ -59,6 +59,10 @@ folder_colors={
 "res://Godot/Scripts/": "yellow"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Jump={

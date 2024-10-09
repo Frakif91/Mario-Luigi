@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=42 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="2_w1lxb"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="7_mfg47"]
@@ -32,6 +33,8 @@ texture_filter = 2
 [sub_resource type="BoxMesh" id="BoxMesh_k7rf6"]
 material = SubResource("StandardMaterial3D_nisup")
 size = Vector3(50, 1, 50)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0d3mw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h10to"]
 sky_top_color = Color(0.135667, 0.443506, 0.809005, 1)
@@ -154,6 +157,15 @@ mesh = SubResource("BoxMesh_k7rf6")
 
 [node name="Mario" parent="." instance=ExtResource("1_1nj15")]
 luigi_np = NodePath("../Luigi")
+
+[node name="Camera3D" type="Camera3D" parent="Mario"]
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
+attributes = SubResource("CameraAttributesPractical_0d3mw")
+doppler_tracking = 2
+current = true
+script = ExtResource("2_w1lxb")
+speed = 5.0
+follow_offset = Vector3(0, 1, 1.5)
 
 [node name="Luigi" parent="." instance=ExtResource("2_7i1dn")]
 

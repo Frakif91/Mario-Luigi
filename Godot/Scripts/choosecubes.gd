@@ -33,8 +33,8 @@ func get_choose_cube() -> int:
 
 func get_pos_by_angle(angle : float, circle_center : Vector2, circle_rayon : float) -> Vector2:
 	var vec = Vector2.from_angle(deg_to_rad(angle))
-	vec += circle_center
 	vec *= circle_rayon
+	vec += circle_center
 	return vec
 
 func emit_hit_signal(_body):

@@ -10,7 +10,7 @@ signal stop_move()
 @export var center_fall_anim_rspeed : float = 0.3
 @export var walk_sound_waittime = 12.0/20./2.
 @export_node_path("LuigiOW_Movement") var luigi_np
-@onready var luigi : LuigiOW_Movement = get_node_or_null(luigi_np)
+var luigi : LuigiOW_Movement 
 @export var max_distance_from_luigi = 0.6
 @export var max_distance_margin = 0.1
 var cur_right_foot = false
@@ -51,6 +51,8 @@ func walk_sound():
 	$"Timer".start(walk_sound_waittime)
 
 func _ready():
+	if luigi_np:
+		luigi = get_node_or_null(luigi_np)
 	$"Timer".timeout.connect(walk_sound)
 	$"Timer".autostart = false
 	$"Timer".one_shot = true
