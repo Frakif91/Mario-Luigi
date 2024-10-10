@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1smvwh2b70iv"]
+[gd_scene load_steps=14 format=3 uid="uid://c1smvwh2b70iv"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_an0rp"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="2_u671h"]
 [ext_resource type="LightmapGIData" uid="uid://r2i7im0mfrua" path="res://Godot/Bakes/node_3d.lmbake" id="3_lhd2p"]
 [ext_resource type="PackedScene" uid="uid://bxv35thqu84qn" path="res://Assets/Handmade/Maps/Outskirts/outskirts.tscn" id="4_s6del"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="5_7clf1"]
+[ext_resource type="AudioStream" uid="uid://dkwqcr4i122ao" path="res://Assets/SFX/Mario Odysee/B70kawa_1.aw_00000026.wav" id="6_o1jn2"]
+[ext_resource type="AudioStream" uid="uid://cbhwlcf4etn1j" path="res://Assets/Music/The Wind is Blowing at Cavi BIS OST.mp3" id="7_6n866"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f50pv"]
 
@@ -18,6 +20,9 @@ radius = 0.308859
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n0rao"]
 height = 1.39269
 radius = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wh5js"]
+size = Vector3(1.44971, 3.37239, 0.215942)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k18jg"]
 size = Vector3(50, 1.5, 30)
@@ -129,6 +134,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.03)
 depth = 0.79
 polygon = PackedVector2Array(-12.2539, 1.22687, -12.2563, 0.00737388, -11.7652, 0.00618148, -11.7667, 1.22411, -10.0615, 1.22856, -10.0594, -0.000121061, -9.56277, 0.00122011, -9.56269, 1.22502, -7.86016, 1.22494, -7.86217, 0.00634841, -7.38837, 0.00793728, -7.37827, 1.22791, -0.527092, 1.22903, -0.527166, 1.50272, 0.465349, 1.51044, 0.471592, -0.0420157, -15.2844, -0.0877876, -15.2854, 1.22812)
 
+[node name="StaticBody3D5" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34.6533, 0.335642, -1.79909)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Node3D/StaticBody3D5"]
+transform = Transform3D(1, 8.74228e-08, 8.73526e-08, -8.74228e-08, 0.000802831, 1, 8.73526e-08, -1, 0.000802831, 0, 0.262014, 0.764015)
+depth = 1.25
+polygon = PackedVector2Array(2.82297, 0.121438, 2.82253, 0.685455, 2.51591, 0.685964, 2.51619, 1.10412, 2.22504, 1.10525, 2.23043, 1.58792, -2.55883, 1.58782, -2.55854, -0.479362, -0.718674, -0.496277, 1.52386, -0.477461, 1.52079, -0.647986, 3.68249, -0.651334, 4.55354, -0.647428, 4.55352, 0.119969)
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34.6533, 0.335642, -1.79909)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Node3D/StaticBody3D6"]
+transform = Transform3D(1, 8.74228e-08, 8.73526e-08, -8.74228e-08, 0.000802831, 1, 8.73526e-08, -1, 0.000802831, 0, 1.5137, 3.7119)
+depth = 1.25
+polygon = PackedVector2Array(1.52272, 2.47011, 1.52465, 0.860043, 0.0123138, 0.857168, 0.0133972, 0.103836, 6.79691, 0.103295, 6.79729, -2.85158, -2.55217, -2.85178, -2.55906, 2.47211, -1.99459, 2.46994, -1.99724, 1.01359, -0.555729, 1.0136, -0.557369, 2.46914)
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 6.80132e-08, 0.628289, -0.77798, 5.49268e-08, -0.77798, -0.628289, 36.0594, 1.06129, -3.23952)
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Node3D/StaticBody3D7"]
+transform = Transform3D(1, 7.10543e-15, 1.42109e-14, 0, 1, 1.19209e-07, 3.55271e-15, -1.19209e-07, 1, 0.131104, 0.180607, -0.201726)
+shape = SubResource("BoxShape3D_wh5js")
+
 [node name="LightmapGI" type="LightmapGI" parent="."]
 light_data = ExtResource("3_lhd2p")
 
@@ -140,7 +168,17 @@ script = ExtResource("5_7clf1")
 target_reload_cur_scene = true
 target_pos = Vector3(4.49307, 1.51865, -2.33877)
 transition_loading_screen = false
+time_before_transition = 1.5
+sfx = ExtResource("6_o1jn2")
+volume_linear = 0.2
+camera_np = NodePath("../Mario/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Teleporter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.5, -3)
 shape = SubResource("BoxShape3D_k18jg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6n866")
+volume_db = -12.0
+autoplay = true
+parameters/looping = true

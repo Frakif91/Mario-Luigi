@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bj86n23m7tmer"
+path="res://.godot/imported/SeResourceStd2nd_00000000_0000066F.wav-ab8d6cf68ea99093d4a27005f3b72709.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Mario Odysee/SeResourceStd2nd_00000000_0000066F.wav"
+dest_files=["res://.godot/imported/SeResourceStd2nd_00000000_0000066F.wav-ab8d6cf68ea99093d4a27005f3b72709.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

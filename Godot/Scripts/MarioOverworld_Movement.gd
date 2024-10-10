@@ -165,24 +165,13 @@ func get_action_and_direction(cur_direction : Vector2):
 	elif not is_on_floor():
 		state_action = ACTIONS.JUMP
 
-	var max_angles = 8
-	var each_index = 360/max_angles
+	if cur_direction:
+		var max_angles = 8
+		var each_index = 360/max_angles
 
-	state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
+		state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
 	
 	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
-
-	# if cur_direction:
-	# 	match cur_direction:
-	# 		Vector2(1,0): state_direction = DIRECTION.RIGHT
-	# 		Vector2(-1,0): state_direction = DIRECTION.LEFT
-	# 		Vector2(0,-1): state_direction = DIRECTION.UP
-	# 		Vector2(0,1): state_direction = DIRECTION.DOWN
-			
-	# 		Vector2(1,1): state_direction = DIRECTION.DOWNRIGHT
-	# 		Vector2(-1,1): state_direction = DIRECTION.DOWNLEFT
-	# 		Vector2(1,-1): state_direction = DIRECTION.UPRIGHT
-	# 		Vector2(-1,-1): state_direction = DIRECTION.UPLEFT
 
 
 func play_animation(action : StringName, _direction : StringName, _animation_alt : StringName):
