@@ -10,15 +10,13 @@ class_name Teleporter extends Area3D
 @export var transition_loading_screen : bool = true
 @export var time_before_transition : float = 0.0
 @export_subgroup("Effects")
-@export var sfx : AudioStream
+@export_node_path("AudioStreamPlayer","AudioStreamPlayer3D") var sound_np
 @export_range(0.0,1.0,0.05) var volume_linear : float = 0.5
 @export_node_path("CamFollow") var camera_np
 
-@onready var audio : AudioStreamPlayer = AudioStreamPlayer.new()
 @onready var camera : CamFollow
 
 func _ready():
-    add_child(audio)
     if not camera_np.is_empty():
         camera = get_node(camera_np)
     else:
@@ -40,9 +38,8 @@ func _input(_event: InputEvent) -> void:
 func body_enter(body):
     print_debug("Body entered",body)
     if body is MarioOW_Movement:
-        audio.stream = sfx
-        audio.volume_db = linear_to_db(volume_linear)
-        audio.play()
+        if get_node_or_null(sound_np):
+            get_node(sound_np).play()
 
         var do_change_cam = not camera.script_overrite
         if do_change_cam:

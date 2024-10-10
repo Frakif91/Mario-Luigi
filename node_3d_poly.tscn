@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1smvwh2b70iv"]
+[gd_scene load_steps=19 format=3 uid="uid://c1smvwh2b70iv"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_an0rp"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="2_u671h"]
 [ext_resource type="LightmapGIData" uid="uid://r2i7im0mfrua" path="res://Godot/Bakes/node_3d.lmbake" id="3_lhd2p"]
+[ext_resource type="Texture2D" uid="uid://cyy0d0b136u6g" path="res://Assets/Handmade/PiT/Textures/up_view.png" id="4_kmjox"]
+[ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="4_kxp3g"]
 [ext_resource type="PackedScene" uid="uid://bxv35thqu84qn" path="res://Assets/Handmade/Maps/Outskirts/outskirts.tscn" id="4_s6del"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="5_7clf1"]
 [ext_resource type="AudioStream" uid="uid://dkwqcr4i122ao" path="res://Assets/SFX/Mario Odysee/B70kawa_1.aw_00000026.wav" id="6_o1jn2"]
@@ -16,6 +18,32 @@ size = Vector3(8.87228, 0.461853, 4.14255)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qit7l"]
 height = 0.345772
 radius = 0.308859
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_m6mug"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("4_kmjox")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nsoht"]
+material = SubResource("ORMMaterial3D_m6mug")
+size = Vector2(0.4, 0.4)
+
+[sub_resource type="GDScript" id="GDScript_sndss"]
+resource_name = "up_view"
+script/source = "extends MeshInstance3D
+@export var speed = 1.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	rotation.y += PI*delta*speed
+"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n0rao"]
 height = 1.39269
@@ -31,6 +59,15 @@ size = Vector3(50, 1.5, 30)
 
 [node name="Mario" parent="." instance=ExtResource("1_an0rp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01725, 0.122319, -2.1366)
+luigi_np = NodePath("../Luigi")
+JUMP_VELOCITY = 3.2
+metadata/_edit_group_ = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Mario"]
+stream = ExtResource("6_o1jn2")
+volume_db = -6.0
+unit_size = 3.0
+bus = &"Effects"
 
 [node name="Camera3D" type="Camera3D" parent="Mario"]
 transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
@@ -40,6 +77,13 @@ current = true
 script = ExtResource("2_u671h")
 speed = 5.0
 follow_offset = Vector3(0, 2, 3)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Mario/Camera3D"]
+current = true
+
+[node name="Luigi" parent="." instance=ExtResource("4_kxp3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05505, 0.0181018, -2.87159)
+jump_power = 3.2
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -51,10 +95,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083724, -0.234955, -2.0579
 shape = SubResource("BoxShape3D_1ex84")
 
 [node name="Dust" type="StaticBody3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49308, 0, -2.29491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50067, 0, -2.29491)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Dust"]
 shape = SubResource("CylinderShape3D_qit7l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Dust"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.110199, 0)
+mesh = SubResource("PlaneMesh_nsoht")
+script = SubResource("GDScript_sndss")
 
 [node name="TreeCol" type="StaticBody3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98285, 0.624559, -0.454615)
@@ -168,8 +217,8 @@ script = ExtResource("5_7clf1")
 target_reload_cur_scene = true
 target_pos = Vector3(4.49307, 1.51865, -2.33877)
 transition_loading_screen = false
-time_before_transition = 1.5
-sfx = ExtResource("6_o1jn2")
+time_before_transition = 2.0
+sound_np = NodePath("../Mario/AudioStreamPlayer3D")
 volume_linear = 0.2
 camera_np = NodePath("../Mario/Camera3D")
 

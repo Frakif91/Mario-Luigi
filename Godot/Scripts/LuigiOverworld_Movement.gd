@@ -6,6 +6,7 @@ var movement_buffer : Array[Vector3]
 
 @export var SPEED = 6.0 * 10
 @export var array_lenght = 20
+@export var jump_power = 4.5
 @export_node_path("MarioOW_Movement") var mario_np
 @onready var mario : MarioOW_Movement = get_node(mario_np)
 
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if is_on_floor() and Input.is_action_just_pressed((Globals.Bros.get("Luigi") as Brother).action_button):
-		velocity.y = 4.5
+		velocity.y = jump_power
 		$"JumpSFX".play()
 
 const DIRECTION : Dictionary = {UP = &"N", DOWN = &"S", LEFT = &"L", RIGHT = &"R",
