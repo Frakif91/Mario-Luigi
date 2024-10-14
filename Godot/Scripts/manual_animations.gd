@@ -511,7 +511,7 @@ func _hammer_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSp
         progression = (total_time - animation_timer.time_left/animation_speed)
 
         if (progression > 0.8 and progression < 1.9):
-            action_brother.position.x = lerp(og_position.x,enemy_position.x - 0.08,get_percentage(progression,0.8,1.9))
+            action_brother.position.x = lerp(og_position.x,enemy_position.x - 0.3,get_percentage(progression,0.8,1.9))
             action_brother.position.z = lerp(og_position.z,enemy_position.z,get_percentage(progression,0.8,1.9))
         
         if (step == 0 and progression > 0.8):
@@ -622,7 +622,7 @@ func _hammer_good():
 func _hammer_excellent():
     audio_player.pitch_scale = 1.1
     (get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.position + Vector3(0,0.7,1)
-    _play_audio(preload("res://Assets/Sound/SE_BTL_JINGLE1.wav"))
+    _play_audio(preload("res://Assets/SFX/hammershine.wav"))
     for o in range(4):
         Globals.cur_brother.animated_sprite.play(&"hammer_charged")
         await Globals.cur_brother.animated_sprite.animation_finished
