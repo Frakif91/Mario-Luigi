@@ -2544,8 +2544,8 @@ var ratings_sfx = {
 	\"Excellent\" : preload(\"res://Assets/Sound/SE_BTL_EXCELENT.wav\")
 }
 
-func _on_current_animation_changed(name):
-	audio_player.stream = ratings_sfx[name]
+func _on_current_animation_changed(r_name):
+	audio_player.stream = ratings_sfx[r_name]
 	audio_player.play()
 "
 

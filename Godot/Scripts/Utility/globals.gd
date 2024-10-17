@@ -1,9 +1,14 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal item_have_been_choosed
+@warning_ignore("unused_signal")
 signal eat_inventory_item(tex : Texture2D, _item : Item_Quantity)
+@warning_ignore("unused_signal")
 signal finish_eating
+@warning_ignore("unused_signal")
 signal heal_mario(hp : int)
+@warning_ignore("unused_signal")
 signal hurt_mario(damage : int)
 
 #var chr_info = load("res://Godot/Scripts/CharacterInfo.gd")
@@ -49,3 +54,6 @@ var default_empty_texture = preload("res://Godot/Assets/placeholder.tres")
 
 func wait(seconds : float):
     await get_tree().create_timer(seconds).timeout
+
+func next_frame():
+    await get_tree().create_timer(0).timeout

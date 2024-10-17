@@ -4,6 +4,7 @@ extends Control
 class_name TextureNumber
 
 signal value_changed(old_value: int, new_value: int)
+@warning_ignore("unused_signal")
 signal on_reset()
 
 @onready var number_container : BoxContainer = BoxContainer.new()

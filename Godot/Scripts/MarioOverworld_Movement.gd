@@ -164,8 +164,9 @@ func get_action_and_direction(cur_direction : Vector2):
 		state_action = ACTIONS.JUMP
 
 	var max_angles = 8
+	@warning_ignore("integer_division")
 	var each_index = 360/max_angles
-
+	@warning_ignore("integer_division")
 	state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
 	
 	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)

@@ -422,19 +422,22 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
     var total_time = 5.3
     var progression = 0
     var step : int = 0
-    var sprite_velocity = 0
+    #var sprite_velocity = 0
  
     var init_anima = _init_animation(true) 
     var action_brother : BrotherCB3 = init_anima[0]
     var og_position : Vector3 = init_anima[1]
 
-    #taking-out-item
-    #showing-item
-    #throwing_item_himself
-    #open-mouth
-    #close-mouth
-    #tummy
-    sprite.position.x = 0.2
+    # Animation names :
+    #   taking-out-item
+    #   showing-item
+    #   throwing_item_himself
+    #   open-mouth
+    #   close-mouth
+    #   tummy
+    sprite.position.x = og_position.x + 0.25
+    sprite.position.y = og_position.y + 0.1
+    sprite.position.z = og_position.z + (-0.001) #Be infront of the brother's sprite
     action_brother.animated_sprite.play(&"taking-out-item")
     while (animation_timer.time_left > 0 and not stop_animation):
         progression = total_time - animation_timer.time_left
@@ -448,7 +451,7 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
         elif (progression >= 1.8 and step == 1):
             step = 2
             action_brother.animated_sprite.play(&"throwing_item_himself")
-            sprite_velocity = 0.425/2 #0.425
+            #sprite_velocity = 0.425/2 #0.425
             sprite.position.z = og_position.z
             
         elif (progression >= 2.2 and step == 2):
@@ -470,16 +473,16 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
             action_brother.animated_sprite.modulate = lerp(action_brother.animated_sprite.modulate,Color(1,1,1,1),get_process_delta_time()*2)
 
         if (progression > 1.8 and progression < 2.65):
-            sprite.position.x = og_position.x + get_percentage_value(get_percentage(progression,1.8,2.65),0.2,-0.05)
+            sprite.position.x = og_position.x + get_percentage_value(get_percentage(progression,1.8,2.65),0.25,0.0)
             
         if (progression > 1.8 and progression < 2.225):
-            #action_brother.animated_sprite.play(&"jump-pirouette2")
+            #Throw up
             sprite.position.y = get_percentage_value(ease(get_percentage(progression,1.8,2.225) ,0.5),og_position.y,1.5)
         elif (progression > 2.225 and progression < 2.65):
-            #action_brother.animated_sprite.play(&"jump-pirouette2")
+            #Throw down
             sprite.position.y = get_percentage_value(ease(get_percentage(progression,2.225,2.65) ,2),1.5,og_position.y)
 
-        await Globals.wait(0.001)
+        await Globals.wait(0.00) #Await -> Go on Idle...
 
 
 #region Hammer
@@ -681,7 +684,7 @@ func _victory_screen():
     var init_anima = _init_animation(true)
     var action_brother : BrotherCB3 = init_anima[0]
     var og_position : Vector3 = init_anima[1]
-    var cur_position = action_brother.position
+    #var cur_position = action_brother.position
     var target_position = get_viewport().get_camera_3d().position
     target_position.z = 0
     action_brother.animated_sprite.play("victory")
