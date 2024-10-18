@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://c1smvwh2b70iv"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_an0rp"]
+[ext_resource type="AudioStream" uid="uid://dveyvwa5pjafl" path="res://Assets/SFX/Mario Odysee/B70kawa_2.aw_00000026.wav" id="2_gmtsk"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/CamSlowFlo.gd" id="2_u671h"]
 [ext_resource type="LightmapGIData" uid="uid://r2i7im0mfrua" path="res://Godot/Bakes/node_3d.lmbake" id="3_lhd2p"]
 [ext_resource type="Texture2D" uid="uid://cyy0d0b136u6g" path="res://Assets/Handmade/PiT/Textures/up_view.png" id="4_kmjox"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="4_kxp3g"]
 [ext_resource type="PackedScene" uid="uid://bxv35thqu84qn" path="res://Assets/Handmade/Maps/Outskirts/outskirts.tscn" id="4_s6del"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="5_7clf1"]
-[ext_resource type="AudioStream" uid="uid://dkwqcr4i122ao" path="res://Assets/SFX/Mario Odysee/B70kawa_1.aw_00000026.wav" id="6_o1jn2"]
 [ext_resource type="AudioStream" uid="uid://cbhwlcf4etn1j" path="res://Assets/Music/The Wind is Blowing at Cavi BIS OST.mp3" id="7_6n866"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_f50pv"]
@@ -64,8 +64,7 @@ JUMP_VELOCITY = 3.2
 metadata/_edit_group_ = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Mario"]
-stream = ExtResource("6_o1jn2")
-volume_db = -6.0
+stream = ExtResource("2_gmtsk")
 unit_size = 3.0
 bus = &"Effects"
 
