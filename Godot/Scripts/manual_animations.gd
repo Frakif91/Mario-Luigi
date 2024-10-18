@@ -482,7 +482,7 @@ func eat_animation(sprite : Sprite3D, _heal_sfx : AudioStreamPlayer, show_sfx : 
             #Throw down
             sprite.position.y = get_percentage_value(ease(get_percentage(progression,2.225,2.65) ,2),1.5,og_position.y)
 
-        await Globals.wait(0.00) #Await -> Go on Idle...
+        await Globals.next_frame() #Await -> Go on Idle...
 
 
 #region Hammer
