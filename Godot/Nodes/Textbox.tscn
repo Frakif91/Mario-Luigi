@@ -11,33 +11,41 @@
 [sub_resource type="Resource" id="Resource_7o0d8"]
 script = ExtResource("2_4ykln")
 text = "Hello World !"
+each_n_letters = 1
 text_size = 32
 text_delay = 0.1
 text_alignment = 0
+skipable = false
 textbox_size = Vector2(300, 100)
 
 [sub_resource type="Resource" id="Resource_11eon"]
 script = ExtResource("2_4ykln")
 text = "This is a custom made textbox behavior for custom dialog that is pretty useful and easy to use."
+each_n_letters = 2
 text_size = 32
-text_delay = 0.07
+text_delay = 0.02
 text_alignment = 0
+skipable = false
 textbox_size = Vector2(500, 150)
 
 [sub_resource type="Resource" id="Resource_7ogkk"]
 script = ExtResource("2_4ykln")
 text = "The key to use this easily is to use the Godot Engine Editor to edit texts and modifiy things like text speed"
+each_n_letters = 2
 text_size = 32
-text_delay = 0.1
+text_delay = 0.02
 text_alignment = 0
+skipable = false
 textbox_size = Vector2(450, 100)
 
 [sub_resource type="Resource" id="Resource_idghu"]
 script = ExtResource("2_4ykln")
 text = "Don't you run away from me moron ! I know where you live !!! COME BACK HERE BOY !"
+each_n_letters = 1
 text_size = 32
 text_delay = 0.05
 text_alignment = 0
+skipable = false
 textbox_size = Vector2(300, 100)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4s6py"]
@@ -73,7 +81,7 @@ theme_override_constants/margin_top = 20
 
 [node name="NTL" type="NinePatchRect" parent="MarginContainer"]
 texture_filter = 5
-custom_minimum_size = Vector2(420, 100)
+custom_minimum_size = Vector2(100, 77)
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("2_0l2y5")
@@ -83,7 +91,8 @@ patch_margin_right = 48
 patch_margin_bottom = 38
 
 [node name="Clip" type="Control" parent="MarginContainer/NTL"]
-clip_children = 2
+clip_children = 1
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +119,8 @@ text = "This is a placeholder text, although it is not final, it is very useful 
 label_settings = SubResource("LabelSettings_4s6py")
 autowrap_mode = 3
 clip_text = true
-text_overrun_behavior = 4
+text_overrun_behavior = 2
+ellipsis_char = "-"
 visible_characters_behavior = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/NTL"]
@@ -122,6 +132,8 @@ flip_v = true
 
 [node name="DialogSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_tg6yd")
+volume_db = -16.0
 
 [node name="EnterSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_gmhhl")
+volume_db = -10.0
