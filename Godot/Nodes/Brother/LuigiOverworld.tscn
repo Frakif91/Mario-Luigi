@@ -25,6 +25,7 @@ mario_np = NodePath("../Mario")
 
 [node name="ASprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
+layers = 4
 billboard = 1
 texture_filter = 4
 render_priority = 1

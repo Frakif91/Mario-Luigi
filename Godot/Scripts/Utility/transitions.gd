@@ -6,7 +6,7 @@ extends Control
 @onready var loading_anim : AnimationPlayer = $"Transitions/Background/LoadingScreen/Animation"
 @onready var loading : Control = $"Transitions/Background/LoadingScreen"
 
-enum TransitionType {CIRCULAR}
+enum TransitionType {CIRCULAR, FILL, TOP_DOWN}
 
 @export var gradient_1_progression : float = 0 :
 	set(value):
@@ -43,6 +43,9 @@ func start_fake_loading():
 func start_loading(path : String, transition_type : TransitionType, scene_tree : SceneTree):
 	if transition_type == TransitionType.CIRCULAR:
 		anim.play(&"TransitionIn")
+		await anim.animation_finished
+	elif transition_type == TransitionType.FILL:
+		anim.play(&"TransitionFill")
 		await anim.animation_finished
 	loading.start_loading.emit()
 	await Globals.wait(1)

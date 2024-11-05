@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cblna1laxmsm0" path="res://luigis_spriteframe.tres" id="4_mug6a"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="4_wqmdj"]
 [ext_resource type="Script" path="res://Godot/Scene/automatic_animation.gd" id="5_0xi6g"]
-[ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui.tscn" id="5_k62ue"]
+[ext_resource type="PackedScene" uid="uid://bs8gh15nqh3o5" path="res://Godot/Nodes/entry_ui_out.tscn" id="5_k62ue"]
 [ext_resource type="SpriteFrames" uid="uid://cwwx7armsn46q" path="res://luigi_spriteframe.tres" id="6_8wy7m"]
 [ext_resource type="AudioStream" uid="uid://bk8meh8lcj1qb" path="res://Assets/Sound/SE_BTL_KIRARI.wav" id="7_b6ohp"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="7_obbi1"]
@@ -2585,6 +2585,7 @@ directional_shadow_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+visible = false
 layers = 2
 light_energy = 16.0
 light_cull_mask = 4294966274
@@ -2628,6 +2629,7 @@ script = ExtResource("5_0xi6g")
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Mario"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.08, -0.1, 0)
+visible = false
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_hqrsi")
@@ -2661,6 +2663,7 @@ script = ExtResource("5_0xi6g")
 
 [node name="RoundShadow" type="MeshInstance3D" parent="Characters/Luigi"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.08, -0.1, 0)
+visible = false
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_hqrsi")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=41 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="7_mfg47"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
+[ext_resource type="Script" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 
@@ -153,6 +154,7 @@ shape = SubResource("WorldBoundaryShape3D_j3u2c")
 mesh = SubResource("BoxMesh_k7rf6")
 
 [node name="Mario" parent="." instance=ExtResource("1_1nj15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479366, 0)
 luigi_np = NodePath("../Luigi")
 
 [node name="Luigi" parent="." instance=ExtResource("2_7i1dn")]
@@ -305,6 +307,7 @@ V"
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
+script = ExtResource("9_76a8t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Area3D"]
 

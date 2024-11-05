@@ -1,20 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://tbgjt6hvf0ut"]
+[gd_scene load_steps=12 format=3 uid="uid://tbgjt6hvf0ut"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_f6fci"]
+[ext_resource type="Texture2D" uid="uid://cg0hwhime1otw" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
 [ext_resource type="Texture2D" uid="uid://cefwb64it1for" path="res://Assets/load.png" id="2_cwr7t"]
 [ext_resource type="PackedScene" uid="uid://cdqimmnx0j6kj" path="res://Godot/Scene/loading_screen.tscn" id="3_xyccu"]
 
 [sub_resource type="Gradient" id="Gradient_ej2yx"]
-interpolation_mode = 1
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_epwyl"]
-gradient = SubResource("Gradient_ej2yx")
-width = 1152
-height = 1152
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_pig56"]
 length = 0.001
@@ -30,6 +23,129 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transitions:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0r840")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transitions:texture:fill_from")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transitions:texture:fill_to")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Transitions:texture:gradient")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_ej2yx")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Transitions:texture:gradient:colors")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p0gmo"]
+resource_name = "TransitionFill"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transitions:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0r840")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transitions:texture:fill_from")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transitions:texture:fill_to")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transitions:texture:gradient")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_ej2yx")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Transitions:texture:gradient:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0), PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ftwxo"]
 resource_name = "TransitionIn"
@@ -40,16 +156,57 @@ tracks/0/path = NodePath(".:gradient_2_progression")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.0333333, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_f2ig0"]
+resource_name = "TransitionTopDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transitions:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0r840")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transitions:texture:fill_from")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.1), Vector2(1, 1.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transitions:texture:fill_to")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0.99)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ltklw"]
 _data = {
 "RESET": SubResource("Animation_pig56"),
-"TransitionIn": SubResource("Animation_ftwxo")
+"TransitionFill": SubResource("Animation_p0gmo"),
+"TransitionIn": SubResource("Animation_ftwxo"),
+"TransitionTopDown": SubResource("Animation_f2ig0")
 }
 
 [node name="Transition" type="Control"]
@@ -71,7 +228,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_epwyl")
+texture = ExtResource("2_0r840")
 expand_mode = 1
 stretch_mode = 3
 

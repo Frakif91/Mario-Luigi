@@ -103,6 +103,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uh2mf"]
 material = SubResource("ORMMaterial3D_8sj7c")
+flip_faces = true
 radius = 0.09
 height = 0.7
 radial_segments = 16
@@ -127,6 +128,7 @@ offset_speed = 200.0
 shape = SubResource("BoxShape3D_irwty")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Jump"]
+visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
@@ -143,6 +145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.1, -0.5)
 shape = SubResource("BoxShape3D_irwty")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Hammer"]
+visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
@@ -159,6 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.1, -0.5)
 shape = SubResource("BoxShape3D_irwty")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bros"]
+visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
@@ -175,6 +179,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, -1)
 shape = SubResource("BoxShape3D_irwty")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Flee"]
+visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
@@ -191,6 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, -1)
 shape = SubResource("BoxShape3D_irwty")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Item"]
+visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 
@@ -201,14 +207,14 @@ skeleton = NodePath("")
 
 [node name="SoftBody3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 9.3097e-18, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
-transparency = 0.1
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_uh2mf")
 skeleton = NodePath("Label3D")
 
 [node name="Label3D" type="Label3D" parent="SoftBody3D"]
-transform = Transform3D(1.063, 0, 0, 0, 0.85, 0, 0, 0, 0.557, 0, 0, 0)
-sorting_offset = 1.0
+transform = Transform3D(1.063, -1.33227e-15, -8.67362e-19, -5.55112e-16, 0.85, 7.27596e-12, 9.09495e-13, -1.52588e-05, 0.557, 0, -0.00667408, 37.8506)
+sorting_offset = 2.0
+sorting_use_aabb_center = false
 billboard = 1
 text = "HAMMER"
 font = SubResource("SystemFont_nq8sx")

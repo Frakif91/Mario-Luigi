@@ -2291,6 +2291,11 @@ animations = [{
 "name": &"idle",
 "speed": 12.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle-automatic",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ol57f")
