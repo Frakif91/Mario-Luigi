@@ -2,6 +2,14 @@ extends Control
 
 var loaded_avatars : Dictionary
 
+@export var persona_status_colors : Dictionary = {
+    "Offline" : Color(0,0,0,1),
+    "Busy" :    Color(0,0,0,1),
+    "Away" :    Color(0,0,0,1),
+    "Online" :  Color(0,0,0,1),
+    "Playing" : Color(0,0,0,1)
+}
+
 @export_node_path("TextureRect") var user_avatar_np : NodePath
 @export_node_path("Label") var user_name_np : NodePath
 @export_node_path("ItemList") var user_friend_list_np : NodePath
@@ -45,9 +53,22 @@ func steam_initialized():
         var friend_status = friend.get("status",-1)
         var friend_id = friend.get("id",0)
         var friend_avatar = await await_avatar(friend_id)
+        var friend_bg_color : Color
+        match friend_status:
+            Steam.PERSONA_STATE_ONLINE:
+                friend_bg_color = persona_status_colors["Online"]
+            Steam.PERSONA_STATE_AWAY:
+                friend_bg_color = persona_status_colors["Away"]
+            Steam.PERSONA_STATE_BUSY:
+                friend_bg_color = persona_status_colors["Busy"]
+            Steam.PERSONA_STATE_LOOKING_TO_PLAY:
+                friend_bg_color = persona_status_colors["Playing"]
+            _:
+                friend_bg_color = persona_status_colors["Offline"]
 
-        var item_id = user_friend_list.add_item(friend_name, friend_avatar, (friend_status as bool))
-        user_friend_list.set_item_disabled(item_id, (friend_status as bool))
+        var item_id = user_friend_list.add_item(friend_name, friend_avatar)
+        user_friend_list.set_item_disabled(item_id, not(friend_status as bool))
+        user_friend_list.set_item_custom_bg_color(item_id, friend_bg_color)
 
         
 func steam_user_avatar_loaded(id, icon_size, buffer : PackedByteArray):

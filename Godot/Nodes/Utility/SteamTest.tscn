@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3um40q0hw3u2"]
+[gd_scene load_steps=8 format=3 uid="uid://3um40q0hw3u2"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/SteamCheck.gd" id="1_w3247"]
 [ext_resource type="Texture2D" uid="uid://chwn1br1jchb" path="res://Assets/texture_ml_little.png" id="2_u716w"]
@@ -11,6 +11,9 @@ font_size = 26
 outline_size = 11
 outline_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofo3h"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 0.588235)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -19,6 +22,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w3247")
+persona_status_colors = {
+"Away": Color(0.396078, 0.337255, 0.0941176, 0.32549),
+"Busy": Color(0.384314, 0.188235, 0.0117647, 0.278431),
+"Offline": Color(0.196078, 0.196078, 0.188235, 0.784314),
+"Online": Color(0, 0.447059, 0.0745098, 0.294118),
+"Playing": Color(1.2153e-06, 0.445365, 0.0733386, 0.784314)
+}
 user_avatar_np = NodePath("Container/ClientInfo/VBoxContainer/User/UserFields/Avatar")
 user_name_np = NodePath("Container/ClientInfo/VBoxContainer/User/UserFields/Name")
 user_friend_list_np = NodePath("Container/ClientInfo/VBoxContainer/FriendsList")
@@ -91,6 +101,7 @@ horizontal_alignment = 1
 [node name="FriendsList" type="ItemList" parent="Container/ClientInfo/VBoxContainer"]
 custom_minimum_size = Vector2(100, 250)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofo3h")
 item_count = 1
 fixed_icon_size = Vector2i(48, 48)
 item_0/text = "Friends n°1"

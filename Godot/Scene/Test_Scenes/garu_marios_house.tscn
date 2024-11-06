@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgoqgh452k7me"]
+
+[ext_resource type="PackedScene" uid="uid://mkbumy7q5cg8" path="res://Assets/3D/Garu/nintendo_64_-_paper_mario_-_marios_house_exterio/scene.gltf" id="1_c8i0c"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_c8i0c")]

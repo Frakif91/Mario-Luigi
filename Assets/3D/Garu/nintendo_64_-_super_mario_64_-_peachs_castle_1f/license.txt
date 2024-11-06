@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nintendo 64 - Super Mario 64 - Peachs Castle 1F
+* source:	https://sketchfab.com/3d-models/nintendo-64-super-mario-64-peachs-castle-1f-e3750a9043e042f682139091c28e2a90
+* author:	Garu (https://sketchfab.com/Garu.The.Ninja)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nintendo 64 - Super Mario 64 - Peachs Castle 1F" (https://sketchfab.com/3d-models/nintendo-64-super-mario-64-peachs-castle-1f-e3750a9043e042f682139091c28e2a90) by Garu (https://sketchfab.com/Garu.The.Ninja) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
