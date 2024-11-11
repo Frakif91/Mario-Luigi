@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ei4lb80f5ea"]
+
+[ext_resource type="PackedScene" uid="uid://dxio2tgsy1w36" path="res://Assets/3D/Blocks/Question Block.fbx" id="1_hwhad"]
+
+[node name="Question Block" instance=ExtResource("1_hwhad")]
+
+[node name="Cube" parent="." index="0"]
+cast_shadow = 0
+
+[node name="Question Mark" parent="." index="1"]
+cast_shadow = 0
+
+[node name="Question Mark_001" parent="." index="2"]
+cast_shadow = 0
+
+[node name="Question Mark_002" parent="." index="3"]
+cast_shadow = 0
+
+[node name="Question Mark_003" parent="." index="4"]
+cast_shadow = 0

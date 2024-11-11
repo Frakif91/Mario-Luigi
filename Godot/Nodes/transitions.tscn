@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_f6fci"]
-[ext_resource type="Texture2D" uid="uid://cg0hwhime1otw" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
+[ext_resource type="Texture2D" uid="uid://bkkrf7uvwmaht" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
 [ext_resource type="Texture2D" uid="uid://cefwb64it1for" path="res://Assets/load.png" id="2_cwr7t"]
 [ext_resource type="PackedScene" uid="uid://cdqimmnx0j6kj" path="res://Godot/Scene/loading_screen.tscn" id="3_xyccu"]
 

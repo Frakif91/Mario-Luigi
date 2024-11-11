@@ -2964,7 +2964,7 @@ script = SubResource("GDScript_6aq3o")
 layout_mode = 0
 offset_left = 100.0
 offset_top = 73.0
-offset_right = 226.0
+offset_right = 354.0
 offset_bottom = 135.0
 texture = SubResource("AtlasTexture_vd14l")
 

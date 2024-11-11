@@ -1,4 +1,4 @@
-extends Control
+class_name Textbox extends Control
 
 signal show_dialog()
 signal finished_dialog()

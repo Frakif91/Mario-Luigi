@@ -33,7 +33,7 @@ func block_got_hit():
 
 	question_block.hide()
 	used_cube.show()
-	used_cube.position += Vector3(0,0.3,0)
+	used_cube.position += Vector3(0,0.15,0)
 
 func _process(delta: float) -> void:
-	used_cube.position = lerp(used_cube.position,og_cube_pos,delta*5)
+	used_cube.position = lerp(used_cube.position,og_cube_pos,delta*2.5)

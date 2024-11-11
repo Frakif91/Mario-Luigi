@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=3 uid="uid://b66mg7qjtcc0w"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/overworld_block.gd" id="1_uv5s0"]
+[ext_resource type="PackedScene" uid="uid://b7yr1wlubv043" path="res://Assets/3D/Blocks/mario_block.tscn" id="2_cwre2"]
+[ext_resource type="PackedScene" uid="uid://2ei4lb80f5ea" path="res://Assets/3D/Blocks/question_block.tscn" id="3_qks68"]
+[ext_resource type="PackedScene" uid="uid://ct7g8ajg2ad2n" path="res://Assets/3D/Blocks/used_block_1.tscn" id="4_saml8"]
+[ext_resource type="PackedScene" uid="uid://bcaj4828wrr5f" path="res://Godot/Nodes/fake_shadow.tscn" id="5_uiaaj"]
+[ext_resource type="Texture2D" uid="uid://bpqyu0sqdyhkg" path="res://New_Piskel-1.png_23-2.png.png" id="6_4lhnv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n8uu1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojsf2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jtbtj"]
+material = SubResource("StandardMaterial3D_ojsf2")
+
+[node name="Node3D" type="StaticBody3D"]
+script = ExtResource("1_uv5s0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_n8uu1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_jtbtj")
+
+[node name="Mario Block" parent="." instance=ExtResource("2_cwre2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+
+[node name="Question Block" parent="." instance=ExtResource("3_qks68")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Used Block 1" parent="." instance=ExtResource("4_saml8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+
+[node name="FakeShadow" parent="." instance=ExtResource("5_uiaaj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+max_shadow_distance = 10.0
+shadow_texture = ExtResource("6_4lhnv")

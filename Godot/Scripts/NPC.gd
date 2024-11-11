@@ -1,11 +1,16 @@
 extends Area3D
 
+enum InteractionTypes {NONE, MANDATORY, USER_INTERACT}
+@export var interaction_type : InteractionTypes
+@export_node_path("Area3D") var area_collider_np : NodePath = ^"./Area3D"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var area_collider = get_node(area_collider_np)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _ready():
+	match(interaction_type):
+		InteractionTypes.NONE:
+			pass
+		InteractionTypes.MANDATORY:
+			pass
+		InteractionTypes.USER_INTERACT:
+			pass

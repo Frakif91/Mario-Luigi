@@ -1,0 +1,226 @@
+[gd_scene load_steps=22 format=3 uid="uid://cdxur08tan28p"]
+
+[ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="1_ckjca"]
+[ext_resource type="Script" path="res://Godot/Scripts/overworld_ui.gd" id="1_i5l1i"]
+[ext_resource type="Texture2D" uid="uid://c07akji6e0bgd" path="res://Assets/Game_Boy_Advance_-_Mario___Luigi_Superstar_Saga_-_Action_Icons-removedbg.png" id="2_g46kd"]
+[ext_resource type="Texture2D" uid="uid://b3ydc8bt6fdoy" path="res://Assets/HP.png" id="2_q1beq"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="3_ioewo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdl8s"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 1007, 70, 38)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn4xo"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 1007, 70, 38)
+margin = Rect2(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v28i"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 3, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w02lr"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 23, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpp1w"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 43, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mx1p"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 63, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeti8"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 83, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3mly"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 103, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt0bb"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 123, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h66ls"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 143, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v231"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 163, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48q55"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 183, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oif4b"]
+atlas = ExtResource("2_g46kd")
+region = Rect2(8, 8, 32, 32)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do2jp"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 1051, 70, 38)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71l25"]
+atlas = ExtResource("1_ckjca")
+region = Rect2(3, 1051, 70, 38)
+margin = Rect2(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxgyk"]
+atlas = ExtResource("2_g46kd")
+region = Rect2(8, 136, 32, 32)
+filter_clip = true
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5l1i")
+
+[node name="MarioUI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 37.0
+offset_right = 10.0
+offset_bottom = 77.0
+
+[node name="Panel" type="TextureRect" parent="MarioUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 119.0
+offset_right = 140.0
+offset_bottom = 159.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_hdl8s")
+
+[node name="Panel2" type="TextureRect" parent="MarioUI/Panel"]
+self_modulate = Color(0.197937, 0.197937, 0.197937, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.5
+offset_top = 3.0
+offset_right = 74.5
+offset_bottom = 43.0
+scale = Vector2(0.9, 0.8)
+texture = SubResource("AtlasTexture_kn4xo")
+
+[node name="Heart" type="TextureRect" parent="MarioUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 77.0
+offset_top = 145.0
+offset_right = 117.0
+offset_bottom = 181.0
+rotation = -0.0781576
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_q1beq")
+expand_mode = 1
+
+[node name="HP" type="Control" parent="MarioUI"]
+texture_filter = 1
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 141.0
+offset_right = 144.0
+offset_bottom = 181.0
+rotation = -0.0781576
+scale = Vector2(2, 2)
+script = ExtResource("3_ioewo")
+Numbers = Array[Texture2D]([SubResource("AtlasTexture_1v28i"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_cpp1w"), SubResource("AtlasTexture_2mx1p"), SubResource("AtlasTexture_yeti8"), SubResource("AtlasTexture_s3mly"), SubResource("AtlasTexture_xt0bb"), SubResource("AtlasTexture_h66ls"), SubResource("AtlasTexture_8v231"), SubResource("AtlasTexture_48q55")])
+spacing = -1
+value = 180
+images_slot = Array[Texture2D]([SubResource("AtlasTexture_1v28i"), SubResource("AtlasTexture_8v231"), SubResource("AtlasTexture_w02lr")])
+
+[node name="Action" type="TextureRect" parent="MarioUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.05
+anchor_bottom = 0.1
+offset_left = 55.6
+offset_top = 60.8
+offset_right = 95.6
+offset_bottom = 100.8
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_oif4b")
+
+[node name="LuigiUI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 36.0
+offset_top = -40.0
+offset_right = 76.0
+
+[node name="Panel" type="TextureRect" parent="LuigiUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 119.0
+offset_right = 140.0
+offset_bottom = 159.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_do2jp")
+
+[node name="Panel2" type="TextureRect" parent="LuigiUI/Panel"]
+self_modulate = Color(0.197937, 0.197937, 0.197937, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.5
+offset_top = 3.0
+offset_right = 74.5
+offset_bottom = 43.0
+scale = Vector2(0.9, 0.8)
+texture = SubResource("AtlasTexture_71l25")
+
+[node name="Heart" type="TextureRect" parent="LuigiUI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 77.0
+offset_top = 145.0
+offset_right = 117.0
+offset_bottom = 181.0
+rotation = -0.0781576
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_q1beq")
+expand_mode = 1
+
+[node name="HP" type="Control" parent="LuigiUI"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 141.0
+offset_right = 144.0
+offset_bottom = 181.0
+rotation = -0.0781576
+scale = Vector2(2, 2)
+script = ExtResource("3_ioewo")
+Numbers = Array[Texture2D]([SubResource("AtlasTexture_1v28i"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_cpp1w"), SubResource("AtlasTexture_2mx1p"), SubResource("AtlasTexture_yeti8"), SubResource("AtlasTexture_s3mly"), SubResource("AtlasTexture_xt0bb"), SubResource("AtlasTexture_h66ls"), SubResource("AtlasTexture_8v231"), SubResource("AtlasTexture_48q55")])
+spacing = -1
+value = 212
+images_slot = Array[Texture2D]([SubResource("AtlasTexture_cpp1w"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_cpp1w")])
+
+[node name="Action" type="TextureRect" parent="LuigiUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.05
+anchor_bottom = 0.1
+offset_left = 55.6
+offset_top = 60.8
+offset_right = 95.6
+offset_bottom = 100.8
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_cxgyk")

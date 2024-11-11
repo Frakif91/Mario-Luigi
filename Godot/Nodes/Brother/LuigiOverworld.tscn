@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://3ehm7agaca1t"]
+[gd_scene load_steps=9 format=3 uid="uid://3ehm7agaca1t"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/LuigiOverworld_Movement.gd" id="1_iwn5y"]
 [ext_resource type="SpriteFrames" uid="uid://v4pbu477uses" path="res://Godot/overworld_test_luigi_animations.tres" id="2_oxqgx"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="3_7js7q"]
 [ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="4_arifk"]
 [ext_resource type="AudioStream" uid="uid://b0t1hd3unig7i" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK_L.wav" id="5_hv5ju"]
+[ext_resource type="PackedScene" uid="uid://bcaj4828wrr5f" path="res://Godot/Nodes/fake_shadow.tscn" id="6_488yp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
 radius = 0.125
@@ -38,6 +39,7 @@ shape = SubResource("CapsuleShape3D_qf3ef")
 
 [node name="FakeShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+visible = false
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_3veek")
@@ -52,3 +54,6 @@ stream = ExtResource("4_arifk")
 stream = ExtResource("5_hv5ju")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Decal" parent="." instance=ExtResource("6_488yp")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.00531469, 0.165317, 0.00488225)

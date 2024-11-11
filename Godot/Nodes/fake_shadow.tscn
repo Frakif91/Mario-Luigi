@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://Godot/Scripts/shadow.gd" id="2_vnwan"]
 
 [sub_resource type="Curve" id="Curve_7l2fa"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.802198, 0, 1, Vector2(1, 0.802198), 0.802198, 0.0, 1, 0]
 point_count = 2
 
-[node name="Node3D" type="Node3D"]
+[node name="FakeShadow" type="Node3D"]
 script = ExtResource("2_vnwan")
-max_shadow_distance = 3
 shadow_curve = SubResource("Curve_7l2fa")
+shadow_texture = ExtResource("1_2uhmv")
 ray_np = NodePath("RayCast3D")
 decal_np = NodePath("Decal")
 

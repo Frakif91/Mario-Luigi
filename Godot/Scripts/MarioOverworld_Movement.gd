@@ -16,11 +16,6 @@ signal stop_move()
 var cur_right_foot = false
 var old_debug_direction = 0.0
 
-class MarioMovement:
-	var animation
-	var glb_position
-	var rel_position
-
 const SORTED_DIRECTION = ["N","NE","E","SE","S","SW","W","NW"]
 
 const ACTIONS : Dictionary = {JUMP = &"jump", IDLE = &"idle", WALK = &"walk"}
@@ -33,6 +28,11 @@ var just_touched_floor : bool
 var jump_alt = 0
 var is_moving = false
 var can_play_animation = true
+var can_move = true
+var is_in_cutscene = false
+var gravity_mutliplier = 1.0
+
+func able_to_move(): return can_move and not(is_in_cutscene)
 
 signal touched_floor
 
@@ -83,8 +83,8 @@ func _process(_delta):
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+	if not is_on_floor() and not is_in_cutscene:
+		velocity.y -= gravity * delta * gravity_mutliplier
 
 	if $"Timer".time_left > 0:
 		if not is_on_floor():
@@ -101,7 +101,9 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir : Vector2 = Vector2(0,0)
+	if able_to_move():
+		input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -149,7 +151,31 @@ func _physics_process(delta):
 			
 		if just_touched_floor:
 			jump_alt = ALTERNATIVE.ALT3
-		
+	
+	#if get_slide_collision_count() == 0:
+	for i in get_slide_collision_count():
+		if get_slide_collision(i) == null:
+			continue
+		if get_slide_collision(i).get_collider().get_parent() is OW_Enemy and not is_in_cutscene:
+			var enemy = (get_slide_collision(i).get_collider().get_parent() as OW_Enemy)
+			if enemy.enemy_preset.is_stompable and global_position.y > enemy.global_position.y:
+				var audioplayer = AudioStreamPlayer.new()
+				audioplayer.stream = preload("res://Assets/Sound/SE_BTL_STOMP1.wav") 
+				add_child(audioplayer)
+				audioplayer.play()
+				velocity.y = 0.1
+				global_position.y += 0.1
+				gravity_mutliplier = 0.1
+			is_in_cutscene = true
+			#Engine.time_scale = 0.2
+			await Globals.next_frame()
+			$"BattleEntry/AnimationPlayer".play(&"new_animation",10.0)
+			await $"BattleEntry/AnimationPlayer".animation_finished
+			gravity_mutliplier = 1
+			is_in_cutscene = false
+			#Engine.time_scale = 1
+			get_tree().change_scene_to_file("res://Godot/Scene/battle_scene.tscn")
+
 
 func get_action_and_direction(cur_direction : Vector2):
 	var direction_angle = roundi(rad_to_deg(cur_direction.angle()))
@@ -163,11 +189,12 @@ func get_action_and_direction(cur_direction : Vector2):
 	elif not is_on_floor():
 		state_action = ACTIONS.JUMP
 
-	var max_angles = 8
-	@warning_ignore("integer_division")
-	var each_index = 360/max_angles
-	@warning_ignore("integer_division")
-	state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
+	if cur_direction:
+		var max_angles = 8
+		@warning_ignore("integer_division")
+		var each_index = 360/max_angles
+		@warning_ignore("integer_division")
+		state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
 	
 	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
 

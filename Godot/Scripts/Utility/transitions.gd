@@ -20,8 +20,9 @@ enum TransitionType {CIRCULAR, FILL, TOP_DOWN}
 			transition_gradient.gradient.set_offset(1,value)
 
 func _ready() -> void:
-	#start_fake_loading()
-	pass
+	get_tree().current_scene.child_order_changed.connect(func():
+		get_tree().current_scene.move_child(self,-1)
+	)
 
 func start_fake_loading():
 	anim.play(&"TransitionIn")

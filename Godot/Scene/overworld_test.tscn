@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=45 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
@@ -8,8 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
 [ext_resource type="Script" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
-[ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
+[ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/Block.tscn" id="9_qnxvs"]
+[ext_resource type="PackedScene" uid="uid://cdxur08tan28p" path="res://Godot/Nodes/overworld_ui.tscn" id="11_12uca"]
+[ext_resource type="PackedScene" uid="uid://doklhbfcb6p4q" path="res://Godot/Nodes/Brother/OW_Enemy.tscn" id="12_qt70a"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
+[ext_resource type="Script" path="res://Godot/Scripts/Enemy_Info.gd" id="13_m7bcr"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
@@ -140,6 +143,17 @@ height = 0.818777
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkf1i"]
 radius = 0.709963
+
+[sub_resource type="Resource" id="Resource_w7s71"]
+script = ExtResource("13_m7bcr")
+enemy_name = "Goomba"
+max_hp = 20
+level = 5
+is_stompable = true
+animation_dictionary = {
+"idle": "idle",
+"rush": "rush"
+}
 
 [node name="Overworld" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, 0)
@@ -325,3 +339,9 @@ sprite_frames = ExtResource("8_xaj1a")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.949584
+
+[node name="UI" parent="." instance=ExtResource("11_12uca")]
+
+[node name="OwEnemy" parent="." instance=ExtResource("12_qt70a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.671508, 1)
+enemy_preset = SubResource("Resource_w7s71")

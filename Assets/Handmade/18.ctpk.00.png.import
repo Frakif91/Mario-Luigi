@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://done6eftotsix"
-path.s3tc="res://.godot/imported/18.ctpk.00.png-50152553b29143597c91750e3b460656.s3tc.ctex"
-path.etc2="res://.godot/imported/18.ctpk.00.png-50152553b29143597c91750e3b460656.etc2.ctex"
+uid="uid://b6hbptf7sue86"
+path.s3tc="res://.godot/imported/18.ctpk.00.png-9439e4902a137d17305c265e78329e16.s3tc.ctex"
+path.etc2="res://.godot/imported/18.ctpk.00.png-9439e4902a137d17305c265e78329e16.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Effects/18.ctpk.00.png"
-dest_files=["res://.godot/imported/18.ctpk.00.png-50152553b29143597c91750e3b460656.s3tc.ctex", "res://.godot/imported/18.ctpk.00.png-50152553b29143597c91750e3b460656.etc2.ctex"]
+source_file="res://Assets/Handmade/18.ctpk.00.png"
+dest_files=["res://.godot/imported/18.ctpk.00.png-9439e4902a137d17305c265e78329e16.s3tc.ctex", "res://.godot/imported/18.ctpk.00.png-9439e4902a137d17305c265e78329e16.etc2.ctex"]
 
 [params]
 

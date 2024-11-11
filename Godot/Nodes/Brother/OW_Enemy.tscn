@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://doklhbfcb6p4q"]
+[gd_scene load_steps=4 format=3 uid="uid://doklhbfcb6p4q"]
 
 [ext_resource type="SpriteFrames" uid="uid://b2dtuelo2ivnd" path="res://goomba_ow.tres" id="1_uh8df"]
 [ext_resource type="Script" path="res://Godot/Scripts/OverWorld/ow_enemy.gd" id="1_w4no4"]
@@ -6,10 +6,6 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_todyj"]
 height = 0.2
 radius = 0.15
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ms06w"]
-height = 0.05
-radius = 0.13
 
 [node name="OwEnemy" type="Node3D"]
 script = ExtResource("1_w4no4")
@@ -25,12 +21,3 @@ autoplay = "idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
 shape = SubResource("CylinderShape3D_todyj")
-
-[node name="StompableArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12081, 0)
-collision_layer = 2
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StompableArea"]
-shape = SubResource("CylinderShape3D_ms06w")

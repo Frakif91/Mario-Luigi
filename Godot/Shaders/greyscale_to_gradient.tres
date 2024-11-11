@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bk3un1yrsnkw5"]
+
+[ext_resource type="Shader" path="res://Godot/Shaders/greyscale_to_gradient.gdshader" id="1_a5v15"]
+
+[sub_resource type="Gradient" id="Gradient_de20j"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5xo7x"]
+gradient = SubResource("Gradient_de20j")
+
+[resource]
+shader = ExtResource("1_a5v15")
+shader_parameter/mix_amount = 1.0
+shader_parameter/gradient = SubResource("GradientTexture1D_5xo7x")

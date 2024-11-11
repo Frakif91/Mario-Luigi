@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct7g8ajg2ad2n"]
+
+[ext_resource type="PackedScene" uid="uid://dqk03uracp0p8" path="res://Assets/3D/Blocks/Used Block 1.fbx" id="1_teks3"]
+
+[node name="Used Block 1" instance=ExtResource("1_teks3")]
+
+[node name="Cube" parent="." index="0"]
+cast_shadow = 0

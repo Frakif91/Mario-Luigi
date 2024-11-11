@@ -704,7 +704,6 @@ _data = {
 }
 
 [node name="Control" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -725,7 +724,6 @@ tile_map_data = PackedByteArray("AAAFAAEAAAAAABgAAAAFAAIAAAAAABkAAAAFAAMAAAAHABg
 tile_set = SubResource("TileSet_tvdmi")
 
 [node name="ColorRect" type="TextureRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_63hgo")
 layout_mode = 1
 anchors_preset = 8
