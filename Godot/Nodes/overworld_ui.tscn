@@ -87,10 +87,9 @@ script = ExtResource("1_i5l1i")
 
 [node name="MarioUI" type="Control" parent="."]
 anchors_preset = 0
-offset_left = -30.0
-offset_top = 37.0
-offset_right = 10.0
-offset_bottom = 77.0
+offset_left = 36.0
+offset_top = -40.0
+offset_right = 76.0
 
 [node name="Panel" type="TextureRect" parent="MarioUI"]
 texture_filter = 1
@@ -157,9 +156,10 @@ texture = SubResource("AtlasTexture_oif4b")
 
 [node name="LuigiUI" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 36.0
-offset_top = -40.0
-offset_right = 76.0
+offset_left = -30.0
+offset_top = 37.0
+offset_right = 10.0
+offset_bottom = 77.0
 
 [node name="Panel" type="TextureRect" parent="LuigiUI"]
 texture_filter = 1

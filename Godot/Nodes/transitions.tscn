@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_f6fci"]
-[ext_resource type="Texture2D" uid="uid://bkkrf7uvwmaht" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
+[ext_resource type="Texture2D" uid="uid://b8xs6edhum0ah" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
 [ext_resource type="Texture2D" uid="uid://cefwb64it1for" path="res://Assets/load.png" id="2_cwr7t"]
 [ext_resource type="PackedScene" uid="uid://cdqimmnx0j6kj" path="res://Godot/Scene/loading_screen.tscn" id="3_xyccu"]
 
@@ -26,7 +26,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transitions:texture")
+tracks/1/path = NodePath("CanvasLayer/Transitions:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +38,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Transitions:texture:fill_from")
+tracks/2/path = NodePath("CanvasLayer/Transitions:texture:fill_from")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -50,7 +50,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Transitions:texture:fill_to")
+tracks/3/path = NodePath("CanvasLayer/Transitions:texture:fill_to")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -62,7 +62,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Transitions:texture:gradient")
+tracks/4/path = NodePath("CanvasLayer/Transitions:texture:gradient")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -74,7 +74,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Transitions:texture:gradient:colors")
+tracks/5/path = NodePath("CanvasLayer/Transitions:texture:gradient:colors")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -89,7 +89,7 @@ resource_name = "TransitionFill"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transitions:texture")
+tracks/0/path = NodePath("CanvasLayer/Transitions:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transitions:texture:fill_from")
+tracks/1/path = NodePath("CanvasLayer/Transitions:texture:fill_from")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,7 +113,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Transitions:texture:fill_to")
+tracks/2/path = NodePath("CanvasLayer/Transitions:texture:fill_to")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -125,7 +125,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Transitions:texture:gradient")
+tracks/3/path = NodePath("CanvasLayer/Transitions:texture:gradient")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -137,7 +137,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Transitions:texture:gradient:colors")
+tracks/4/path = NodePath("CanvasLayer/Transitions:texture:gradient:colors")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -167,7 +167,7 @@ resource_name = "TransitionTopDown"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transitions:texture")
+tracks/0/path = NodePath("CanvasLayer/Transitions:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +179,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transitions:texture:fill_from")
+tracks/1/path = NodePath("CanvasLayer/Transitions:texture:fill_from")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -191,7 +191,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Transitions:texture:fill_to")
+tracks/2/path = NodePath("CanvasLayer/Transitions:texture:fill_to")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -217,12 +217,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_akd26")
 
-[node name="Transitions" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Transitions" type="TextureRect" parent="CanvasLayer"]
 clip_children = 1
 clip_contents = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -232,37 +235,38 @@ texture = ExtResource("2_0r840")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Background" type="TextureRect" parent="Transitions"]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Transitions"]
 self_modulate = Color(0.310617, 0.310617, 0.310617, 1)
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 644.0
 texture = ExtResource("1_f6fci")
 
-[node name="LoadingScreen" parent="Transitions/Background" instance=ExtResource("3_xyccu")]
+[node name="LoadingScreen" parent="CanvasLayer/Transitions/Background" instance=ExtResource("3_xyccu")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.723
 offset_bottom = -0.362061
+mouse_filter = 1
 
-[node name="ColorRect2" type="TextureRect" parent="."]
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer"]
 visible = false
-layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 648.0
 texture = ExtResource("2_cwr7t")
 
-[node name="DebugMiddleScreen" type="Marker2D" parent="."]
+[node name="DebugMiddleScreen" type="Marker2D" parent="CanvasLayer"]
 visible = false
 position = Vector2(576, 324)
 gizmo_extents = 340.5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 process_priority = 2
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
+root_node = NodePath("../..")
 callback_mode_method = 1
 libraries = {
 "": SubResource("AnimationLibrary_ltklw")

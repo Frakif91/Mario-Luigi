@@ -22,6 +22,7 @@ config/icon="res://n_icon.png"
 Globals="*res://Godot/Scripts/Utility/globals.gd"
 Transitions="*res://Godot/Nodes/transitions.tscn"
 Debugger="*res://Godot/Scripts/Utility/Debugging.gd"
+GlobalSettings="*res://Godot/Scripts/Utility/ChangeGlobalFiles.gd"
 
 [debug]
 

@@ -1,10 +1,10 @@
 extends Control
 
-@onready var transition : TextureRect = $"Transitions"
-@onready var transition_gradient : GradientTexture2D = get_node_and_resource(^"Transitions:texture")[1]
-@onready var anim : AnimationPlayer = $"AnimationPlayer"
-@onready var loading_anim : AnimationPlayer = $"Transitions/Background/LoadingScreen/Animation"
-@onready var loading : Control = $"Transitions/Background/LoadingScreen"
+@onready var transition : TextureRect = $"CanvasLayer/Transitions"
+@onready var transition_gradient : GradientTexture2D = get_node_and_resource(^"CanvasLayer/Transitions:texture")[1]
+@onready var anim : AnimationPlayer = $"CanvasLayer/AnimationPlayer"
+@onready var loading_anim : AnimationPlayer = $"CanvasLayer/Transitions/Background/LoadingScreen/Animation"
+@onready var loading : Control = $"CanvasLayer/Transitions/Background/LoadingScreen"
 
 enum TransitionType {CIRCULAR, FILL, TOP_DOWN}
 
@@ -20,8 +20,10 @@ enum TransitionType {CIRCULAR, FILL, TOP_DOWN}
 			transition_gradient.gradient.set_offset(1,value)
 
 func _ready() -> void:
-	get_tree().current_scene.child_order_changed.connect(func():
-		get_tree().current_scene.move_child(self,-1)
+	get_tree().current_scene.child_entered_tree.connect(func():
+		while(not get_tree().current_scene):
+			Globals.next_frame()
+		get_tree()
 	)
 
 func start_fake_loading():

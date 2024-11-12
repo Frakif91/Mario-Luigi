@@ -1,11 +1,12 @@
 class_name Teleporter extends Area3D
+enum e {CIRCULAR, FILL, TOP_DOWN}
 
 @export_subgroup("Target","target")
 @export_file("*.tscn") var target_scene : String
 @export var target_pos : Vector3
 @export var target_direction = Globals.DIRECTION.LEFT
 @export_subgroup("Transition")
-@export var transition_type : Transitions.TransitionType
+@export_enum("CIRCULAR", "FILL", "TOP_DOWN") var transition_type : int
 
 func _ready():
     var success = false
