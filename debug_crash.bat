@@ -1,4 +1,4 @@
 @echo on
 D:
 cd .
-"D:\SteamLibrary\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe" --verbose --path "." --debug --gpu-abort --gpu-validation
+"C:\Users\Mathis\Documents\Godot_v4.3-stable_mono_win64\Godot_v4.3-stable_mono_win64\Godot_v4.3-stable_mono_win64.exe" --verbose --path "." --debug --gpu-abort --gpu-validation

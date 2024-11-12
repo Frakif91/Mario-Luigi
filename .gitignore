@@ -18,3 +18,4 @@ Example.avi
 # Custom Ignores
 /build/
 Movie.avi
+*.bat
