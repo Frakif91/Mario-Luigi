@@ -1,6 +1,13 @@
 class_name DialogField extends Resource
+@export var dialog : Array[Dialog]
 
-class DialogText:
+class Dialog extends Resource:
+    @export var e = 0
+
+class DialogSound extends Dialog:
+    @export var sfx : AudioStream
+
+class DialogText extends Dialog:
     @export_category("Dialog Options")
     @export var text : String = ""
     @export var sfx : AudioStream
@@ -12,5 +19,6 @@ class DialogText:
     @export var skipable : bool = false
     @export_category("Textbox Options")
     @export var textbox_size : Vector2 = Vector2(300,100)
-class DialogCamera:
+
+class DialogCamera extends Dialog:
     @export_enum("Static","MiddleCharacters") var camera_type

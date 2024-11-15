@@ -4,6 +4,7 @@
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

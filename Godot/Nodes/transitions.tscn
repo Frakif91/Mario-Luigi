@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_f6fci"]
-[ext_resource type="Texture2D" uid="uid://b8xs6edhum0ah" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
+[ext_resource type="Texture2D" uid="uid://d1cpd6qocuob7" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
 [ext_resource type="Texture2D" uid="uid://cefwb64it1for" path="res://Assets/load.png" id="2_cwr7t"]
 [ext_resource type="PackedScene" uid="uid://cdqimmnx0j6kj" path="res://Godot/Scene/loading_screen.tscn" id="3_xyccu"]
 
@@ -221,7 +221,7 @@ mouse_filter = 2
 script = ExtResource("1_akd26")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = -1
 
 [node name="Transitions" type="TextureRect" parent="CanvasLayer"]
 clip_children = 1
@@ -231,6 +231,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_0r840")
 expand_mode = 1
 stretch_mode = 3
@@ -240,6 +241,7 @@ self_modulate = Color(0.310617, 0.310617, 0.310617, 1)
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 644.0
+mouse_filter = 2
 texture = ExtResource("1_f6fci")
 
 [node name="LoadingScreen" parent="CanvasLayer/Transitions/Background" instance=ExtResource("3_xyccu")]
@@ -248,12 +250,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.723
 offset_bottom = -0.362061
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="ColorRect2" type="TextureRect" parent="CanvasLayer"]
 visible = false
 offset_right = 1156.0
 offset_bottom = 648.0
+mouse_filter = 2
 texture = ExtResource("2_cwr7t")
 
 [node name="DebugMiddleScreen" type="Marker2D" parent="CanvasLayer"]

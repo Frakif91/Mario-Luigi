@@ -1,4 +1,4 @@
-extends Node3D
+class_name Battle extends Node3D
 
 signal animation_called_event
 
@@ -9,8 +9,6 @@ signal animation_called_event
 @onready var label_change_effect_timer = Timer.new()
 @onready var mario_anim = $"MarioAnimations"
 @onready var ratings = $"UI/Ratings/RatingsAnim"
-#@export_node_path("Anim"
-#overrite_animation
 @onready var brothers : Dictionary = {"Mario" = $"Characters/Mario", "Luigi" = $"Characters/Luigi"}
 @onready var enemies : Array = [$"Characters/Goomba",$"Characters/Goomba2"]
 @onready var cur_enemy = $"Characters/Goomba"
@@ -25,7 +23,7 @@ signal animation_called_event
 			choosecube.set_global_transparence(id)
 
 var damage_instance = preload("res://Godot/Nodes/damage_display.tscn")
-var jump_class = preload("res://Godot/Scripts/manual_animations.gd")
+var manuals_animations = preload("res://Godot/Scripts/manual_animations.gd")
 var transition_direction = 1
 var transition_time = 0.07
 var camera_position = {OG = Vector3(1.,1.4,2.), T_ENEMY = Vector3(1.4,1.4,2.2), OUT = Vector3(1,2,3),LUIGI = Vector3(0.5,1.4,2.5)}
@@ -53,7 +51,7 @@ func _ready():
 	choosecube.hit_block.connect(hitting_block)
 	label_change_effect_timer.autostart = false
 	label_change_effect_timer.one_shot = true
-	jump_process = jump_class.new(
+	jump_process = manuals_animations.new(
 	$"Characters/Mario",$"Characters/Luigi",[$"Characters/Goomba",$"Characters/Goomba2"],$"UI/Ratings/RatingsAnim",set_visible_choosecube)
 	self.add_child(jump_process)
 	self.add_child(label_change_effect_timer)

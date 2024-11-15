@@ -16,6 +16,29 @@ script/source = "extends Control
 #var battle_scene = preload(\"res://Godot/Scene/battle_scene.tscn\")
 #var overworld_scene = preload(\"res://Godot/Scene/overworld_test.tscn\")
 #var multi_world = preload(\"res://Godot/Scene/hotel scene.tscn\")
+@onready var settings_holder : VBoxContainer = 	$\"MarginContainer/PanelContainer/MarginContainer/VBoxContainer\"
+
+func _ready() -> void:
+	for k in GlobalSettings.music:
+		var v = (Globals.settings as Dictionary).get(k)
+		var label = Label.new()
+		var container = HSplitContainer.new()
+		var button = Button.new()
+		
+		button.text = \"Edit Music\"
+		label.text = \"\\\"\" + k + \"\\\"\"
+
+func button_settings(args):
+	if args is String:
+		var fd = FileDialog.new()
+		fd.add_filter(\"*.ogg, *.mp3\",\"Audio File\")
+		fd.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+		fd.exclusive = true
+		fd.popup()
+		var promise = await Promise.new(fd.file_selected, fd.close_requested).promised
+		print(promise)
+		#GlobalSettings.change_music(args,)
+
 
 func change_scene(scene : PackedScene):
 	#V - this method allow to call \"get_tree().change_scene_to_packed(scene)\" but at the end of the game frame : for safe execution.

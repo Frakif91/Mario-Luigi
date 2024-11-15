@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bs8gh15nqh3o5"]
+[gd_scene load_steps=16 format=4 uid="uid://bs8gh15nqh3o5"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/entry_ui.gd" id="1_7ahvh"]
 [ext_resource type="Texture2D" uid="uid://c0bkot1dwqe2h" path="res://Assets/BattleTransition.png" id="1_c2qh6"]
@@ -697,9 +697,62 @@ tracks/3/keys = {
 "values": [Vector2(-424, -676)]
 }
 
+[sub_resource type="Animation" id="Animation_o8j37"]
+resource_name = "entry_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.406126, 3),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.001, 0.001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2000, 2000), Vector2(2000, 2000)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.13333),
+"transitions": PackedFloat32Array(1, 0.185556),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-424, -676)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xmel6"]
 _data = {
 "RESET": SubResource("Animation_8wcnm"),
+"entry_in": SubResource("Animation_o8j37"),
 "new_animation": SubResource("Animation_kqnsy")
 }
 
@@ -731,10 +784,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = -1000.0
-offset_right = 1000.0
-offset_bottom = 1000.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1980.0
+offset_bottom = 1980.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.001, 1e-05)

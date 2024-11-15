@@ -41,6 +41,7 @@ signal touched_floor
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var battle_scene : PackedScene
 
 func walk_sound():
 	if cur_right_foot:
@@ -51,6 +52,8 @@ func walk_sound():
 	$"Timer".start(walk_sound_waittime)
 
 func _ready():
+	if GlobalSettings.settings["autoload_combat"]:
+		battle_scene = preload("res://Godot/Scene/battle_scene.tscn")
 	$"Timer".timeout.connect(walk_sound)
 	$"Timer".autostart = false
 	$"Timer".one_shot = true
@@ -158,23 +161,30 @@ func _physics_process(delta):
 			continue
 		if get_slide_collision(i).get_collider().get_parent() is OW_Enemy and not is_in_cutscene:
 			var enemy = (get_slide_collision(i).get_collider().get_parent() as OW_Enemy)
+			var audioplayer = AudioStreamPlayer.new()
 			if enemy.enemy_preset.is_stompable and global_position.y > enemy.global_position.y:
-				var audioplayer = AudioStreamPlayer.new()
 				audioplayer.stream = preload("res://Assets/Sound/SE_BTL_STOMP1.wav") 
 				add_child(audioplayer)
 				audioplayer.play()
 				velocity.y = 0.1
-				global_position.y += 0.1
-				gravity_mutliplier = 0.1
+				global_position.y += 0.2
+				#gravity_mutliplier = 0.1
+			if not GlobalSettings.settings["autoload_combat"]:
+				ResourceLoader.load_threaded_request("res://Godot/Scene/battle_scene.tscn")
 			is_in_cutscene = true
-			#Engine.time_scale = 0.2
+			Engine.time_scale = 0.5
 			await Globals.next_frame()
-			$"BattleEntry/AnimationPlayer".play(&"new_animation",10.0)
+			$"BattleEntry/AnimationPlayer".play(&"new_animation",50.0)
 			await $"BattleEntry/AnimationPlayer".animation_finished
-			gravity_mutliplier = 1
+			#gravity_mutliplier = 1
 			is_in_cutscene = false
-			#Engine.time_scale = 1
-			get_tree().change_scene_to_file("res://Godot/Scene/battle_scene.tscn")
+			Engine.time_scale = 1
+			if not GlobalSettings.settings["autoload_combat"]:
+				battle_scene = ResourceLoader.load_threaded_get("res://Godot/Scene/battle_scene.tscn")
+			else:
+				battle_scene = preload("res://Godot/Scene/battle_scene.tscn")
+			assert(battle_scene,"Battle scene is empty")
+			get_tree().change_scene_to_packed(battle_scene)
 
 
 func get_action_and_direction(cur_direction : Vector2):

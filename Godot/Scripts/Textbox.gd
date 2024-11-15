@@ -12,7 +12,7 @@ signal dialog_nextline()
 const minimum_minimum_box_size = Vector2(100,75)
 const normal_position = Vector2(6,3)
 
-@export var dialog_fields : Array[DialogField]
+@export var dialog_field : DialogField
 
 const start_animation_seconds = 0.5
 const each_animation_second = 0.5

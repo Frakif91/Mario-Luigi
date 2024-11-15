@@ -10,6 +10,7 @@ var music : Dictionary = {
 var settings : Dictionary = {
 	"decal_shadows_allowed" = true,
 	"debugger_actived" = true,
+	"autoload_combat" = true,
 }
 
 func change_music(tag : String, new_music : AudioStream):
@@ -20,7 +21,7 @@ func change_global_music_volume(volume_percentage : float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db(volume_percentage))
 
 func change_bus_volume_perc(bus_name : StringName, volume_percentage : float):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db(volume_percentage))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name),linear_to_db(volume_percentage))
 
 func loadsong(path : String) -> AudioStream:
 	var import_success : bool = false
