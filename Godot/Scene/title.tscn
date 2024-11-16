@@ -20,13 +20,19 @@ script/source = "extends Control
 
 func _ready() -> void:
 	for k in GlobalSettings.music:
-		var v = (Globals.settings as Dictionary).get(k)
+		var v = (GlobalSettings.music as Dictionary).get(k)
 		var label = Label.new()
 		var container = HSplitContainer.new()
 		var button = Button.new()
+		container.add_child(button)
+		container.add_child(label)
+		settings_holder.add_child(container)
+		button.pressed.connect(button_settings.bind(k))
 		
-		button.text = \"Edit Music\"
+		button.text = \"Edit\"
+		button.tooltip_text = \"Edit : \\\"\" + k + \"\\\"\"
 		label.text = \"\\\"\" + k + \"\\\"\"
+		label.tooltip_text = \"(\" + str(v.get_length()) + \"s) \" + v.get_name()
 
 func button_settings(args):
 	if args is String:
@@ -35,7 +41,7 @@ func button_settings(args):
 		fd.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 		fd.exclusive = true
 		fd.popup()
-		var promise = await Promise.new(fd.file_selected, fd.close_requested).promised
+		var promise = await Promise.new([fd.file_selected, fd.close_requested]).promised
 		print(promise)
 		#GlobalSettings.change_music(args,)
 

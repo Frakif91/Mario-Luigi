@@ -147,7 +147,7 @@ func _move_pf_to(_item_index):
 	pf_taget_pos_y = child.global_position.y
 
 #var damage_instance = preload("res://Godot/Scripts/Damage_Anouncer.gd")
-var damage_instance = preload("res://Godot/Nodes/damage_display.tscn")
+var damage_instance = preload("res://Godot/Nodes/Utility/damage_display.tscn")
 
 func show_heal(heal: int, posin3d: Vector3, damage_type: int):
 	print("SHOWED")

@@ -22,7 +22,7 @@ signal animation_called_event
 		if id > 0 and id < 24:
 			choosecube.set_global_transparence(id)
 
-var damage_instance = preload("res://Godot/Nodes/damage_display.tscn")
+var damage_instance = preload("res://Godot/Nodes/Utility/damage_display.tscn")
 var manuals_animations = preload("res://Godot/Scripts/manual_animations.gd")
 var transition_direction = 1
 var transition_time = 0.07

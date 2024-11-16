@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cirhg5cvphb8q" path="res://Assets/Numbers/7.png" id="31_yblou"]
 [ext_resource type="Texture2D" uid="uid://cfh2cb7ddi3rm" path="res://Assets/Numbers/8.png" id="32_ubtmi"]
 [ext_resource type="Texture2D" uid="uid://ode65m5hqba2" path="res://Assets/Numbers/9.png" id="33_deon8"]
+[ext_resource type="VideoStream" path="res://Assets/Effects/Excellent BG.ogv" id="41_ma7gh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yn7o2"]
 sky_top_color = Color(0.581934, 0.770068, 0.960994, 1)
@@ -754,7 +755,7 @@ loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:position:x")
+tracks/0/path = NodePath("../Sprite3D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -765,7 +766,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D:position:y")
+tracks/1/path = NodePath("../Sprite3D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -776,7 +777,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite3D:position:z")
+tracks/2/path = NodePath("../Sprite3D:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -2554,9 +2555,6 @@ atlas = ExtResource("17_fsweh")
 region = Rect2(4, 2160, 124, 60)
 filter_clip = true
 
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_hybx5"]
-file = "res://Assets/Effects/Excellent BG"
-
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k43w1")
 transition_speed_multiplier = null
@@ -2680,6 +2678,7 @@ volume_db = -16.0
 
 [node name="Goomba" type="CharacterBody3D" parent="CanvasLayer/Characters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97219, 0.262433, 0)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/Characters/Goomba"]
 shape = SubResource("BoxShape3D_pui0c")
@@ -2713,6 +2712,7 @@ mesh = SubResource("CylinderMesh_s1rb8")
 
 [node name="Goomba2" type="CharacterBody3D" parent="CanvasLayer/Characters"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29999, 0.262433, 0.700247)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/Characters/Goomba2"]
 shape = SubResource("BoxShape3D_pui0c")
@@ -2832,6 +2832,9 @@ layout_mode = 1
 offset_left = 1152.0
 offset_right = 2304.0
 offset_bottom = 648.0
+pf_offset_y = null
+pf_indication_speed = null
+pf_shake_power = null
 
 [node name="Back" type="TextureRect" parent="UI/ItemList"]
 texture_filter = 6
@@ -2950,6 +2953,7 @@ images_slot = Array[Texture2D]([ExtResource("26_dd7em"), ExtResource("26_dd7em")
 metadata/_edit_use_anchors_ = true
 
 [node name="Entry Scene" parent="UI" instance=ExtResource("5_k62ue")]
+visible = false
 layout_mode = 1
 
 [node name="Ratings" type="Control" parent="UI"]
@@ -2974,14 +2978,14 @@ offset_right = 226.0
 offset_bottom = 135.0
 texture = SubResource("AtlasTexture_vd14l")
 
-[node name="Pointer" type="Node3D" parent="."]
-visible = false
-
-[node name="Sprite3D" type="Sprite3D" parent="Pointer"]
+[node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.3, 0.3, 0)
 billboard = 1
 texture_filter = 2
 texture = SubResource("AtlasTexture_0ew34")
+
+[node name="Pointer" type="Node3D" parent="."]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
 libraries = {
@@ -2995,7 +2999,7 @@ layer = 2
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer2"]
 offset_right = 916.0
 offset_bottom = 497.0
-stream = SubResource("VideoStreamTheora_hybx5")
+stream = ExtResource("41_ma7gh")
 
 [connection signal="animation_changed" from="MarioAnimations" to="." method="_on_mario_animations_animation_changed"]
 [connection signal="current_animation_changed" from="UI/Ratings/RatingsAnim" to="UI/Ratings/RatingsAnim" method="_on_current_animation_changed"]
