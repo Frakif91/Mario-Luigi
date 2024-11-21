@@ -58,7 +58,7 @@ func loadfile(filepath):
 	var bytes = file.get_buffer(file.get_len())
 	# if File is wav
 	if filepath.ends_with(".wav"):
-		var newstream = AudioStreamSample.new()
+		var newstream = AudioStreamWAV.new()
 
 		#---------------------------
 		#parrrrseeeeee!!! :D
@@ -155,7 +155,7 @@ func loadfile(filepath):
 
 	#if file is ogg
 	elif filepath.ends_with(".ogg"):
-		var newstream = AudioStreamOGGVorbis.new()
+		var newstream = AudioStreamOggVorbis.new()
 		newstream.loop = true #set to false or delete this line if you don't want to loop
 		newstream.data = bytes
 		return newstream
@@ -181,7 +181,7 @@ func loadfile(filepath):
 # And the 32bit case abour 50% slower
 # I don't wanna risk it always being slower on other files
 # And really, the solution would be to handle it in a low-level language
-func convert_to_16bit(data: PoolByteArray, from: int) -> PoolByteArray:
+func convert_to_16bit(data: PackedByteArray, from: int) -> PackedByteArray:
 	print("converting to 16-bit from %d" % from)
 	var time = OS.get_ticks_msec()
 	# 24 bit .wav's are typically stored as integers

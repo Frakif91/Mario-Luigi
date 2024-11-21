@@ -11,3 +11,8 @@ class_name DialogText extends Dialog
 @export var skipable : bool = false
 @export_category("Textbox Options")
 @export var textbox_size : Vector2 = Vector2(300,100)
+
+func execute(tree : SceneTree, player : MarioOW_Movement, npc : NPC):
+    
+    npc.textbox.dialog
+    textbox._show_dialog()

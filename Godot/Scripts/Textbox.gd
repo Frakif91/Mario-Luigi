@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _show_dialog():
-	assert(len(dialog_fields) > 0,"Dialog Fields is empty.")
+	assert(len(dialog_field) > 0,"Dialog Fields is empty.")
 	var tween_modulate : Tween = create_tween()
 	var size_modulate : Tween = create_tween()
 	text_label.text = ""
@@ -36,7 +36,7 @@ func _show_dialog():
 	size_modulate.tween_property(text_box,^"custom_minimum_size", dialog_fields[0].textbox_size,start_animation_seconds)
 	await Globals.wait(start_animation_seconds)
 
-	for dialog in dialog_fields:
+	for dialog in dialog_field:
 
 		if dialog.text_size != 0:
 			text_label.label_settings.font_size = dialog.text_size
