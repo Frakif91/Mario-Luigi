@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogText" load_steps=3 format=3 uid="uid://c1ymmlrjqo7lb"]
+
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/Dialog/DialogText.gd" id="1_5d8k7"]
+[ext_resource type="AudioStream" uid="uid://35djvibuuao4" path="res://Assets/SFX/WU_SE_SYS_CURSOR_1.wav" id="2_q77yn"]
+
+[resource]
+script = ExtResource("1_5d8k7")
+text = "Hello World !"
+sfx = ExtResource("2_q77yn")
+each_n_letters = 1
+text_size = 16
+text_delay = 0.1
+text_alignment = 0
+skipable = false
+textbox_size = Vector2(320, 180)

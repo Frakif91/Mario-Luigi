@@ -1,30 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfemrr63r4hsh"]
+[gd_scene load_steps=9 format=3 uid="uid://bfemrr63r4hsh"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/Textbox.gd" id="1_h3qdh"]
 [ext_resource type="Texture2D" uid="uid://bd6gvjypdoo8g" path="res://Assets/Textbox/textbox_glued_x3.png" id="2_0l2y5"]
-[ext_resource type="Script" path="res://Godot/Scripts/DialogField.gd" id="2_4ykln"]
 [ext_resource type="FontFile" uid="uid://b7lu2exjpd0hf" path="res://Fonts/Daydream.ttf" id="3_2f3nt"]
 [ext_resource type="Texture2D" uid="uid://0tcuoypplm1p" path="res://Assets/Textbox/3DS - Mario & Luigi Dream Team - Text Box.png" id="4_4av3x"]
 [ext_resource type="AudioStream" uid="uid://udw3ja6tstv6" path="res://Assets/Sound/SE_MV_RUN_SMALL.wav" id="5_tg6yd"]
 [ext_resource type="AudioStream" uid="uid://xjcl3jv8l2rq" path="res://Assets/Sound/SE_BTL_HYOI.wav" id="6_gmhhl"]
-
-[sub_resource type="GDScript" id="GDScript_uu6mm"]
-
-[sub_resource type="Resource" id="Resource_7o0d8"]
-script = ExtResource("2_4ykln")
-dialog = Array[SubResource("GDScript_uu6mm")]([])
-
-[sub_resource type="Resource" id="Resource_11eon"]
-script = ExtResource("2_4ykln")
-dialog = Array[SubResource("GDScript_uu6mm")]([])
-
-[sub_resource type="Resource" id="Resource_7ogkk"]
-script = ExtResource("2_4ykln")
-dialog = Array[SubResource("GDScript_uu6mm")]([])
-
-[sub_resource type="Resource" id="Resource_idghu"]
-script = ExtResource("2_4ykln")
-dialog = Array[SubResource("GDScript_uu6mm")]([])
 
 [sub_resource type="LabelSettings" id="LabelSettings_4s6py"]
 font = ExtResource("3_2f3nt")
@@ -44,7 +25,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h3qdh")
-dialog_fields = Array[ExtResource("2_4ykln")]([SubResource("Resource_7o0d8"), SubResource("Resource_11eon"), SubResource("Resource_7ogkk"), SubResource("Resource_idghu")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

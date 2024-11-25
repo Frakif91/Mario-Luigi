@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdxur08tan28p"]
+[gd_scene load_steps=25 format=3 uid="uid://cdxur08tan28p"]
 
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="1_ckjca"]
 [ext_resource type="Script" path="res://Godot/Scripts/overworld_ui.gd" id="1_i5l1i"]
 [ext_resource type="Texture2D" uid="uid://c07akji6e0bgd" path="res://Assets/Game_Boy_Advance_-_Mario___Luigi_Superstar_Saga_-_Action_Icons-removedbg.png" id="2_g46kd"]
 [ext_resource type="Texture2D" uid="uid://b3ydc8bt6fdoy" path="res://Assets/HP.png" id="2_q1beq"]
 [ext_resource type="Script" path="res://Godot/Scripts/Utility/ImageNumber.gd" id="3_ioewo"]
+[ext_resource type="Texture2D" uid="uid://cagktbkkkhj2s" path="res://Godot/Assets/Actions/mario_a_nuhuh.tres" id="5_vkxuu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdl8s"]
 atlas = ExtResource("1_ckjca")
@@ -56,11 +57,6 @@ region = Rect2(3, 163, 14, 14)
 atlas = ExtResource("1_ckjca")
 region = Rect2(3, 183, 14, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oif4b"]
-atlas = ExtResource("2_g46kd")
-region = Rect2(8, 8, 32, 32)
-filter_clip = true
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_do2jp"]
 atlas = ExtResource("1_ckjca")
 region = Rect2(3, 1051, 70, 38)
@@ -75,6 +71,67 @@ margin = Rect2(0, 0, 0, 1)
 atlas = ExtResource("2_g46kd")
 region = Rect2(8, 136, 32, 32)
 filter_clip = true
+
+[sub_resource type="Animation" id="Animation_g5a67"]
+resource_name = "show_both"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LuigiUI:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-1.74533, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarioUI:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-1.74533, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vqhgj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LuigiUI:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarioUI:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvfea"]
+_data = {
+"RESET": SubResource("Animation_vqhgj"),
+"show_both": SubResource("Animation_g5a67")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -152,7 +209,7 @@ offset_top = 60.8
 offset_right = 95.6
 offset_bottom = 100.8
 scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_oif4b")
+texture = ExtResource("5_vkxuu")
 
 [node name="LuigiUI" type="Control" parent="."]
 anchors_preset = 0
@@ -195,6 +252,7 @@ texture = ExtResource("2_q1beq")
 expand_mode = 1
 
 [node name="HP" type="Control" parent="LuigiUI"]
+modulate = Color(1, 0.282353, 1, 1)
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -206,9 +264,10 @@ rotation = -0.0781576
 scale = Vector2(2, 2)
 script = ExtResource("3_ioewo")
 Numbers = Array[Texture2D]([SubResource("AtlasTexture_1v28i"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_cpp1w"), SubResource("AtlasTexture_2mx1p"), SubResource("AtlasTexture_yeti8"), SubResource("AtlasTexture_s3mly"), SubResource("AtlasTexture_xt0bb"), SubResource("AtlasTexture_h66ls"), SubResource("AtlasTexture_8v231"), SubResource("AtlasTexture_48q55")])
+do_hide_zero = true
 spacing = -1
-value = 212
-images_slot = Array[Texture2D]([SubResource("AtlasTexture_cpp1w"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_cpp1w")])
+value = 19
+images_slot = Array[Texture2D]([SubResource("AtlasTexture_48q55"), SubResource("AtlasTexture_w02lr"), SubResource("AtlasTexture_1v28i")])
 
 [node name="Action" type="TextureRect" parent="LuigiUI"]
 texture_filter = 1
@@ -224,3 +283,8 @@ offset_right = 95.6
 offset_bottom = 100.8
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_cxgyk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lvfea")
+}

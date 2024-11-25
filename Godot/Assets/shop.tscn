@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck4ovvsvva3ei"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ddh6s"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwq56"]
+albedo_color = Color(1, 0, 0, 1)
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbqk0"]
+material = SubResource("StandardMaterial3D_fwq56")
+size = Vector3(1, 0.01, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpgo8"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0qp5"]
+material = SubResource("StandardMaterial3D_mpgo8")
+size = Vector2(0.6, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_ddh6s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 1.26092, 1.5488, 0)
+mesh = SubResource("BoxMesh_wbqk0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.00331, 0.534407, 0.475032)
+mesh = SubResource("QuadMesh_j0qp5")

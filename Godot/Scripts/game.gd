@@ -9,9 +9,9 @@ signal animation_called_event
 @onready var label_change_effect_timer = Timer.new()
 @onready var mario_anim = $"MarioAnimations"
 @onready var ratings = $"UI/Ratings/RatingsAnim"
-@onready var brothers : Dictionary = {"Mario" = $"Characters/Mario", "Luigi" = $"Characters/Luigi"}
-@onready var enemies : Array = [$"Characters/Goomba",$"Characters/Goomba2"]
-@onready var cur_enemy = $"Characters/Goomba"
+@onready var brothers : Dictionary = {"Mario" = $"CanvasLayer/Characters/Mario", "Luigi" = $"CanvasLayer/Characters/Luigi"}
+@onready var enemies : Array = [$"CanvasLayer/Characters/Goomba",$"CanvasLayer/Characters/Goomba2"]
+@onready var cur_enemy = $"CanvasLayer/Characters/Goomba"
 @onready var cur_enemy_index = 0
 @export var transition_speed_multiplier = 1.
 @export var event_caller : float = 0.0 :
@@ -52,7 +52,7 @@ func _ready():
 	label_change_effect_timer.autostart = false
 	label_change_effect_timer.one_shot = true
 	jump_process = manuals_animations.new(
-	$"Characters/Mario",$"Characters/Luigi",[$"Characters/Goomba",$"Characters/Goomba2"],$"UI/Ratings/RatingsAnim",set_visible_choosecube)
+	$"CanvasLayer/Characters/Mario",$"CanvasLayer/Characters/Luigi",[$"CanvasLayer/Characters/Goomba",$"CanvasLayer/Characters/Goomba2"],$"UI/Ratings/RatingsAnim",set_visible_choosecube)
 	self.add_child(jump_process)
 	self.add_child(label_change_effect_timer)
 	choosecube.change_block.connect(changed_block)

@@ -128,11 +128,12 @@ var delta_sum = 0
 @export var pf_shake_power = 10
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if pf_taget_pos_y != 0:
-		#pointing_finger.global_position.y = move_toward(pointing_finger.global_position.y,pf_taget_pos_y,_delta*1000)
-		pointing_finger.global_position.y = pf_taget_pos_y + pf_offset_y
-	delta_sum += _delta
-	pointing_finger.position.x = pointing_finger_og_x + clampf(tan(deg_to_rad(delta_sum*360*pf_indication_speed))*pf_shake_power,-pf_shake_power,pf_shake_power+1.0)
+	if is_visible_in_tree():
+		if pf_taget_pos_y != 0:
+			#pointing_finger.global_position.y = move_toward(pointing_finger.global_position.y,pf_taget_pos_y,_delta*1000)
+			pointing_finger.global_position.y = pf_taget_pos_y + pf_offset_y
+		delta_sum += _delta
+		pointing_finger.position.x = pointing_finger_og_x + clampf(tan(deg_to_rad(delta_sum*360*pf_indication_speed))*pf_shake_power,-pf_shake_power,pf_shake_power+1.0)
 
 func _item_choosed(_item_index):
 	var item = Selectable_Items[_item_index]

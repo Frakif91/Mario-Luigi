@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cagktbkkkhj2s"]
+
+[ext_resource type="Texture2D" uid="uid://c07akji6e0bgd" path="res://Assets/Game_Boy_Advance_-_Mario___Luigi_Superstar_Saga_-_Action_Icons-removedbg.png" id="1_7wr2k"]
+
+[resource]
+atlas = ExtResource("1_7wr2k")
+region = Rect2(232, 8, 32, 32)
+filter_clip = true

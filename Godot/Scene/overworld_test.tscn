@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=44 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
@@ -9,7 +9,6 @@
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
 [ext_resource type="Script" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/Block.tscn" id="9_qnxvs"]
-[ext_resource type="PackedScene" uid="uid://cdxur08tan28p" path="res://Godot/Nodes/overworld_ui.tscn" id="11_12uca"]
 [ext_resource type="PackedScene" uid="uid://doklhbfcb6p4q" path="res://Godot/Nodes/Brother/OW_Enemy.tscn" id="12_qt70a"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 [ext_resource type="Script" path="res://Godot/Scripts/Enemy_Info.gd" id="13_m7bcr"]
@@ -17,10 +16,12 @@
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
 [sub_resource type="Gradient" id="Gradient_pt8dy"]
+offsets = PackedFloat32Array(0, 0.992857)
+colors = PackedColorArray(0, 0.498039, 0, 1, 1.82897e-06, 0.618616, 0.114296, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ogx0s"]
 noise_type = 0
-frequency = 0.2
+frequency = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_knwl2"]
 width = 2048
@@ -31,7 +32,7 @@ noise = SubResource("FastNoiseLite_ogx0s")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nisup"]
 albedo_texture = SubResource("NoiseTexture2D_knwl2")
 heightmap_scale = 16.0
-texture_filter = 2
+texture_filter = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_k7rf6"]
 material = SubResource("StandardMaterial3D_nisup")
@@ -319,28 +320,26 @@ V"
 
 [node name="Control" parent="." instance=ExtResource("13_1ll5n")]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="NPC" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
 script = ExtResource("9_76a8t")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Area3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NPC"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228714, 0)
 shape = SubResource("CapsuleShape3D_1omst")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.347092, 0)
 shape = SubResource("SphereShape3D_mkf1i")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D"]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="NPC"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.15266, 0)
 sprite_frames = ExtResource("8_xaj1a")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.949584
-
-[node name="UI" parent="." instance=ExtResource("11_12uca")]
 
 [node name="OwEnemy" parent="." instance=ExtResource("12_qt70a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.671508, 1)

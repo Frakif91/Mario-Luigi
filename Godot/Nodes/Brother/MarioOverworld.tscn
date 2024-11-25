@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cg5cphpkwg8ve"]
+[gd_scene load_steps=25 format=4 uid="uid://cg5cphpkwg8ve"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_ehyyf"]
 [ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_fnsjw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c0bkot1dwqe2h" path="res://Assets/BattleTransition.png" id="8_sh3yd"]
 [ext_resource type="Shader" path="res://Godot/Shaders/screen_mask.gdshader" id="9_cx712"]
 [ext_resource type="Texture2D" uid="uid://bdq1sb7313vmh" path="res://Assets/rounded-star-flat-style.png" id="10_8atb8"]
+[ext_resource type="PackedScene" uid="uid://cdxur08tan28p" path="res://Godot/Nodes/overworld_ui.tscn" id="11_6xwei"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
 radius = 0.125
@@ -817,3 +818,5 @@ gizmo_extents = 100.0
 libraries = {
 "": SubResource("AnimationLibrary_seghb")
 }
+
+[node name="UI" parent="." instance=ExtResource("11_6xwei")]

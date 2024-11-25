@@ -57,11 +57,3 @@ func wait(seconds : float):
 
 func next_frame():
 	await get_tree().create_timer(0).timeout
-
-func enumerate(arr : Array) -> Array:
-	var array = []
-	array.resize(len(arr)*2)
-	for index in range(0,2,len(arr)):
-		var real_index = int(index/2.0)
-		array[index] = real_index
-		array[index+1] = arr[real_index]

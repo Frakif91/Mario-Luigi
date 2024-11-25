@@ -40,10 +40,13 @@ func button_settings(args):
 		fd.add_filter(\"*.ogg, *.mp3\",\"Audio File\")
 		fd.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 		fd.exclusive = true
+		fd.use_native_dialog = true
+		fd.access = FileDialog.ACCESS_FILESYSTEM
+		#add_child(fd)
 		fd.popup()
-		var promise = await Promise.new([fd.file_selected, fd.close_requested]).promised
-		print(promise)
-		#GlobalSettings.change_music(args,)
+		print(\"results 1 : \",fd.current_file)
+		if not fd.current_file.is_empty():
+			GlobalSettings.change_music(args,GlobalSettings.loadsong(fd.current_file))
 
 
 func change_scene(scene : PackedScene):
@@ -194,6 +197,14 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="Window" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.ogg;*.mp3;Audio File")
+use_native_dialog = true
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_battle_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_overworld_pressed"]

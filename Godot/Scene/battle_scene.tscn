@@ -2557,7 +2557,6 @@ filter_clip = true
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k43w1")
-transition_speed_multiplier = null
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0.5, 1.545, 2.5)
@@ -2832,9 +2831,6 @@ layout_mode = 1
 offset_left = 1152.0
 offset_right = 2304.0
 offset_bottom = 648.0
-pf_offset_y = null
-pf_indication_speed = null
-pf_shake_power = null
 
 [node name="Back" type="TextureRect" parent="UI/ItemList"]
 texture_filter = 6

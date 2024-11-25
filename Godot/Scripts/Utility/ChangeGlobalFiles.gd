@@ -45,7 +45,7 @@ func loadsong(path : String) -> AudioStream:
 
 	assert(import_success,"Importation of a external audio file was a failure")
 
-	print((stream as AudioStream)._get_stream_name())
+	#print((stream as AudioStream)._get_stream_name())
 
 	if import_success and stream:
 		return stream
