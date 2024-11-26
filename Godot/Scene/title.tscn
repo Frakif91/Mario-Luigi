@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://usdppwtddwra"]
+[gd_scene load_steps=12 format=3 uid="uid://usdppwtddwra"]
 
 [ext_resource type="Texture2D" uid="uid://chwn1br1jchb" path="res://Assets/texture_ml_little.png" id="1_d1doc"]
 [ext_resource type="Texture2D" uid="uid://lm00tpqaaorf" path="res://Assets/logo.png" id="2_osf7l"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bxi6inw3a2d7p" path="res://Assets/Music/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3" id="5_gke8p"]
 [ext_resource type="Texture2D" uid="uid://dad25rist7e0d" path="res://Assets/Icons/language_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="5_l3skt"]
 [ext_resource type="Texture2D" uid="uid://tj2yljflsvbq" path="res://icon.svg" id="7_4f3pd"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/background_music.gd" id="9_6jgp6"]
 
 [sub_resource type="GDScript" id="GDScript_h2xok"]
 resource_name = "tp_to_scene"
@@ -47,6 +48,7 @@ func button_settings(args):
 		print(\"results 1 : \",fd.current_file)
 		if not fd.current_file.is_empty():
 			GlobalSettings.change_music(args,GlobalSettings.loadsong(fd.current_file))
+			get_tree().reload_current_scene()
 
 
 func change_scene(scene : PackedScene):
@@ -95,6 +97,21 @@ func _on_button_multiplayer_pressed() -> void:
 func _on_button_steam_pressed() -> void:
 	Transitions.start_loading(\"res://Godot/Nodes/Utility/SteamTest.tscn\",Transitions.TransitionType.FILL,get_tree())
 	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_7lfqd"]
+resource_name = "camerashit"
+script/source = "extends Camera2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 "
 
 [node name="Control" type="Control"]
@@ -171,6 +188,9 @@ expand_icon = true
 stream = ExtResource("5_gke8p")
 volume_db = -13.0
 autoplay = true
+script = ExtResource("9_6jgp6")
+music_name = &"menu_theme"
+fallback_music = ExtResource("5_gke8p")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -205,6 +225,10 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.ogg;*.mp3;Audio File")
 use_native_dialog = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = SubResource("GDScript_7lfqd")
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_battle_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_overworld_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene load_steps=51 format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
@@ -9,9 +9,13 @@
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
 [ext_resource type="Script" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/Block.tscn" id="9_qnxvs"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/Dialog/Dialogs.gd" id="10_gb0ik"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/Dialog/DialogText.gd" id="11_rh2ce"]
+[ext_resource type="AudioStream" uid="uid://35djvibuuao4" path="res://Assets/SFX/WU_SE_SYS_CURSOR_1.wav" id="12_ksn64"]
 [ext_resource type="PackedScene" uid="uid://doklhbfcb6p4q" path="res://Godot/Nodes/Brother/OW_Enemy.tscn" id="12_qt70a"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 [ext_resource type="Script" path="res://Godot/Scripts/Enemy_Info.gd" id="13_m7bcr"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/Dialog/DialogField.gd" id="13_yamer"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3u2c"]
 
@@ -137,6 +141,32 @@ size = Vector3(1, 0.1, 1)
 height = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tusru"]
+
+[sub_resource type="Resource" id="Resource_rqh5l"]
+script = ExtResource("11_rh2ce")
+text = "Hello Mario !"
+sfx = ExtResource("12_ksn64")
+each_n_letters = 3
+text_size = 16
+text_delay = 0.02
+text_alignment = 0
+skipable = true
+textbox_size = Vector2(500, 200)
+
+[sub_resource type="Resource" id="Resource_lba8c"]
+script = ExtResource("11_rh2ce")
+text = "I was wondering if you could helps us toad build a new village."
+sfx = ExtResource("12_ksn64")
+each_n_letters = 3
+text_size = 16
+text_delay = 0.02
+text_alignment = 0
+skipable = true
+textbox_size = Vector2(300, 100)
+
+[sub_resource type="Resource" id="Resource_qrx2k"]
+script = ExtResource("13_yamer")
+dialog = Array[ExtResource("10_gb0ik")]([SubResource("Resource_rqh5l"), SubResource("Resource_lba8c")])
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1omst"]
 radius = 0.199625
@@ -323,6 +353,9 @@ V"
 [node name="NPC" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
 script = ExtResource("9_76a8t")
+interaction_type = 2
+dialogfield = SubResource("Resource_qrx2k")
+area_collider_np = NodePath(".")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NPC"]
 
@@ -339,7 +372,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.15266, 0)
 sprite_frames = ExtResource("8_xaj1a")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.949584
+frame_progress = 0.673359
 
 [node name="OwEnemy" parent="." instance=ExtResource("12_qt70a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.671508, 1)

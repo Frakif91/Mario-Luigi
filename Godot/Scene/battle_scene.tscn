@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://dp4cs1mjnurxf"]
+[gd_scene load_steps=169 format=3 uid="uid://dp4cs1mjnurxf"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/CharacterBody3D.gd" id="1_ad80m"]
 [ext_resource type="Script" path="res://Godot/Scripts/game.gd" id="1_k43w1"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cuuhk5ph5ei61" path="res://Assets/SFX/Mario_&_Luigi_PIT_Special_Item.ogg" id="13_xrfkv"]
 [ext_resource type="AudioStream" uid="uid://banes0qmrawhh" path="res://Assets/SFX/Hollywoodedge,_Ascending_WhistleS_CRT058003.ogg" id="14_6leu0"]
 [ext_resource type="AudioStream" uid="uid://ye4hs0oxj680" path="res://Assets/Music/Mario And Luigi Paper Jam Bros OST - Mixed-Up Scramble (Trio Battle Theme).ogg" id="14_15jaa"]
+[ext_resource type="Script" path="res://Godot/Scripts/Utility/background_music.gd" id="15_kwby6"]
 [ext_resource type="Texture2D" uid="uid://dwiad5hmtb41q" path="res://Assets/Battle UI Paper Mario.png" id="17_fsweh"]
 [ext_resource type="Texture2D" uid="uid://dv24wmg0mqlm4" path="res://Assets/Handmade/podium_wip_paint_transparent.png" id="18_t17jn"]
 [ext_resource type="Texture2D" uid="uid://cv0kpg36223vs" path="res://Assets/curtains.png" id="19_itlsx"]
@@ -2768,6 +2769,10 @@ metadata/_edit_pinned_properties_ = [&"pos_offset"]
 stream = ExtResource("14_15jaa")
 volume_db = -16.0
 autoplay = true
+bus = &"Music"
+script = ExtResource("15_kwby6")
+music_name = &"battle_theme"
+fallback_music = ExtResource("14_15jaa")
 
 [node name="MarioAnimations" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

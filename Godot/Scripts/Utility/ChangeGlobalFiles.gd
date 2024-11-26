@@ -4,7 +4,8 @@ var music : Dictionary = {
 	"battle_theme" : preload("res://Assets/Music/Okey Dokey! DX - Mario and Luigi BIS DX .mp3"),
 	"victory_theme" : preload("res://Assets/Music/Joyous Occasion - Mario & Luigi Dream Team Music.mp3"),
 	"menu_theme" : preload("res://Assets/Music/Go with the Bros. - Mario & Luigi Dream Team Music Extended.mp3"),
-	"multiplayer_scene_theme" : preload("res://Assets/Music/Dozing Sands Secret - Mario & Luigi Dream Team Music Extended.mp3")
+	"multiplayer_scene_theme" : preload("res://Assets/Music/Dozing Sands Secret - Mario & Luigi Dream Team Music Extended.mp3"),
+	"overworld_theme" : preload("res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3")
 }
 
 var settings : Dictionary = {
