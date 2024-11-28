@@ -29,6 +29,7 @@ func _process(delta):
 						start_action(ob)
 
 func start_action(player : MarioOW_Movement):
+	print("start_interact")
 	occupied = true
 	player.is_in_cutscene = true
 	var i = 0

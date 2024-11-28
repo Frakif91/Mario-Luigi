@@ -9,7 +9,7 @@ signal stop_move()
 @onready var jumpsfx : AudioStreamPlayer = $"JumpSFX"
 @export var center_fall_anim_rspeed : float = 0.3
 @export var walk_sound_waittime = 12.0/20./2.
-@export_node_path("LuigiOW_Movement") var luigi_np
+@export_node_path("LuigiOW_Movement") var luigi_np = ^"X"
 @onready var luigi : LuigiOW_Movement = get_node_or_null(luigi_np)
 @export var max_distance_from_luigi = 0.6
 @export var max_distance_margin = 0.1
@@ -99,7 +99,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed(&"Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * scale.y
 		jumpsfx.play()
 
 	# Get the input direction and handle the movement/deceleration.
@@ -109,12 +109,12 @@ func _physics_process(delta):
 		input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * SPEED * scale.x
+		velocity.z = direction.z * SPEED * scale.z
 		#did_move.emit(velocity)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED * scale.x)
+		velocity.z = move_toward(velocity.z, 0, SPEED * scale.z)
 		if is_moving:
 			is_moving = false
 			stop_move.emit()

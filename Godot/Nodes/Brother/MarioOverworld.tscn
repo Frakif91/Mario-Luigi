@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cg5cphpkwg8ve"]
+[gd_scene load_steps=26 format=4 uid="uid://cg5cphpkwg8ve"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/MarioOverworld_Movement.gd" id="1_ehyyf"]
 [ext_resource type="SpriteFrames" uid="uid://dly67auifksik" path="res://Godot/overworld_test_mario_animations_new.tres" id="2_fnsjw"]
@@ -15,8 +15,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qf3ef"]
 radius = 0.125
 height = 0.49
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_3veek"]
 top_radius = 0.13
@@ -721,6 +719,11 @@ _data = {
 "new_animation": SubResource("Animation_kqnsy")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_qgm41"]
+radius = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e1eit"]
+
 [node name="Mario" type="CharacterBody3D"]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53208, 0)
@@ -741,14 +744,6 @@ animation = &"idle-S-0"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
 shape = SubResource("CapsuleShape3D_qf3ef")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 1.5, 2)
-attributes = SubResource("CameraAttributesPractical_e1eit")
-doppler_tracking = 2
-current = true
-script = ExtResource("3_8dsqk")
-follow_offset = Vector3(0, 1, 1.5)
 
 [node name="FakeShadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
@@ -820,3 +815,16 @@ libraries = {
 }
 
 [node name="UI" parent="." instance=ExtResource("11_6xwei")]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0.2, 0)
+shape = SubResource("SphereShape3D_qgm41")
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871561, 0, 0.0871561, 0.996195, 0, -0.0822552, 2.38395)
+attributes = SubResource("CameraAttributesPractical_e1eit")
+doppler_tracking = 2
+current = true
+script = ExtResource("3_8dsqk")
+follow_offset = Vector3(0, 1, 1.5)

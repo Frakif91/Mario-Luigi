@@ -353,7 +353,7 @@ V"
 [node name="NPC" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
 script = ExtResource("9_76a8t")
-interaction_type = 2
+interaction_type = 1
 dialogfield = SubResource("Resource_qrx2k")
 area_collider_np = NodePath(".")
 
