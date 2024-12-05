@@ -1,5 +1,5 @@
-## Mario & Luigi : Hotel Mania
-# Dreambound
+# Mario & Luigi : Hotel Mania
+## Dreambound
  From @SLG64 >> "This game is currently a work in progress. My idea for it was to be like an online multiplayer version of M&L, with hotel rooms as lobbies and stuff. The player can earn coins to purchase cosmetics and decorations for their room. There will be a story mode, and a hang out mode. You can also engage in battles with other players if you would like. I will gladly take any help to expand on this game."
 
 SLG64 here. I would like to list out the ideas so that it may be easier to read.
