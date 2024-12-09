@@ -2,18 +2,23 @@ class_name MultiplayerManager extends Node3D
 
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
-const PORT = 9999
-const ADDRESS = "127.0.0.1"
+const PORT = 1337
 
 var connected_peer_ids = []
 var local_player_character
 @export var player_scene : PackedScene
-@onready var textchat : RichTextLabel = $"UI/Chat/PanelContainer/VSplitContainer/MarginContainer/TextChat"
-@onready var sendchat : LineEdit = $"UI/Chat/PanelContainer/VSplitContainer/SendChat"
+
+@export var is_online : bool = true
+@export var max_player : int = 10
+@export var is_host : bool = false
+
+@export_node_path("RichTextLabel") var textchat_np : NodePath = ^"UI/Chat/PanelContainer/VSplitContainer/MarginContainer/TextChat"
+@export_node_path("LineEdit") var sendchat_np : NodePath = ^"UI/Chat/PanelContainer/VSplitContainer/SendChat"
+
+@onready var textchat : RichTextLabel = get_node_or_null(textchat_np)
+@onready var sendchat : LineEdit = get_node_or_null(sendchat_np)
 
 func _on_host_launch(port : int, _username : String):
-	if not port:
-		port = PORT
 	multiplayer_peer.create_server(port)
 	multiplayer.multiplayer_peer = multiplayer_peer	
 	add_player_character(1)
@@ -38,11 +43,11 @@ func add_player_character(peer_id):
 	if peer_id == multiplayer.get_unique_id():
 		local_player_character = player_character
 
-@rpc
+@rpc("authority", "call_local", "reliable")
 func add_newly_connected_player_character(new_peer_id):
 	add_player_character(new_peer_id)
 	
-@rpc
+@rpc("authority", "call_remote", "reliable")
 func add_previously_connected_player_characters(peer_ids):
 	for peer_id in peer_ids:
 		add_player_character(peer_id)
@@ -96,3 +101,31 @@ func display_message(message : String):
 # 		peer.close()
 # 		connection_result = peer.create_client(ip,port)
 # 	multiplayer.multiplayer_peer = peer
+
+signal info_received(uid : Multiplayer_Info.MultiplayerClientUID)
+
+@rpc("any_peer", "call_remote" ,"reliable")
+func _ask_info(peer_id : int):
+	rpc_id(peer_id, "_send_info")
+
+@rpc("any_peer", "call_remote", "reliable")
+func _send_info(peer_id : int):
+	if peer_id != multiplayer.get_unique_id():
+		rpc_id(peer_id, "_send_info", self)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _get_info(peer_id : int, uid : Multiplayer_Info.MultiplayerClientUID):
+	if peer_id != multiplayer.get_unique_id():
+		info_received.emit(uid)
+
+
+func ask_user_info(peer_id: int):
+	if multiplayer.get_peers().has(peer_id):
+		_ask_info(peer_id)
+		var info = await info_received
+		if info:
+			return info
+		else:
+			return null
+	else:
+		return null

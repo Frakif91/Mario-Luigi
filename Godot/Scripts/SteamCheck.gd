@@ -87,3 +87,15 @@ func await_avatar(id) -> ImageTexture:
 
 func _on_button_exit_pressed() -> void:
 	Transitions.start_loading("res://Godot/Scene/title.tscn",Transitions.TransitionType.FILL,get_tree())
+
+
+
+func _on_host_steam_pressed() -> void:
+	#Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY,$"MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MaxPlayer".text.to_int())
+	pass
+
+func _on_host_lan_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_join_steam_pressed() -> void:
+	pass # Replace with function body.

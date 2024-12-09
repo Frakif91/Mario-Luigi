@@ -1,0 +1,10 @@
+[gd_resource type="ProceduralSkyMaterial" load_steps=2 format=3 uid="uid://67w6578hhlo4"]
+
+[ext_resource type="Texture2D" uid="uid://dtlxn32aofhtx" path="res://Assets/Handmade/Capture d’écran 2024-11-29 193417.png" id="1_848q7"]
+
+[resource]
+sky_top_color = Color(0, 0.329412, 0.929412, 1)
+sky_horizon_color = Color(0.729412, 0.87451, 0.960784, 1)
+sky_curve = 0.2
+sky_cover = ExtResource("1_848q7")
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

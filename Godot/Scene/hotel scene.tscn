@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://ch4wrucil6uau"]
 
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_ygy4k"]
-[ext_resource type="PackedScene" uid="uid://bp2lvkik72o7r" path="res://Godot/Nodes/multiplayer_ui.tscn" id="2_5qohu"]
+[ext_resource type="PackedScene" uid="uid://bp2lvkik72o7r" path="res://Godot/Nodes/Multiplayer/multiplayer_ui.tscn" id="2_5qohu"]
+[ext_resource type="PackedScene" uid="uid://23mv57i8kyyk" path="res://Godot/Nodes/Multiplayer/multiplayer_entity.tscn" id="2_j5fqe"]
 [ext_resource type="Script" path="res://Godot/Scripts/Multiplayer/Multiplayer_node_logic.gd" id="3_fjfvx"]
-[ext_resource type="PackedScene" uid="uid://23mv57i8kyyk" path="res://Godot/Nodes/multiplayer_entity.tscn" id="4_uvo6i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wgdbu"]
 size = Vector3(30, 0.08, 30)
@@ -34,8 +34,13 @@ background_mode = 2
 sky = SubResource("Sky_sqs4r")
 
 [node name="Node3D" type="Node3D"]
+
+[node name="MultiplayerManager" type="Node3D" parent="."]
 script = ExtResource("3_fjfvx")
-player_scene = ExtResource("4_uvo6i")
+player_scene = ExtResource("2_j5fqe")
+is_host = true
+textchat_np = NodePath("../UI/Chat/PanelContainer/VSplitContainer/MarginContainer/TextChat")
+sendchat_np = NodePath("../UI/Chat/PanelContainer/VSplitContainer/SendChat")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -68,9 +73,11 @@ transform = Transform3D(0.5, -0.612373, 0.612372, 2.00002e-08, 0.707107, 0.70710
 multi_manager_np = NodePath("..")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Godot/Nodes/multiplayer_entity.tscn")
+_spawnable_scenes = PackedStringArray("res://Godot/Nodes/Multiplayer/multiplayer_entity.tscn")
 spawn_path = NodePath("../Spawner")
-spawn_limit = 5
+spawn_limit = 10
 
 [node name="Spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[editable path="UI"]

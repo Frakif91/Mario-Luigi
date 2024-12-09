@@ -57,3 +57,5 @@ func wait(seconds : float):
 
 func next_frame():
 	await get_tree().create_timer(0).timeout
+
+@export_enum("Hosting Lan","Hosting Steam", "Join Lan", "Join Steam") var multiplayer_state 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://3um40q0hw3u2"]
+[gd_scene load_steps=10 format=3 uid="uid://3um40q0hw3u2"]
 
 [ext_resource type="Script" path="res://Godot/Scripts/SteamCheck.gd" id="1_w3247"]
 [ext_resource type="Texture2D" uid="uid://chwn1br1jchb" path="res://Assets/texture_ml_little.png" id="2_u716w"]
 [ext_resource type="Script" path="res://Godot/Scripts/defilling_tiles.gd" id="3_kgcvt"]
 [ext_resource type="Texture2D" uid="uid://tj2yljflsvbq" path="res://icon.svg" id="4_khjxm"]
 [ext_resource type="Texture2D" uid="uid://dwrkccoxq3rjx" path="res://n_icon.png" id="5_je0b1"]
+[ext_resource type="Texture2D" uid="uid://b8vrs2xdjf6gr" path="res://Assets/Icons/arrow_back_ios_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="6_gxli5"]
+[ext_resource type="Texture2D" uid="uid://bmdxfgx3118pw" path="res://Assets/Icons/door_open_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="7_mg8lv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_meir2"]
 font_size = 26
@@ -14,7 +16,7 @@ outline_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofo3h"]
 bg_color = Color(0.0885599, 0.0885599, 0.0885599, 0.588235)
 
-[node name="Control" type="Control"]
+[node name="Mulitplayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +34,7 @@ persona_status_colors = {
 user_avatar_np = NodePath("Container/ClientInfo/VBoxContainer/User/UserFields/Avatar")
 user_name_np = NodePath("Container/ClientInfo/VBoxContainer/User/UserFields/Name")
 user_friend_list_np = NodePath("Container/ClientInfo/VBoxContainer/FriendsList")
-steam_info_np = NodePath("Container/ClientInfo/VBoxContainer/Label")
+steam_info_np = NodePath("Container/ClientInfo/VBoxContainer/SteamState")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 texture_repeat = 2
@@ -93,7 +95,7 @@ size_flags_horizontal = 6
 text = "Steam Username"
 label_settings = SubResource("LabelSettings_meir2")
 
-[node name="Label" type="Label" parent="Container/ClientInfo/VBoxContainer"]
+[node name="SteamState" type="Label" parent="Container/ClientInfo/VBoxContainer"]
 layout_mode = 2
 text = "Steam is currently ON"
 horizontal_alignment = 1
@@ -109,8 +111,228 @@ item_0/icon = ExtResource("5_je0b1")
 
 [node name="Button" type="Button" parent="Container"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Go Back"
+icon = ExtResource("6_gxli5")
+
+[node name="MultiplayerConnect" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 0
+offset_right = 375.0
+offset_bottom = 290.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="VBoxContainer" parent="MultiplayerConnect"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MultiplayerConnect/Control"]
+layout_mode = 2
+text = "Connect to another Lobby using
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="MultiplayerConnect/Control"]
+custom_minimum_size = Vector2(0, 114.51)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MultiplayerConnect/Control/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerConnect/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="LAN_Label" type="Label" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "LAN (Local Area Network)
+IP Adress :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IP4" type="LineEdit" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "IP Adress"
+max_length = 15
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="Port" type="LineEdit" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Go Back"
+placeholder_text = "Port"
+max_length = 5
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="Username" type="LineEdit" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Username"
+editable = false
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="Buttons" type="HBoxContainer" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Join" type="Button" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Connect to Lobby"
+
+[node name="Separator" type="HSeparator" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Steam Lobby System (Join a friend)
+/!\\ WIP /!\\  May not function correctly
+"
+
+[node name="Buttons2" type="HBoxContainer" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Button2" type="Button" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/Buttons2"]
+layout_mode = 2
+text = "Join a game"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+border_width = 0.0
+
+[node name="MultiplayerHost" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -375.0
+offset_bottom = 369.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="VBoxContainer" parent="MultiplayerHost"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MultiplayerHost/Control"]
+layout_mode = 2
+text = "Connect to another Lobby using
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="MultiplayerHost/Control"]
+custom_minimum_size = Vector2(0, 114.51)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MultiplayerHost/Control/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerHost/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="LAN_Label" type="Label" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "LAN (Local Area Network)
+Host Information
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Port" type="LineEdit" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "9999"
+placeholder_text = "Hosting Port"
+max_length = 15
+virtual_keyboard_type = 2
+clear_button_enabled = true
+
+[node name="MaxPlayer" type="LineEdit" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "10"
+placeholder_text = "Max. Slot"
+alignment = 2
+max_length = 2
+virtual_keyboard_type = 2
+clear_button_enabled = true
+right_icon = ExtResource("7_mg8lv")
+caret_blink = true
+
+[node name="Username" type="LineEdit" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Description"
+clear_button_enabled = true
+
+[node name="Buttons" type="HBoxContainer" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Host" type="Button" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Host a Lobby"
+
+[node name="Separator" type="HSeparator" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Steam Lobby System (Join a friend)
+/!\\ WIP /!\\  May not function correctly
+"
+
+[node name="Buttons2" type="HBoxContainer" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Button2" type="Button" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/Buttons2"]
+layout_mode = 2
+text = "Host a game"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+border_width = 0.0
 
 [connection signal="pressed" from="Container/Button" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/Buttons/Join" to="." method="_on_join_lan_pressed"]
+[connection signal="pressed" from="MultiplayerConnect/Control/Panel/MarginContainer/VBoxContainer/Buttons2/Button2" to="." method="_on_join_steam_pressed"]
+[connection signal="pressed" from="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/Buttons/Host" to="." method="_on_host_lan_pressed"]
+[connection signal="pressed" from="MultiplayerHost/Control/Panel/MarginContainer/VBoxContainer/Buttons2/Button2" to="." method="_on_host_steam_pressed"]

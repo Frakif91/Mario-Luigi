@@ -41,7 +41,7 @@ func start_action(player : MarioOW_Movement):
 			if textbox_opened:
 				close_textbox()
 			if dialog is Dialog:
-				dialog.execute(get_tree(),player,self)
+				await dialog.execute(get_tree(),player,self)
 		i += 1
 	if textbox_opened:
 		close_textbox()
