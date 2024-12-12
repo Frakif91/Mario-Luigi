@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)https://godotengine.org/ -->
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Frakif91">
+    <meta name="description" content="'Mario & Luigi : Hotel Mania' is a work-in-progress fangame about a misterious hotel and multiplayer features.">
+    <meta property="og:site_name" content="Mario & Luigi : Hotel Mania">
+    <meta property="og:url" content="https://frakif91.github.io/Mario-Luigi/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mario & Luigi : Hotel Mania">
+    <meta property="og:description" content="'Mario & Luigi : Hotel Mania' is a work-in-progress fangame about a misterious hotel and multiplayer features.">
+    <meta property="og:image" content="https://godotengine.org/assets/share-image.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@godotengine">
+    <meta property="twitter:domain" content="godotengine.org">
+    <meta property="twitter:url" content="https://godotengine.org/">
+    <meta name="twitter:title" content="'Mario & Luigi : Hotel Mania' fangame">
+    <meta name="twitter:description" content="'Mario & Luigi : Hotel Mania' is a work-in-progress fangame about a misterious hotel and multiplayer features.">
+    <meta name="twitter:image" content="https://godotengine.org/assets/share-image.webp">
+    <title>Hotel Mania</title>
+    <link rel="alternate" type="application/rss+xml" title="Godot News" href="https://godotengine.org/rss.xml">
+    <link rel="icon" href="https://godotengine.org/assets/favicon.png" sizes="any">
+    <link rel="icon" href="https://godotengine.org/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./Assets/main.css">
+    <link rel="stylesheet" href="./Assets/tobii.min.css">
+    <link rel="preload" as="font" href="https://godotengine.org/assets/fonts/Montserrat-Italic-VariableFont_wght.woff2" crossorigin="">
+    <link rel="preload" as="font" href="https://godotengine.org/assets/fonts/Montserrat-VariableFont_wght.woff2" crossorigin="">
+    <link rel="me" href="https://mastodon.gamedev.place/@godotengine">
+    <style type="text/css">:root [href^="//mage98rquewz.com/"], :root [href^="//x4pollyxxpush.com/"], :root span[id^="ezoic-pub-ad-placeholder-"], :root ins.adsbygoogle[data-ad-slot], :root ins.adsbygoogle[data-ad-client], :root guj-ad, :root gpt-ad, :root div[id^="zergnet-widget"], :root div[id^="vuukle-ad-"], :root div[id^="taboola-stream-"], :root div[id^="sticky_ad_"], :root div[id^="st"][style^="z-index: 999999999;"], :root div[id^="pa_sticky_ad_box_middle_"], :root div[id^="gpt_ad_"], :root div[id^="ezoic-pub-ad-"], :root div[id^="dfp-ad-"], :root div[id^="crt-"][style], :root div[id^="adspot-"], :root div[id^="adrotate_widgets-"], :root ps-connatix-module, :root div[id^="ad_position_"], :root div[id^="ad-div-"], :root div[id*="ScriptRoot"], :root div[id*="MarketGid"], :root div[data-id-advertdfpconf], :root hl-adsense, :root div[data-contentexchange-widget], :root div[data-alias="300x250 Ad 2"], :root div[data-adzone], :root div[data-adunit-path], :root div[data-adname], :root div[data-ad-targeting], :root div[data-ad-placeholder], :root div[class^="native-ad-"], :root div[data-dfp-id], :root div[class^="kiwi-ad-wrapper"], :root div[aria-label="Ads"], :root display-ads, :root display-ad-component, :root atf-ad-slot, :root aside[id^="adrotate_widgets-"], :root ark-top-ad, :root amp-fx-flying-carpet, :root amp-embed[type="taboola"], :root amp-connatix-player, :root amp-ad-custom, :root amp-ad, :root div[id^="google_dfp_"], :root ad-slot, :root ad-shield-ads, :root a[style="width:100%;height:100%;z-index:10000000000000000;position:absolute;top:0;left:0;"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[href^="https://xbet-4.com/"], :root div[id^="ad-position-"], :root a[href^="https://www.toprevenuegate.com/"], :root a[href^="https://www.sugarinstant.com/?partner_id="], :root a[href^="https://www.purevpn.com/"][href*="&utm_source=aff-"], :root a[href^="https://www.privateinternetaccess.com/"] > img, :root a[href^="https://www.onlineusershielder.com/"], :root a[href^="https://financeads.net/tc.php?"], :root a[href^="https://www.mrskin.com/tour"], :root a[href^="https://www.infowarsstore.com/"] > img, :root a[href^="https://www.highperformancecpmgate.com/"], :root a[href^="https://www.highcpmrevenuenetwork.com/"], :root a[href^="https://lnkxt.bannerator.com/"], :root a[href^="https://www.geekbuying.com/dynamic-ads/"], :root a[href^="https://www.financeads.net/tc.php?"], :root [href^="https://www.herbanomic.com/"] > img, :root a[href^="https://maymooth-stopic.com/"], :root a[href^="https://www.dql2clk.com/"], :root a[href^="https://www.nutaku.net/signup/landing/"], :root a[href^="https://www.dating-finder.com/signup/?ai_d="], :root a[href^="https://explore-site.com/"], :root a[href^="https://www.brazzersnetwork.com/landing/"], :root a[href^="https://www.adxsrve.com/"], :root [data-template-type="nativead"], :root a[href^="https://www.endorico.com/Smartlink/"], :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], :root a[href^="https://voluum.prom-xcams.com/"], :root a[href^="https://twinrdsrv.com/"], :root a[href^="https://trk.nfl-online-streams.club/"], :root a[href^="https://tracking.avapartner.com/"], :root a[href^="https://track.wg-aff.com"], :root a[href^="https://track.ultravpn.com/"], :root a[href^="https://track.afcpatrk.com/"], :root a[href^="https://torguard.net/aff.php"] > img, :root [data-identity="adhesive-ad"], :root a[href^="https://tc.tradetracker.net/"] > img, :root a[href^="https://tatrck.com/"], :root a[href^="https://click.candyoffers.com/"], :root [href^="https://zstacklife.com/"] img, :root a[href^="https://t.aslnk.link/"], :root a[href^="https://t.adating.link/"], :root a[href^="https://land.brazzersnetwork.com/landing/"], :root a[href^="https://t.acam.link/"], :root a[href*="//daichoho.com/"], :root a[href^="https://syndication.optimizesrv.com/"], :root a[href^="https://go.trackitalltheway.com/"], :root [href^="https://track.fiverr.com/visit/"] > img, :root a[href^="https://syndication.exoclick.com/"], :root a[href^="https://syndication.dynsrvtbg.com/"], :root div[data-alias="300x250 Ad 1"], :root a[href^="https://syndicate.contentsserved.com/"], :root a[href^="https://svb-analytics.trackerrr.com/"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="https://static.fleshlight.com/images/banners/"], :root a[href^="https://slkmis.com/"], :root bottomadblock, :root a[href^="https://s.zlinkd.com/"], :root a[href^="https://s.zlink3.com/"], :root a[href^="https://www.mrskin.com/account/"], :root a[href^="https://s.optzsrv.com/"], :root a[href^="https://random-affiliate.atimaze.com/"], :root #kt_player > div[style$="display: block;"][style*="inset: 0px;"], :root a[href^="https://quotationfirearmrevision.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="https://ak.oalsauwy.net/"], :root a[href^="https://softwa.cfd/"], :root a[href^="https://play1ad.shop/"], :root a[href^="https://prf.hn/click/"][href*="/camref:"] > img, :root a[href^="https://www.dating-finder.com/?ai_d="], :root a[href^="https://serve.awmdelivery.com/"], :root a[href^="https://prf.hn/click/"][href*="/adref:"] > img, :root app-ad, :root [href^="https://ap.octopuspop.com/click/"] > img, :root a[href^="https://postback1win.com/"], :root a[href^="https://mmwebhandler.aff-online.com/"], :root a[href^="https://www.bet365.com/"][href*="affiliate="], :root a[href^="https://pb-track.com/"], :root a[href^="https://pb-front.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://streamate.com/landing/click/"], :root div[class^="Adstyled__AdWrapper-"], :root a[href^="https://startgaming.net/tienda/" i], :root a[href^="https://osfultrbriolenai.info/"], :root a[href^="https://upsups.click/"], :root a[href^="https://ndt5.net/"], :root a[href^="http://eighteenderived.com/"], :root a[href^="https://natour.naughtyamerica.com/track/"], :root a[href^="https://mediaserver.entainpartners.com/renderBanner.do?"], :root a[href^="https://m.do.co/c/"] > img, :root .nya-slot[style], :root a[href^="https://a.bestcontentweb.top/"], :root a[href^="https://lobimax.com/"], :root a[href^="https://lead1.pl/"], :root a[href^="https://landing.brazzersnetwork.com/"], :root a[href^="https://join.virtuallust3d.com/"], :root a[href^="https://kiksajex.com/"], :root a[href^="https://juicyads.in/"], :root a[href^="https://snowdayonline.xyz/"], :root a[href^="https://mediaserver.gvcaffiliates.com/renderBanner.do?"], :root a[href^="https://join.dreamsexworld.com/"], :root a[href^="https://jaxofuna.com/"], :root a[href^="https://itubego.com/video-downloader/?affid="], :root a[href^="https://italarizege.xyz/"], :root a[href^="https://iqbroker.com/"][href*="?aff="], :root a[href^="https://hot-growngames.life/"], :root a[href^="https://golinks.work/"], :root a[href^="https://go.xxxvjmp.com/"], :root [class^="tile-picker__CitrusBannerContainer-sc-"], :root a[href^="https://go.xxxiijmp.com"], :root a[href^="https://go.xtbaffiliates.com/"], :root .OUTBRAIN[data-widget-id^="FMS_REELD_"], :root [data-role="tile-ads-module"], :root a[href^="https://go.xlviirdr.com"], :root a[href^="https://go.xlviiirdr.com"], :root a[href^="https://ismlks.com/"], :root [href^="https://www.mypillow.com/"] > img, :root a[href^="https://go.xlirdr.com"], :root [data-css-class="dfp-inarticle"], :root a[href^="https://l.hyenadata.com/"], :root a[href^="https://go.tmrjmp.com"], :root a[href^="https://zirdough.net/"], :root a[href^="https://s.deltraff.com/"], :root a[href^="https://go.markets.com/visit/?bta="], :root a[href^="https://billing.purevpn.com/aff.php"] > img, :root a[href^="https://go.hpyrdr.com/"], :root a[href^="https://lijavaxa.com/"], :root a[href^="https://go.goaserv.com/"], :root a[href^="https://t.hrtye.com/"], :root a[href^="https://go.etoro.com/"] > img, :root a[href^="https://go.dmzjmp.com"], :root div[class^="Display_displayAd"], :root a[href^="https://www.bang.com/?aff="], :root #mgb-container > #mgb, :root a[href^="https://go.admjmp.com"], :root a[href^="https://get.surfshark.net/aff_c?"][href*="&aff_id="] > img, :root a[href^="https://www.adskeeper.com"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root [href^="https://clicks.affstrack.com/"] > img, :root a[href^="https://ak.hauchiwu.com/"], :root a[href^="https://engine.phn.doublepimp.com/"], :root a[href^="https://engine.blueistheneworanges.com/"], :root a[href^="https://drumskilxoa.click/"], :root a[href^="https://dl-protect.net/"], :root a[href^="https://rixofa.com/"], :root #ads[style^="position: absolute; z-index: 30; width: 100%; height"], :root a[href^="https://disobediencecalculatormaiden.com/"], :root a[href*=".foxqck.com/"], :root a[href^="https://ctosrd.com/"], :root a[href^="https://clixtrac.com/"], :root [href^="https://noqreport.com/"] > img, :root a[href^="https://clicks.pipaffiliates.com/"], :root a[href^="https://datewhisper.life/"], :root a[href^="https://get-link.xyz/"], :root a[href^="https://click.linksynergy.com/fs-bin/"] > img, :root a[href^="https://combodef.com/"], :root a[href^="https://click.hoolig.app/"], :root a[href^="https://track.totalav.com/"], :root a[href^="https://ctrdwm.com/"], :root img[src^="https://images.purevpnaffiliates.com"], :root a[href^="https://porntubemate.com/"], :root a[href^="https://clickadilla.com/"], :root a[href^="https://click.dtiserv2.com/"], :root a[href^="https://go.xlvirdr.com"], :root a[href^="http://www.iyalc.com/"], :root a[href^="https://claring-loccelkin.com/"], :root a[href^="https://s.ma3ion.com/"], :root a[href^="https://cams.imagetwist.com/in/?track="], :root a[href^="https://bongacams2.com/track?"], :root a[href^="https://t.ajrkm1.com/"], :root [href="https://masstortfinancing.com"] img, :root a[href^="https://bongacams10.com/track?"], :root a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="], :root a[href^="https://bngpt.com/"], :root a[href^="https://black77854.com/"], :root a[href^="https://banners.livepartners.com/"], :root a[href^="http://revolvemockerycopper.com/"], :root a[href^="https://awptjmp.com/"], :root a[href^="https://join.sexworld3d.com/track/"], :root a[href^="https://intenseaffiliates.com/redirect/"], :root a[href^="https://aweptjmp.com/"], :root [class^="s2nPlayer"], :root a[href^="https://chaturbate.jjgirls.com/?track="], :root a[href^="https://ausoafab.net/"], :root a[href^="https://activate-game.com/"], :root .scroll-fixable.rail-right > .deals-rail, :root [data-wpas-zoneid], :root a[href^="https://a2.adform.net/"], :root a[href^="https://auesk.cfd/"], :root a[href^="https://ak.psaltauw.net/"], :root a[href^="https://adclick.g.doubleclick.net/"], :root a[href^="https://bc.game/"], :root a[href^="https://a.bestcontentoperation.top/"], :root a[href^="https://adultfriendfinder.com/go/"], :root a[href^="https://ads.planetwin365affiliate.com/"], :root a[href^="https://ads.leovegas.com/"], :root a[href^="https://a.candyai.love/"], :root a[href^="https://playnano.online/offerwalls/?ref="], :root a[href^="https://a.adtng.com/"], :root [data-m-ad-id], :root a[href^="https://a-ads.com/"], :root div[id^="rc-widget-"], :root a[href^="http://eslp34af.click/"], :root a[href^="https://turnstileunavailablesite.com/"], :root a[href^="https://chaturbate.com/in/?"], :root a[href^="https://prf.hn/click/"][href*="/creativeref:"] > img, :root a[href*="&maxads="], :root a[href^="http://www.adultempire.com/unlimited/promo?"][href*="&partner_id="], :root a[href^="https://1betandgonow.com/"], :root a[href^="https://eergortu.net/"], :root div[id^="optidigital-adslot"], :root a[href^="https://123-stream.org/"], :root a[href^="http://www.friendlyduck.com/AF_"], :root a[href^="https://allhost.shop/aff.php?"], :root [data-dynamic-ads], :root a[href^="http://vnte9urn.click/"], :root a[href^="https://getvideoz.click/"], :root a[href^="http://troopsassistedstupidity.com/"], :root a[href^="http://trk.globwo.online/"], :root a-ad, :root a[href^="https://offhandpump.com/"], :root a[href^="http://stickingrepute.com/"], :root #slashboxes > .deals-rail, :root [data-rc-widget="data-rc-widget"], :root a[href^="http://premonitioninventdisagree.com/"], :root a[href^="http://naggingirresponsible.com/"], :root a[href^="https://in.rabbtrk.com/"], :root a[href^="http://www.h4trck.com/"], :root a[href^="https://81ac.xyz/"], :root a[href^="http://guestblackmail.com/"], :root a[href^="http://cam4com.go2cloud.org/aff_c?"], :root a[href^="https://ads.betfair.com/redirect.aspx?"], :root [href^="https://www.mypatriotsupply.com/"] > img, :root a[href^="https://trk.softonixs.xyz/"], :root a[href^="https://sexynearme.com/"], :root a[href^="https://myclick-2.com/"], :root a[href^="http://dragnag.com/"], :root a[href^="http://dragfault.com/"], :root [id^="div-gpt-ad"], :root .ob_container .item-container-obpd, :root div[id^="yandex_ad"], :root a[href^="https://www8.smartadserver.com/"], :root a[href^="https://pb-imc.com/"], :root a[href^="http://deskfrontfreely.com/"], :root [data-advadstrackid], :root a[href^="http://muzzlematrix.com/"], :root a[href^="https://track.adform.net/"], :root a[href^="http://avthelkp.net/"], :root a[href^="https://a.medfoodhome.com/"], :root a[href^="https://engine.flixtrial.com/"], :root [data-type="ad-vertical"], :root [data-taboola-options], :root a[href^="http://annulmentequitycereals.com/"], :root a[href^="//startgaming.net/tienda/" i], :root a[href^="https://www.get-express-vpn.com/offer/"], :root a[href^="https://s.cant3am.com/"], :root a[href^="//s.st1net.com/splash.php"], :root a[href^="https://join.virtualtaboo.com/track/"], :root [id^="ad_sky"], :root a[href^="http://coefficienttolerategravel.com/"], :root a[href^="https://a.medfoodsafety.com/"], :root a[href^="//go.eabids.com/"], :root a[href^="//ejitsirdosha.net/"], :root a[href^=" https://www.friendlyduck.com/AF_"], :root a[href*="/jump/next.php?r="], :root [href^="https://ilovemyfreedoms.com/landing-"], :root a[href^="https://go.nordvpn.net/aff"] > img, :root .\[\&_\.gdprAdTransparencyCogWheelButton\]\:\!pjra-z-\[5\], :root [href^="http://clicks.totemcash.com/"], :root a[href^="https://ad.zanox.com/ppc/"] > img, :root a[href^="https://lone-pack.com/"], :root [data-d-ad-id], :root a[href*=".engine.adglare.net/"], :root a[href^="https://t.ajrkm3.com/"], :root [href^="https://aads.com/campaigns/"], :root a[href^="//stighoazon.com/"], :root [href^="https://www.profitablegatecpm.com/"], :root div[id^="lazyad-"], :root a[href^="http://com-1.pro/"], :root a[href*=".cfm?domain="][href*="&fp="], :root [data-ad-name], :root a[href^="https://loboclick.com/"], :root a[data-url^="https://vulpix.bet/?ref="], :root a[href^="https://ab.advertiserurl.com/aff/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://go.xlivrdr.com"], :root [onclick^="location.href='https://1337x.vpnonly.site/"], :root [name^="google_ads_iframe"], :root [id^="section-ad-banner"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href*="//jjgirls.com/sex/Chaturbate"], :root [id^="ad-wrap-"], :root [href^="https://zone.gotrackier.com/"], :root a[href^="http://sarcasmadvisor.com/"], :root [href^="https://www.restoro.com/"], :root [href^="https://www.targetingpartner.com/"], :root .section-subheader > .section-hotel-prices-header, :root [href^="https://www.hostg.xyz/"] > img, :root a[href^="http://adultfriendfinder.com/go/"], :root a[href^="https://fastestvpn.com/lifetime-special-deal?a_aid="], :root a[href^="https://tour.mrskin.com/"], :root [href^="https://www.brighteonstore.com/products/"] img, :root [data-ad-width], :root [data-block-type="ad"], :root a[href^="https://baipahanoop.net/"], :root [href^="https://v.investologic.co.uk/"], :root div[id^="div-ads-"], :root [href^="https://rapidgator.net/article/premium/ref/"], :root [href^="https://join.girlsoutwest.com/"], :root a[href^="https://track.aftrk3.com/"], :root [href^="https://join3.bannedsextapes.com"], :root a[href^="https://bodelen.com/"], :root a[href*=".g2afse.com/"], :root div[id^="adngin-"], :root [data-rc-widget], :root span[data-ez-ph-id], :root [href^="https://track.aftrk1.com/"], :root [href^="https://join.playboyplus.com/track/"], :root a[href^="https://go.xxxijmp.com"], :root [href^="https://istlnkcl.com/"], :root div[data-adunit], :root app-large-ad, :root [href^="https://turtlebids.irauctions.com/"] img, :root [href^="https://wct.link/click?"], :root [href^="https://go.xlrdr.com"], :root a[href^="https://tm-offers.gamingadult.com/"], :root [href^="https://charmingdatings.life/"], :root [href^="https://glersakr.com/"], :root a[href^="https://a.bestcontentfood.top/"], :root [href^="https://cpa.10kfreesilver.com/"], :root [data-id^="div-gpt-ad"], :root a[href^="https://tracker.loropartners.com/"], :root [href^="https://awbbjmp.com/"], :root a[data-href^="http://ads.trafficjunky.net/"], :root a[href*=".adsrv.eacdn.com/"], :root [href^="https://antiagingbed.com/discount/"] > img, :root a[href^="http://partners.etoro.com/"], :root a[href^="https://www.friendlyduck.com/AF_"], :root [href^="https://ad1.adfarm1.adition.com/"], :root a[href^="https://bngprm.com/"], :root [href^="https://shiftnetwork.infusionsoft.com/go/"] > img, :root a[href^="https://go.strpjmp.com/"], :root a[href^="https://go.bushheel.com/"], :root a[href^="https://ctjdwm.com/"], :root a[href^="https://camfapr.com/landing/click/"], :root div[data-ad-wrapper], :root .gnt_em_vp_c[data-g-s="vp_dk"], :root [href="//sexcams.plus/"], :root [href^="http://www.mypillow.com/"] > img, :root #kt_player > a[target="_blank"], :root a[href^="http://bongacams.com/track?"], :root [href^="http://mypillow.com/"] > img, :root [href="https://ourgoldguy.com/contact/"] img, :root #teaser3[style="width: 100%;text-align: center;display: scroll;position:fixed;bottom: 0;margin: 0 auto;z-index: 103;"], :root [href="https://www.masstortfinancing.com/"] > img, :root a[href^="https://go.rmhfrtnd.com/"], :root [href="https://jdrucker.com/gold"] > img, :root a[href^="https://track.1234sd123.com/"], :root zeus-ad, :root [data-testid="prism-ad-wrapper"], :root [href^="https://ad.admitad.com/"], :root [href^="https://mypillow.com/"] > img, :root [data-testid="ad_testID"], :root [href^="https://optimizedelite.com/"] > img, :root [data-name="adaptiveConstructorAd"], :root a[href^="https://go.cmtaffiliates.com/"], :root [data-testid="adBanner-wrapper"], :root [href^="https://mylead.global/stl/"] > img, :root [href^="https://mypatriotsupply.com/"] > img, :root a[href^="https://go.hpyjmp.com"], :root [href^="https://mystore.com/"] > img, :root citrus-ad-wrapper, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="https://go.grinsbest.com/"], :root a[href^="https://vo2.qrlsx.com/"], :root [href^="https://www.avantlink.com/click.php"] img, :root a[href^="https://witnessjacket.com/"], :root [data-mobile-ad-id], :root a[href^="https://fc.lc/ref/"], :root [data-adshim], :root topadblock, :root a[href^="//s.zlinkd.com/"], :root [class^="amp-ad-"], :root a[href^="http://handgripvegetationhols.com/"], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://gamingadlt.com/?offer="], :root [data-desktop-ad-id], :root a[href^="https://www.liquidfire.mobi/"], :root .grid > .container > #aside-promotion, :root DFP-AD, :root [id^="ad_slider"], :root [data-adbridg-ad-class], :root #teaser3[style^="width:autopx;"], :root [data-adblockkey], :root [onclick*="content.ad/"], :root [data-ad-manager-id], :root AMP-AD, :root [data-ad-cls], :root [data-ez-name], :root a[href^="https://go.mnaspm.com/"], :root a[href^="https://service.bv-aff-trx.com/"], :root a[href^="https://6-partner.com/"], :root a[href^="https://traffdaq.com/"], :root [href^="https://www.cloudways.com/en/?id"], :root #teaser1[style^="width:autopx;"], :root [class^="div-gpt-ad"], :root a[href^="http://tc.tradetracker.net/"] > img, :root [href^="https://affiliate.fastcomet.com/"] > img, :root [class^="adDisplay-module"], :root [data-freestar-ad][id], :root AD-SLOT, :root a[href^="https://www.googleadservices.com/pagead/aclk?"] > img, :root [data-ad-module], :root a[href^="https://go.skinstrip.net"][href*="?campaignId="], :root #teaser2[style^="width:autopx;"], :root a[href^="https://ngineet.cfd/"], :root [data-revive-zoneid], :root a[href^="https://losingoldfry.com/"], :root div[id^="div-gpt-"], :root a[href^="https://gml-grp.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root app-advertisement, :root a[href^="https://getmatchedlocally.com/"], :root a[href^="https://clickins.slixa.com/"], :root a[href^="https://cam4com.go2cloud.org/"], :root a[href^="http://li.blogtrottr.com/click?"], :root a[href^="https://t.ajump1.com/"], :root a[href^="https://go.xxxjmp.com"], :root #leader-companion > a[href] { display: none !important; }</style>
+  </head>
+  <body>
+    <input type="checkbox" id="nav_toggle_cb">
+    <header>
+      <div class="container flex align-center">
+        <div id="nav_head">
+          <a href="https://frakif91.github.io/Mario-Luigi" id="logo-link">
+            <img class="nav-logo" src="./Assets/logo.svg" width="136" height="48" alt="Hotel Mania">
+            <img class="nav-logo dark-logo" src="./Assets/logo_dark.svg" width="136" height="48" alt="Hotel Mania">
+          </a>
+          <div class="mobile-links">
+            <span class="fund mobile">
+              <a href="https://fund.godotengine.org/">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:13px;fill:#fff;margin-right:4px">
+                  <path d="M47.6 300.4 228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6.0 115.2.0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path>
+                </svg>Discord
+              </a>
+            </span>
+            <label for="nav_toggle_cb" id="nav_toggle_btn">
+              <img src="./Assets/hamburger.svg" width="24" height="24" alt="Main menu">
+            </label>
+          </div>
+        </div>
+        <nav id="nav">
+          <ul class="left">
+            <li>
+              <a href="https://godotengine.org/features/">Features</a>
+            </li>
+            <li>
+              <a href="https://godotengine.org/showcase/">Multiplayer</a>
+            </li>
+            <li>
+              <a href="https://godotengine.org/blog/">Updates & Logs</a>
+            </li>
+            <li>
+              <a href="https://godotengine.org/community/">Community</a>
+            </li>
+              <li><a href="https://godotengine.org/asset-library/asset">Assets</a>
+              </li>
+          </ul>
+          <ul class="right">
+            <li>
+              <a href="https://godotengine.org/download/windows/" class="set-os-download-url">Download</a>
+            </li>
+            <li>
+              <a href="https://docs.godotengine.org/">Docs</a>
+            </li>
+            <li>
+              <a href="https://docs.godotengine.org/en/stable/contributing/how_to_contribute.html">Contribute</a>
+            </li>
+            <li class="fund desktop">
+              <a href="https://fund.godotengine.org/">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:13px;fill:#fff;margin-right:4px;top:1px;position:relative">
+                  <path d="M47.6 300.4 228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6.0 115.2.0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path>
+                </svg>Discord
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+      <main>
+        <link rel="stylesheet" href="./Assets/transparent-nav.css"><style>.main-download{display:flex;align-items:flex-start;gap:48px;margin-top:48px}.main-download-links{display:flex;flex-direction:column;gap:24px}.main-download-links-buttons{display:flex;flex-direction:row;gap:12px}.main-download-links .btn-download{width:100%}.main-download-links .btn-whats-new{width:min-content;text-wrap:nowrap;background-color:#818181a8;color:var(--primary-color-text-title);box-sizing:border-box}.main-download-links .download-3{text-align:left;color:#ffffffd6;text-shadow:0 0 10px #000;font-weight:300;font-size:15px}.main-download-links .download-3 a{color:inherit;text-decoration-color:inherit;text-decoration-thickness:1px}.main-download-links .download-3 a:hover{color:#fff}@media(max-width:900px){.main-download{align-items:center;flex-direction:column;gap:36px}.main-download-links-buttons{flex-direction:column;align-items:center}.main-download-links .download-3{text-align:center}.main-download-links .btn-download,.main-download-links .btn-whats-new{width:100%}}#donations{background-color:var(--dark-color);color:var(--dark-color-text);overflow:auto;text-align:center}#donations h1,#donations h2,#donations h3{color:var(--dark-color-text-title)}.feature-link{text-decoration:none}.features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}.feature:hover{transform:translateY(-2px)}.features-row>:first-child,.split-row>:first-child{margin-right:8px}.features-row>:last-child,.split-row>:last-child{margin-left:8px}.feature img{display:block;width:100%;height:auto;position:relative;background-color:#607080;aspect-ratio:3/2;object-fit:cover;object-position:top center}.feature{position:relative;overflow:hidden;transition:transform 200ms ease-in-out;height:100%;border-radius:8px}.feature.dark{background-color:var(--transparent-cover-darker)}.feature h4{margin-bottom:10px}.feature p{margin:0}.feature .body{padding:24px}.feature .dark h4{color:var(--dark-color-text-title)}.features-learn-more{display:flex;align-items:center;justify-content:center;margin-top:16px}.img-auto-size{width:100%;height:auto}.btn.btn-flat.btn-hero-learn-more{margin:0}@media(max-width:900px){.features-grid{grid-template-columns:1fr}#highlight .highlight-cover{border-radius:4px 4px 0 0}#highlight .highlight-details{border-radius:0}}.news-list .button-container{text-align:right}@media(max-width:768px){.news-list .button-container{text-align:left}}</style>
+        <section class="hero">
+          <div class="background-image" style="background-image: url(&quot;/assets/showcase/usagi-shima-5.webp&quot;); transform: translateY(0px);"></div>
+          <div class="wrapper">
+            <div class="copy container">
+              <h1>Mario & Luigi<br>Game Engine & Game</h1>
+              <p>a new game engine, and a new game, with Multiplayer support and more.</p>
+              <div class="main-download">
+                <div class="main-download-links">
+                  <div class="main-download-links-buttons">
+                    <a href="https://github.com/Frakif91/Mario-Luigi/releases/download/pit/Exports.7z" class="btn btn-download set-os-download-url" data-version="4" title="Go to the Download page">
+                      <div class="download-title">Download Latest</div>
+                      <div class="download-hint">Windows</div>
+                    </a>
+                    <a href="https://github.com/Frakif91/Mario-Luigi/releases/tag/pit" class="btn btn-whats-new" title="See what&#39;s new in Godot">
+                      <div class="download-title">What's new?</div>
+                    </a>
+                  </div>
+                  <span class="download-3">Looking for <a href="https://godotengine.org/download/3.x/windows/" class="set-os-download-url" data-version="3" title="Download the long-term support version of Godot 3">Godot 3</a>, our <a href="https://godotengine.org/download/archive">experimental releases</a>, or a <a href="https://godotengine.org/download/archive">previous version</a>?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="credits">
+            <a href="https://godotengine.org/showcase/usagi-shima/"><span class="game">Usagi Shima</span> <span class="by" style="opacity:.6"> - pank0</span></a>
+          </div>
+        </section>
+        <section class="container padded">
+          <h2>Latest news</h2>
+          <div class="flex eqsize responsive" style="gap:30px">
+            <a href="https://godotengine.org/article/godot-game-awards-stayathomedev/" style="text-decoration:none">
+              <article class="article-card">
+                <div class="thumbnail" style="background-image:url(/storage/blog/covers/godot-awards-stayathomedev.webp)"></div>
+                <div class="content">
+                  <h3>Meet the creator behind the Godot Game Awards</h3>
+                  <p class="excerpt">StayAtHomeDev has been sharing his passion on YouTube for over two years and now he's running the awards.</p>
+                  <span class="date post-recent-highlight" data-post-date="2024-12-09 18:00:00 +0000">9 December 2024</span>
+                </div>
+              </article>
+            </a>
+            <div class="news-list">
+              <div style="display:grid;gap:18px">
+                <a href="https://godotengine.org/article/dev-snapshot-godot-4-4-dev-6/" style="text-decoration:none">
+                  <article class="article-card row">
+                    <div class="thumbnail" style="background-image:url(/storage/blog/covers/dev-snapshot-godot-4-4-dev-6.webp)" href="/article/dev-snapshot-godot-4-4-dev-6/"></div>
+                    <div>
+                      <h3>Dev snapshot: Godot 4.4 dev 6</h3>
+                      <p class="excerpt">New snapshot on the road to beta, with a lot of 3D workflow goodies!</p>
+                      <span class="date" data-post-date="2024-12-05 17:00:00 +0000">5 December 2024</span>
+                    </div>
+                  </article>
+                </a>
+                <a href="https://godotengine.org/article/beyond-100000-you-re-breathtaking/" style="text-decoration:none">
+                  <article class="article-card row">
+                    <div class="thumbnail" style="background-image:url(/storage/blog/covers/beyond-100000-you-re-breathtaking.webp)" href="/article/beyond-100000-you-re-breathtaking/">
+
+                    </div>
+                    <div>
+                      <h3>Beyond #100000: You're breathtaking!</h3>
+                      <p class="excerpt">As we reach issue #100,000 on GitHub, we celebrate with a little retrospective on our issue and pull...</p>
+                      <span class="date" data-post-date="2024-12-04 19:00:00 +0000">4 December 2024</span>
+                    </div>
+                  </article>
+                </a>
+                <a href="https://godotengine.org/article/godot-foundation-update-dec-2024/" style="text-decoration:none">
+                  <article class="article-card row">
+                    <div class="thumbnail" style="background-image:url(/storage/blog/covers/godot-foundation-update-2024.webp)" href="/article/godot-foundation-update-dec-2024/"></div>
+                    <div>
+                      <h3>Godot Foundation Update December 2024</h3>
+                      <p class="excerpt">We’ve made progress on several key initiatives for the organization and the Godot ecosystem. Here’s ...</p>
+                      <span class="date" data-post-date="2024-12-02 17:00:00 +0000">2 December 2024</span>
+                    </div>
+                  </article>
+                </a>
+                <div class="button-container">
+                  <a href="https://godotengine.org/blog/" class="btn no-margin">More News</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="features" class="container padded">
+          <h2>A different way to make games</h2>
+          <div class="features-grid">
+            <a class="feature-link" href="https://godotengine.org/features#design" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/innovative.webp" alt="" width="1" height="1" style="background:linear-gradient(90deg,#333747 11%,#2d3342 50%,#2d3342 68%,#272d3c 87%)" loading="lazy">
+                <div class="body">
+                  <h4>Innovative design</h4>
+                  <p>Godot's Node and Scene system gives you both power and flexibility to create anything.</p>
+                </div>
+              </div>
+            </a>
+            <a class="feature-link" href="https://godotengine.org/features#script" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/language.webp" alt="" width="1" height="1" style="background:linear-gradient(90deg,#252a35 46%,#252a35 53%,#202630 76%,#202630 89%)" loading="lazy">
+                <div class="body">
+                  <h4>Use the right language for the job</h4>
+                  <p>Keep your code modular with an object-oriented API using Godot's own GDScript, C#, C++, or bring your own using GDExtension.</p>
+                  <div style="margin-top:.5rem;font-size:.875rem;line-height:1.6;opacity:.8">C# support is currently only available for desktop and mobile platforms as of Godot 4.2.<br>Use Godot 3 to run C# on the Web platform.</div>
+                </div>
+              </div>
+            </a>
+            <a class="feature-link" href="https://godotengine.org/features#features_2d" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/2d.webp" alt="" width="1" height="1" style="background:linear-gradient(90deg,#196f36 7%,#28674e 29%,#2a4b46 65%,#3b6f4e 97%)" loading="lazy">
+                <div class="body">
+                  <h4>Dedicated 2D engine</h4>
+                  <p>Make crisp and performant 2D games with Godot's dedicated 2D rendering engine with real 2D pixel coordinates and 2D nodes.</p>
+                </div>
+              </div>
+            </a>
+            <a class="feature-link" href="https://godotengine.org/features#features_3d" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/3d.webp" alt="" width="1" height="1" title="Screenshot from the game &#39;Human Diaspora&#39;" style="background:linear-gradient(90deg,#196f36 7%,#28674e 29%,#2a4b46 65%,#3b6f4e 97%)" loading="lazy">
+                <div class="body">
+                  <h4>Simple and powerful 3D</h4>
+                  <p>Godot's 3D nodes give you everything you need to build, animate, and render your 3D worlds and characters.</p>
+                </div>
+              </div>
+            </a>
+            <a class="feature-link" href="https://godotengine.org/features#deploy" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/cross-platform.svg" alt="" width="1" height="1" style="background-color:#333667" loading="lazy">
+                <div class="body">
+                  <h4>Release on all platforms</h4>
+                  <p>Deploy your game on desktop, mobile, and the web in seconds. Godot even supports consoles through third party publishers.</p>
+                </div>
+              </div>
+            </a>
+            <a class="feature-link" href="https://godotengine.org/#get_involved" data-barba-prevent="">
+              <div class="feature dark">
+                <img src="./Assets/oss.svg" alt="" width="1" height="1" style="background-color:#333667" loading="lazy">
+                <div class="body">
+                  <h4>Open Source</h4>
+                  <p>Truly open development: anyone who contributes to Godot benefits equally from others’ contributions.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="features-learn-more">
+            <a href="https://godotengine.org/features/" class="btn btn-flat btn-flat-white btn-flat-frosted">Learn more about using Godot</a>
+          </div>
+        </section>
+        <section id="get_involved" class="container padded">
+          <h2>Get involved</h2>
+          <p>Join the community and help create a game engine that belongs to everybody.</p>
+          <div class="flex eqsize responsive">
+            <div class="text-center base-padding">
+              <img src="./Assets/code.svg" alt="" width="250" height="250" loading="lazy">
+              <h4>Code</h4>
+              <p>If you know how to code, you can help by fixing bugs and working with engine contributors towards the implementation of new features.</p>
+              <a href="https://docs.godotengine.org/en/stable/contributing/how_to_contribute.html#technical-contributions" class="btn btn-flat btn-flat-frosted" target="_blank" rel="noopener">Learn more</a>
+            </div>
+              <div class="text-center base-padding">
+                <img src="./Assets/document.svg" alt="" width="250" height="250" loading="lazy">
+                <h4>Document</h4>
+                <p>Documentation quality is essential in a game engine; help make it better by updating the API reference, writing new guides or submitting corrections.</p>
+                <a href="https://docs.godotengine.org/en/stable/contributing/how_to_contribute.html#technical-contributions" class="btn btn-flat btn-flat-frosted" target="_blank" rel="noopener">Learn more</a>
+              </div>
+              <div class="text-center base-padding"><img src="./Assets/report.svg" alt="" width="250" height="250" loading="lazy">
+                <h4>Report</h4>
+                <p>Found a problem with the engine? Don't forget to report it so that developers can track it down.</p>
+                <a href="https://docs.godotengine.org/en/stable/contributing/how_to_contribute.html#technical-contributions" class="btn btn-flat btn-flat-frosted" target="_blank" rel="noopener">Learn more</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="donations" class="padded">
+          <div class="container sm-full">
+            <a href="https://godot.foundation/" target="_blank" style="display:inline-block">
+              <img id="foundation_graphic" src="./Assets/godot-foundation-logo-dark.svg" alt="Godot Foundation logo" width="1" height="1" class="img-auto-size" loading="lazy">
+            </a>
+            <p class="small auto-margin">You don't need to be an engine developer to help Godot. Join the <a href="https://fund.godotengine.org/">development fund</a> and help us make the Godot&nbsp;Engine even more awesome!</p>
+            <a href="https://fund.godotengine.org/" class="btn btn-flat btn-flat-white btn-flat-frosted">Donate</a>
+          </div>
+        </section>
+        <section class="sponsors padded" id="sponsors">
+          <div class="container">
+            <h2>Godot is sponsored by:</h2>
+            <h3>Patron</h3>
+            <div class="grid patron">
+              <a class="sponsor-card patron" href="https://oss.capital/" target="_blank" rel="noopener">
+            <img src="./Assets/ossc-logo.svg" alt="OSS Capital"></a>
+            <script defer="" src="./Assets/highlight.min.js.téléchargé"></script>
+            <script defer="" src="./Assets/highlight.gdscript.min.js.téléchargé"></script>
+            <script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('pre code').forEach(a=>{hljs.highlightBlock(a)}),document.querySelectorAll('[data-post-date]').forEach(a=>{Date.parse(a.dataset.postDate)>Date.now()-1e3*60*60*48&&a.classList.add("post-recent-highlight")}),new Tobii({zoom:!1});const a=document.querySelectorAll('.set-os-download-url');for(let b=0;b<a.length;b++){const c=a[b];let e='download';'version'in c.dataset&&c.dataset.version==='3'&&(e='download/3.x');let d='windows';navigator.platform.indexOf('Mac')!==-1?d='macos':navigator.platform.indexOf('Linux')!==-1&&(d='linux'),c.href=`/${e}/${d}/`}})</script>
+            <div role="dialog" aria-hidden="true" class="tobii tobii--theme-default">
+              <button class="tobii__btn tobii__btn--previous" type="button" aria-label="Previous image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <polyline points="15 6 9 12 15 18"></polyline>
+                </svg>
+              </button>
+              <button class="tobii__btn tobii__btn--next" type="button" aria-label="Next image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <polyline points="9 6 15 12 9 18"></polyline>
+                </svg>
+              </button>
+              <button class="tobii__btn tobii__btn--close" type="button" aria-label="Close lightbox">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <div class="tobii__counter"></div>
+            </div>
+  </body>
+</html>
