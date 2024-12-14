@@ -1,0 +1,12 @@
+{
+    "name": "Mario & Luigi : Hotel Mania",
+    "version": "0.0.1",
+    "engine-version": "4.3.0",
+    "license": "MIT",
+    "author": "Frakif91",
+    "description": "Mario & Luigi : Hotel Mania is a work-in-progress fangame about a misterious hotel and multiplayer features.",
+    "website": "https://frakif91.github.io/Mario-Luigi/",
+    "repository": "https://github.com/Frakif91/Mario-Luigi",
+    "main": "main.js",
+    "last_update": "2024-12-13"
+}
