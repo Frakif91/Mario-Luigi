@@ -1,5 +1,7 @@
+# NOTICE:
+## Hey, BrawlTest. If you see this, could you update the name and info? Thanks!
+
 # Mario & Luigi : Hotel Mania
-## Dreambound
  From @SLG64 >> "This game is currently a work in progress. My idea for it was to be like an online multiplayer version of M&L, with hotel rooms as lobbies and stuff. The player can earn coins to purchase cosmetics and decorations for their room. There will be a story mode, and a hang out mode. You can also engage in battles with other players if you would like. I will gladly take any help to expand on this game."
 
 SLG64 here. I would like to list out the ideas so that it may be easier to read.
@@ -49,3 +51,36 @@ SLG64: Owner and Overviewer
 BrawlTest/Frakif91: Head Developer
 
 Invalid: First Music Composer
+
+
+
+## Part of Dreambound Team
+Dreambound is our Alphadream Group. Dreambound aims to host fan games for everyone, including, but not limited to, Mario & Luigi games, Paper Mario games, Super Mario Bros. games, etc. 
+
+You can check out Dreambound Team  at: https://youtube.com/@DreamboundTeam
+
+Currently, Dreambound has a decent amount of fan games included, which are in development. Beware, I might miss a vast majority of them, mainly because my memory is not perfect when it comes down to names. The following are included (as of now):
+
+- Mario & Luigi: Hotel Mania
+  - That is where you are now. Join the discord! It'll help a lot!
+
+- Mario & Luigi: Superstar Collection
+  - Is currently paused, but Hondasvic_ has another project in the works. This new project is smaller, but more manageable.
+
+- Mario & Luigi: Cosmic Connections
+  - DysonTheSpike's project. He is currently gathering designs for it.
+
+- Mario and Luigi: Eastern Wonderland
+  - Ummm, All I know about this, it's a Tohou (I have no idea if that's right?) Crossover with the Mario & Luigi series.
+
+- Mario Bros. Monochrome World
+  - This is an action platformer. I would have to double check this, but Mario is seperated from his friends and Luigi, forcing him to venture forth on his own.
+
+- Paper Mario: Stick to IT!
+  - This is a re-creation of Sticker Star's Beta assets, as well as expanding onto the story of that beta.
+
+## Cancelled Projects or Put on Hold
+These are projects put on hold or scrapped.
+
+- Mario & Luigi: Forces
+  - Seeing as how it was cancelled, there's not a lot to say about it. DonnieTheRabbit had a decent amount of work done on it, but it ended up cancelled.
