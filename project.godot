@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Mario & Luigi : Hotel Mania"
 config/version="1.2.5"
 run/main_scene="res://Godot/Scene/title.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/image="res://Assets/load.png"
 config/icon="res://n_icon.png"
 
@@ -21,7 +25,7 @@ config/icon="res://n_icon.png"
 
 Globals="*res://Godot/Scripts/Utility/globals.gd"
 Transitions="*res://Godot/Nodes/transitions.tscn"
-Debugger="*res://Godot/Scripts/Utility/Debugging.gd"
+Debugger="res://Godot/Scripts/Utility/Debugging.gd"
 
 [debug]
 

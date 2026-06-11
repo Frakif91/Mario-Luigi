@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://tbgjt6hvf0ut"]
+[gd_scene format=3 uid="uid://tbgjt6hvf0ut"]
 
-[ext_resource type="Script" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
+[ext_resource type="Script" uid="uid://dtilamh3kejtd" path="res://Godot/Scripts/Utility/transitions.gd" id="1_akd26"]
 [ext_resource type="Texture2D" uid="uid://hxrnl6hyk66j" path="res://Assets/image.png" id="1_f6fci"]
 [ext_resource type="Texture2D" uid="uid://cg0hwhime1otw" path="res://Godot/Nodes/Transitions/transitions_fill.tres" id="2_0r840"]
 [ext_resource type="Texture2D" uid="uid://cefwb64it1for" path="res://Assets/load.png" id="2_cwr7t"]
@@ -141,7 +141,7 @@ tracks/4/path = NodePath("Transitions:texture:gradient:colors")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.96666664),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0), PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)]
@@ -203,23 +203,23 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ltklw"]
 _data = {
-"RESET": SubResource("Animation_pig56"),
-"TransitionFill": SubResource("Animation_p0gmo"),
-"TransitionIn": SubResource("Animation_ftwxo"),
-"TransitionTopDown": SubResource("Animation_f2ig0")
+&"RESET": SubResource("Animation_pig56"),
+&"TransitionFill": SubResource("Animation_p0gmo"),
+&"TransitionIn": SubResource("Animation_ftwxo"),
+&"TransitionTopDown": SubResource("Animation_f2ig0")
 }
 
-[node name="Transition" type="Control"]
-top_level = true
+[node name="Transition" type="Control" unique_id=613866660]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_akd26")
 
-[node name="Transitions" type="TextureRect" parent="."]
+[node name="Transitions" type="TextureRect" parent="." unique_id=1113484185]
 clip_children = 1
 clip_contents = true
 layout_mode = 1
@@ -228,42 +228,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_0r840")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Background" type="TextureRect" parent="Transitions"]
+[node name="Background" type="TextureRect" parent="Transitions" unique_id=1537887329]
 self_modulate = Color(0.310617, 0.310617, 0.310617, 1)
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 644.0
+mouse_filter = 2
 texture = ExtResource("1_f6fci")
 
-[node name="LoadingScreen" parent="Transitions/Background" instance=ExtResource("3_xyccu")]
+[node name="LoadingScreen" parent="Transitions/Background" unique_id=180906348 instance=ExtResource("3_xyccu")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.723
 offset_bottom = -0.362061
+mouse_filter = 2
 
-[node name="ColorRect2" type="TextureRect" parent="."]
+[node name="ColorRect2" type="TextureRect" parent="." unique_id=2126803370]
 visible = false
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 648.0
+mouse_filter = 2
 texture = ExtResource("2_cwr7t")
 
-[node name="DebugMiddleScreen" type="Marker2D" parent="."]
+[node name="DebugMiddleScreen" type="Marker2D" parent="." unique_id=95085926]
 visible = false
 position = Vector2(576, 324)
 gizmo_extents = 340.5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=511489205]
 process_priority = 2
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
 callback_mode_method = 1
-libraries = {
-"": SubResource("AnimationLibrary_ltklw")
-}
+libraries/ = SubResource("AnimationLibrary_ltklw")

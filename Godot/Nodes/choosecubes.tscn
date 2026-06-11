@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://p4r5g73ddt6g"]
+[gd_scene format=3 uid="uid://p4r5g73ddt6g"]
 
 [ext_resource type="Texture2D" uid="uid://drh14dbajd7mu" path="res://Assets/SuperstarSagaUI/Block_Hammer.png" id="1_7c2vx"]
-[ext_resource type="Script" path="res://Godot/Scripts/choosecubes.gd" id="1_21207"]
+[ext_resource type="Script" uid="uid://c5b7lmrq200x7" path="res://Godot/Scripts/choosecubes.gd" id="1_21207"]
 [ext_resource type="Texture2D" uid="uid://crwx4xooiap8l" path="res://Assets/SuperstarSagaUI/Block_BroAttack.png" id="2_hs6gf"]
 [ext_resource type="Texture2D" uid="uid://dwnf67gm85rlf" path="res://Assets/SuperstarSagaUI/Block_Flee.png" id="3_vkmjr"]
 [ext_resource type="Texture2D" uid="uid://73idqrblkhgh" path="res://Assets/SuperstarSagaUI/Block_Item.png" id="4_k5q3q"]
@@ -118,101 +118,130 @@ size = Vector3(0.3, 0.1, 0.3)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p7wp4"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jt5ym"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_jt5ym"]
+offsets = PackedFloat32Array(0, 0.71686745, 0.896, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.22972977, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cw7jy"]
+gradient = SubResource("Gradient_jt5ym")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_puex7"]
+gradient = SubResource("Gradient_jt5ym")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gfsvy"]
+gradient = SubResource("Gradient_jt5ym")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jt5ym"]
+font = SubResource("SystemFont_nq8sx")
+font_size = 270
+outline_size = 40
+
+[node name="Node3D" type="Node3D" unique_id=343244547]
 script = ExtResource("1_21207")
 offset_speed = 200.0
 
-[node name="Jump" type="StaticBody3D" parent="."]
+[node name="Jump" type="StaticBody3D" parent="." unique_id=710784277]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jump"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jump" unique_id=642750097]
 shape = SubResource("BoxShape3D_irwty")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Jump"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jump" unique_id=6393750]
 visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
 
-[node name="Decal" type="MeshInstance3D" parent="Jump"]
+[node name="Decal" type="MeshInstance3D" parent="Jump" unique_id=2071154606]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
 mesh = SubResource("QuadMesh_bku0f")
 skeleton = NodePath("")
 
-[node name="Hammer" type="StaticBody3D" parent="."]
+[node name="Hammer" type="StaticBody3D" parent="." unique_id=1773126816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.1, -0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hammer"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hammer" unique_id=1103532483]
 shape = SubResource("BoxShape3D_irwty")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hammer"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hammer" unique_id=682590108]
 visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
 
-[node name="Decal" type="MeshInstance3D" parent="Hammer"]
+[node name="Decal" type="MeshInstance3D" parent="Hammer" unique_id=1465968781]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
 mesh = SubResource("QuadMesh_j2pp1")
 skeleton = NodePath("")
 
-[node name="Bros" type="StaticBody3D" parent="."]
+[node name="Bros" type="StaticBody3D" parent="." unique_id=1411941732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.1, -0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bros"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bros" unique_id=2133524998]
 shape = SubResource("BoxShape3D_irwty")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bros"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bros" unique_id=1120804238]
 visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
 
-[node name="Decal" type="MeshInstance3D" parent="Bros"]
+[node name="Decal" type="MeshInstance3D" parent="Bros" unique_id=1933003688]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
 mesh = SubResource("QuadMesh_wwkk3")
 skeleton = NodePath("")
 
-[node name="Flee" type="StaticBody3D" parent="."]
+[node name="Flee" type="StaticBody3D" parent="." unique_id=606745828]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, -1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Flee"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Flee" unique_id=1972736804]
 shape = SubResource("BoxShape3D_irwty")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Flee"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Flee" unique_id=26111327]
 visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 skeleton = NodePath("")
 
-[node name="Decal" type="MeshInstance3D" parent="Flee"]
+[node name="Decal" type="MeshInstance3D" parent="Flee" unique_id=587015339]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
 mesh = SubResource("QuadMesh_c5vuc")
 skeleton = NodePath("")
 
-[node name="Item" type="StaticBody3D" parent="."]
+[node name="Item" type="StaticBody3D" parent="." unique_id=1252521354]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, -1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Item"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Item" unique_id=927425845]
 shape = SubResource("BoxShape3D_irwty")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Item"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Item" unique_id=1046297614]
 visible = false
 transparency = 1.0
 mesh = SubResource("BoxMesh_ldwy2")
 
-[node name="Decal" type="MeshInstance3D" parent="Item"]
+[node name="Decal" type="MeshInstance3D" parent="Item" unique_id=476497598]
 transform = Transform3D(0.403445, 0, 0, 0, 0.403445, 0, 0, 0, 0.403445, 0.12, 0, 0)
 mesh = SubResource("QuadMesh_ew78n")
 skeleton = NodePath("")
 
-[node name="SoftBody3D" type="MeshInstance3D" parent="."]
+[node name="SoftBody3D" type="MeshInstance3D" parent="." unique_id=1433581029]
 transform = Transform3D(-4.30473e-08, 0.984808, 0.000173648, -1, -4.37114e-08, 9.3097e-18, 7.5904e-09, -0.173648, 0.000984808, 0.230658, 0.29468, 0.131078)
+visible = false
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_uh2mf")
 skeleton = NodePath("Label3D")
 
-[node name="Label3D" type="Label3D" parent="SoftBody3D"]
+[node name="Label3D" type="Label3D" parent="SoftBody3D" unique_id=713614015]
 transform = Transform3D(1.063, -1.33227e-15, -8.67362e-19, -5.55112e-16, 0.85, 7.27596e-12, 9.09495e-13, -1.52588e-05, 0.557, 0, -0.00667408, 37.8506)
+visible = false
 sorting_offset = 2.0
 sorting_use_aabb_center = false
 billboard = 1
@@ -221,22 +250,101 @@ font = SubResource("SystemFont_nq8sx")
 font_size = 24
 uppercase = true
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1084516773]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=401657427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 shape = SubResource("BoxShape3D_544gp")
 
-[node name="Hitsound" type="AudioStreamPlayer" parent="."]
+[node name="Hitsound" type="AudioStreamPlayer" parent="." unique_id=102921350]
 stream = ExtResource("6_thxlj")
 volume_db = -8.0
 
-[node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+[node name="SwitchSound" type="AudioStreamPlayer" parent="." unique_id=467769727]
 stream = ExtResource("7_itppf")
 volume_db = -8.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=778391923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.434871, 0)
 visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_p7wp4")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1728806787]
+transform = Transform3D(0.06, 0, 0, 0, 0.048, 0, 0, 0, 0.06, 0.16337278, 0.3548783, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_jt5ym")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=726853779]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1500, 600)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="Sprite3D/SubViewport" unique_id=364929478]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 20.0
+
+[node name="Base" type="TextureRect" parent="Sprite3D/SubViewport/Control" unique_id=1294252980]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 1200.0
+offset_bottom = 300.0
+texture = SubResource("GradientTexture2D_cw7jy")
+expand_mode = 1
+
+[node name="Base2" type="TextureRect" parent="Sprite3D/SubViewport/Control" unique_id=1123959614]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 1200.0
+offset_bottom = 600.0
+texture = SubResource("GradientTexture2D_puex7")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="Sprite3D/SubViewport/Control" unique_id=251252250]
+clip_contents = true
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 600.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport/Control/Control" unique_id=912594638]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 600.0
+texture = SubResource("GradientTexture2D_gfsvy")
+expand_mode = 1
+
+[node name="Control2" type="Control" parent="Sprite3D/SubViewport/Control" unique_id=1189620278]
+clip_contents = true
+anchors_preset = 0
+offset_left = 1200.0
+offset_right = 1500.0
+offset_bottom = 600.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport/Control/Control2" unique_id=385058215]
+layout_mode = 0
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 600.0
+texture = SubResource("GradientTexture2D_gfsvy")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/Control" unique_id=1883515426]
+custom_minimum_size = Vector2(0, 370)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.82
+anchor_top = 6.2
+anchor_right = 26.86
+anchor_bottom = 24.7
+scale = Vector2(1, 0.9)
+text = "HAMMER"
+label_settings = SubResource("LabelSettings_jt5ym")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

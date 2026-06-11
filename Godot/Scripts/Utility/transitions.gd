@@ -19,12 +19,21 @@ enum TransitionType {CIRCULAR, FILL, TOP_DOWN}
 		if transition_gradient:
 			transition_gradient.gradient.set_offset(1,value)
 
+func _enter_tree() -> void:
+	get_tree().root.child_entered_tree.connect(func(b): get_tree().root.move_child.call_deferred(self,-1))
+
 func _ready() -> void:
-	#start_fake_loading()
-	pass
+	if get_tree().current_scene != self:
+		process_mode = Node.PROCESS_MODE_DISABLED
+
+func _process(delta: float) -> void: 
+	if Input.is_action_just_pressed("ui_accept"):
+		print_debug("Fake Test")
+		start_fake_loading()
 
 func start_fake_loading():
-	anim.play(&"TransitionIn")
+	
+	anim.play(&"TransitionFill")
 	await anim.animation_finished
 	loading.start_loading.emit()
 	await Globals.wait(1)
@@ -38,11 +47,11 @@ func start_fake_loading():
 	await Globals.wait(0.5)
 	loading.end_loading.emit()
 	await Globals.wait(0.5)
-	anim.play_backwards(&"TransitionIn")
+	anim.play_backwards(&"TransitionFill")
 
 func start_loading(path : String, transition_type : TransitionType, scene_tree : SceneTree):
 	if transition_type == TransitionType.CIRCULAR:
-		anim.play(&"TransitionIn")
+		anim.play(&"TransitionFill")
 		await anim.animation_finished
 	elif transition_type == TransitionType.FILL:
 		anim.play(&"TransitionFill")
@@ -69,4 +78,4 @@ func start_loading(path : String, transition_type : TransitionType, scene_tree :
 	loading.end_loading.emit()
 	await Globals.wait(0.5)
 	if transition_type == TransitionType.CIRCULAR:
-		anim.play_backwards(&"TransitionIn")
+		anim.play_backwards(&"TransitionFill")
