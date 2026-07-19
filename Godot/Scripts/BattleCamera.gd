@@ -1,11 +1,16 @@
+@tool
 class_name BattleCamera extends Camera3D
 
-var target_position : Vector3
-var target_follow = false
-var target_node : Node3D
+@export var cur_transform : CameraTransform = CameraTransform.new()
+@export var camera_speed : float = 7.5
+@export_category("Editor")
+@export var on_editor_custom_transform : bool = false
+@export var debugging_transform : CameraTransform = CameraTransform.new()
 
 func _process(delta: float) -> void:
-	position = lerp(position,target_position,delta*7.5)
+	position = lerp(position,(debugging_transform.position if Engine.is_editor_hint() and on_editor_custom_transform and (debugging_transform != null) else cur_transform.position),delta*camera_speed)
+	rotation = lerp(rotation,(debugging_transform.rotation if Engine.is_editor_hint() and on_editor_custom_transform and (debugging_transform != null) else cur_transform.rotation),delta*camera_speed)
+	fov = lerp(fov,(debugging_transform.fov if Engine.is_editor_hint() and on_editor_custom_transform else cur_transform.fov),delta*camera_speed)
 
 func shake_camera(power : float, sec : float):
 	var og_pos = Vector2(h_offset,v_offset)

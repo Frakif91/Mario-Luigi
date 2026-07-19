@@ -1,0 +1,13 @@
+[gd_resource type="Sky" format=3 uid="uid://dei28aeotasb5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yn7o2"]
+sky_top_color = Color(0.581934, 0.770068, 0.960994, 1)
+sky_horizon_color = Color(0.0617025, 0.325318, 0.843164, 1)
+sky_curve = 0.0208043
+ground_horizon_color = Color(0.0627451, 0.32549, 0.843137, 1)
+ground_curve = 0.15455
+sun_angle_max = 52.1
+sun_curve = 0.0549033
+
+[resource]
+sky_material = SubResource("ProceduralSkyMaterial_yn7o2")

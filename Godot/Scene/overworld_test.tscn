@@ -1,13 +1,13 @@
-[gd_scene load_steps=41 format=3 uid="uid://cw42wwxj6egks"]
+[gd_scene format=3 uid="uid://cw42wwxj6egks"]
 
 [ext_resource type="PackedScene" uid="uid://cg5cphpkwg8ve" path="res://Godot/Nodes/Brother/MarioOverworld.tscn" id="1_1nj15"]
 [ext_resource type="PackedScene" uid="uid://3ehm7agaca1t" path="res://Godot/Nodes/Brother/LuigiOverworld.tscn" id="2_7i1dn"]
 [ext_resource type="Texture2D" uid="uid://bn3hgcv4lqjop" path="res://Assets/Prototypes/Vector/texture_01.svg" id="3_6yqkb"]
 [ext_resource type="AudioStream" uid="uid://g1hwhwj40u4t" path="res://Assets/Music/Breezy Mushrise Park - Mario & Luigi Dream Team Music Extended.mp3" id="7_04ykq"]
-[ext_resource type="Script" path="res://Godot/Scripts/Utility/Teleporter.gd" id="7_mfg47"]
+[ext_resource type="Script" uid="uid://ds4dmofbttyhf" path="res://Godot/Scripts/Utility/Teleporter.gd" id="7_mfg47"]
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="8_v1amf"]
 [ext_resource type="SpriteFrames" uid="uid://blveegsog8cqv" path="res://Godot/shop_ui.tres" id="8_xaj1a"]
-[ext_resource type="Script" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
+[ext_resource type="Script" uid="uid://gb17fqilot1f" path="res://Godot/Scripts/NPC.gd" id="9_76a8t"]
 [ext_resource type="PackedScene" uid="uid://b66mg7qjtcc0w" path="res://Assets/3D/Blocks/mario_block.tscn" id="9_qnxvs"]
 [ext_resource type="PackedScene" uid="uid://bleaj1an8o3dw" path="res://Godot/Nodes/controller_connected.tscn" id="13_1ll5n"]
 
@@ -22,8 +22,8 @@ frequency = 0.2
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_knwl2"]
 width = 2048
 height = 2048
-color_ramp = SubResource("Gradient_pt8dy")
 noise = SubResource("FastNoiseLite_ogx0s")
+color_ramp = SubResource("Gradient_pt8dy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nisup"]
 albedo_texture = SubResource("NoiseTexture2D_knwl2")
@@ -33,6 +33,22 @@ texture_filter = 2
 [sub_resource type="BoxMesh" id="BoxMesh_k7rf6"]
 material = SubResource("StandardMaterial3D_nisup")
 size = Vector3(50, 1, 50)
+
+[sub_resource type="Gradient" id="Gradient_u6sdm"]
+offsets = PackedFloat32Array(0.7969466, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gllrq"]
+gradient = SubResource("Gradient_u6sdm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gllrq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gllrq"]
+radius = 0.1
+height = 0.2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h10to"]
 sky_top_color = Color(0.135667, 0.443506, 0.809005, 1)
@@ -141,187 +157,215 @@ height = 0.818777
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkf1i"]
 radius = 0.709963
 
-[node name="Overworld" type="Node3D"]
+[node name="Overworld" type="Node3D" unique_id=1911785461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, 0)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1818300355]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1765341476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("WorldBoundaryShape3D_j3u2c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=122196982]
 mesh = SubResource("BoxMesh_k7rf6")
 
-[node name="Mario" parent="." instance=ExtResource("1_1nj15")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479366, 0)
+[node name="Mario" parent="." unique_id=1388894047 instance=ExtResource("1_1nj15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0688186, 0.479366, -0.9063599)
 luigi_np = NodePath("../Luigi")
+trail_sample_distance = 1.0
 
-[node name="Luigi" parent="." instance=ExtResource("2_7i1dn")]
+[node name="Camera3D" parent="Mario" index="2" unique_id=1331559850]
+transform = Transform3D(1, 0, 0, 0, 0.8191525, 0.57357675, 0, -0.57357675, 0.8191525, 0, 1.7, 2)
+current = false
+fov = 50.0
+follow_offset = Vector3(0, 1.835, 1.5)
+script_overrite = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Decal3" type="Decal" parent="Mario" unique_id=54396166]
+size = Vector3(0.3, 2, 0.3)
+texture_albedo = SubResource("GradientTexture2D_gllrq")
+upper_fade = 10.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Mario" unique_id=1562033380]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.016732931, 0.23930109, 0.17386943)
+shape = SubResource("SphereShape3D_gllrq")
+spring_length = 7.42
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mario/SpringArm3D" unique_id=395446499]
+mesh = SubResource("SphereMesh_gllrq")
+
+[node name="Camera3D" type="Camera3D" parent="Mario/SpringArm3D" unique_id=791498778]
+current = true
+
+[node name="Luigi" parent="." unique_id=1725497435 instance=ExtResource("2_7i1dn")]
+arrival_threshold = 0.3
+SPEED = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=142111686]
 environment = SubResource("Environment_nf4br")
 
-[node name="WorldLight" type="DirectionalLight3D" parent="."]
+[node name="WorldLight" type="DirectionalLight3D" parent="." unique_id=261431440]
 transform = Transform3D(0.144516, -0.866025, -0.47866, 0.957319, 4.18458e-08, 0.289032, -0.250309, -0.5, 0.829063, 0, 4.04908, 0)
 visible = false
 light_cull_mask = 4294967293
 shadow_enabled = true
 
-[node name="RoundShadowsLight" type="DirectionalLight3D" parent="."]
+[node name="RoundShadowsLight" type="DirectionalLight3D" parent="." unique_id=1193847128]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 4.04908, 0)
 layers = 2
 light_cull_mask = 4293918721
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=71388373]
 stream = ExtResource("7_04ykq")
 volume_db = -16.0
 autoplay = true
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1807848775]
 visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 icon = ExtResource("8_v1amf")
 
-[node name="Level" type="Node3D" parent="."]
+[node name="Level" type="Node3D" parent="." unique_id=1679675975]
 
-[node name="Cube" type="StaticBody3D" parent="Level"]
+[node name="Cube" type="StaticBody3D" parent="Level" unique_id=1460576118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube" unique_id=106359087]
 mesh = SubResource("BoxMesh_xu6od")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube" unique_id=1665470623]
 shape = SubResource("BoxShape3D_mq3p0")
 
-[node name="Cube3" type="StaticBody3D" parent="Level"]
+[node name="Cube3" type="StaticBody3D" parent="Level" unique_id=1935260512]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84261, 2.1507, 2.99969)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube3" unique_id=627277320]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00947547)
 mesh = SubResource("BoxMesh_xu6od")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube3" unique_id=1882192071]
 shape = SubResource("BoxShape3D_mq3p0")
 
-[node name="Cube4" type="StaticBody3D" parent="Level"]
+[node name="Cube4" type="StaticBody3D" parent="Level" unique_id=322245397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8905, 0.995374, 3.62524)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube4" unique_id=1288913749]
 mesh = SubResource("BoxMesh_xu6od")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube4" unique_id=699848254]
 shape = SubResource("BoxShape3D_mq3p0")
 
-[node name="Cube5" type="StaticBody3D" parent="Level"]
+[node name="Cube5" type="StaticBody3D" parent="Level" unique_id=1352985589]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6, 0.150173, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube5" unique_id=1615435731]
 mesh = SubResource("BoxMesh_duhrc")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube5" unique_id=1828150640]
 shape = SubResource("BoxShape3D_mq3p0")
 
-[node name="Slide2" type="StaticBody3D" parent="Level"]
+[node name="Slide2" type="StaticBody3D" parent="Level" unique_id=14460815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.036, 1, 3.625)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide2" unique_id=230796539]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
 mesh = SubResource("BoxMesh_42v04")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide2" unique_id=490067315]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
 shape = SubResource("BoxShape3D_6ooja")
 
-[node name="Slide" type="StaticBody3D" parent="Level"]
+[node name="Slide" type="StaticBody3D" parent="Level" unique_id=851521314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61087, 1.54811, 3.00867)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Slide" unique_id=87487392]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.172812, -0.0939166, -0.00510645)
 mesh = SubResource("BoxMesh_grvyo")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slide" unique_id=643121124]
 transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.126469, -0.0671604, -0.00510645)
 shape = SubResource("BoxShape3D_p6hwn")
 
-[node name="Cube8" type="StaticBody3D" parent="Level"]
+[node name="Cube8" type="StaticBody3D" parent="Level" unique_id=199323398]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.5, 1.5, -3.5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube8"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Cube8" unique_id=1651322285]
 mesh = SubResource("BoxMesh_xu6od")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Cube8" unique_id=1612490071]
 shape = SubResource("BoxShape3D_mq3p0")
 
-[node name="Spinning" type="StaticBody3D" parent="Level"]
+[node name="Spinning" type="StaticBody3D" parent="Level" unique_id=1414047337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.55, -3.5)
 constant_angular_velocity = Vector3(0, 0.523599, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Spinning"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Spinning" unique_id=1293502549]
 mesh = SubResource("BoxMesh_8txig")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Spinning"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Spinning" unique_id=2135890020]
 shape = SubResource("BoxShape3D_8y1u6")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level/Spinning"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level/Spinning" unique_id=1186275898]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.051, 0)
 mesh = SubResource("CylinderMesh_so13y")
 
-[node name="QCube" parent="Level" instance=ExtResource("9_qnxvs")]
+[node name="QCube" parent="Level" unique_id=281757128 instance=ExtResource("9_qnxvs")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.49737, 3.88273, -3.50912)
 collision_layer = 5
 collision_mask = 5
 coin_quantity = 2
 
-[node name="QCube2" parent="Level" instance=ExtResource("9_qnxvs")]
+[node name="QCube2" parent="Level" unique_id=251272957 instance=ExtResource("9_qnxvs")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.89309, 2.92022, 3.60702)
 reward_type = "Object"
 
-[node name="Teleporter" type="Area3D" parent="Level"]
+[node name="Teleporter" type="Area3D" parent="Level" unique_id=1087354953]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26904, 0.607283, 2.36587)
 collision_mask = 5
 script = ExtResource("7_mfg47")
 target_scene = "res://Godot/Scene/cafe.tscn"
 target_pos = Vector3(-2.47973, 0.154164, -1.773)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Teleporter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Teleporter" unique_id=737817267]
 shape = SubResource("BoxShape3D_tusru")
 
-[node name="Label3D" type="Label3D" parent="Level"]
+[node name="Label3D" type="Label3D" parent="Level" unique_id=1115386580]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26904, 1.30289, 2.51169)
 text = "To the Hotel's main Room
 V"
 
-[node name="Control" parent="." instance=ExtResource("13_1ll5n")]
+[node name="Control" parent="." unique_id=1611949138 instance=ExtResource("13_1ll5n")]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1221461497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.930899, -5.88096)
 script = ExtResource("9_76a8t")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Area3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Area3D" unique_id=1402695693]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/StaticBody3D" unique_id=1907167309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.228714, 0)
 shape = SubResource("CapsuleShape3D_1omst")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=814207410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.347092, 0)
 shape = SubResource("SphereShape3D_mkf1i")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D"]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D" unique_id=1585159257]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.15266, 0)
 sprite_frames = ExtResource("8_xaj1a")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.949584
+
+[editable path="Mario"]

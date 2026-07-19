@@ -33,8 +33,8 @@ func get_choose_cube() -> int:
 
 func get_pos_by_angle(angle : float, circle_center : Vector2, circle_rayon : float) -> Vector2:
 	var vec = Vector2.from_angle(deg_to_rad(angle))
-	vec += circle_center
 	vec *= circle_rayon
+	vec += circle_center
 	return vec
 
 func emit_hit_signal(_body):
@@ -42,9 +42,12 @@ func emit_hit_signal(_body):
 		hit_block.emit()
 		$"Hitsound".play()
 		#print_debug("TOUCHED")
-		
+
+func _on_block_changed(_which_block : int, _delta):
+	$Sprite3D/SubViewport/Control/Label.text = get_choose_cube_name()
 
 func _ready():
+	change_block.connect(_on_block_changed)
 	$Area3D.body_entered.connect(emit_hit_signal)
 	blocks_nb = 0
 	original_positions.clear()
@@ -63,7 +66,7 @@ func _process(_delta):
 	#print_debug("PROCESS LOOP STARTS")
 	var i = 0
 	#print("E : ",cur_index, " <-> ", (-cur_index) % blocks_nb )
-
+	center_point = Vector2(position.x, position.z)
 	choosen_floating_one_delta += _delta
 	for object in get_children():
 		if is_instance_of(object,StaticBody3D):

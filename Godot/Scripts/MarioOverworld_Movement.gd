@@ -1,214 +1,132 @@
-class_name MarioOW_Movement extends CharacterBody3D
+class_name MarioOW_Movement
+extends OWCharacterMovement
 
-signal did_move(velocity : Vector3)
+## Leader contrôlé par le joueur. Enregistre une trace (breadcrumb trail)
+## que Luigi suit à distance. Quand la trace est pleine — c'est-à-dire que
+## Luigi n'arrive pas à consommer les points assez vite, typiquement parce
+## qu'il est physiquement coincé quelque part — Mario est retenu et ne peut
+## plus s'éloigner davantage, comme une laisse.
 
-signal start_move()
-signal stop_move()
+signal did_move(position: Vector3)
+signal start_move
+signal stop_move
 
-@onready var asprite3D : AnimatedSprite3D = $"ASprite3D"
-@onready var jumpsfx : AudioStreamPlayer = $"JumpSFX"
-@export var center_fall_anim_rspeed : float = 0.3
-@export var walk_sound_waittime = 12.0/20./2.
-@export_node_path("LuigiOW_Movement") var luigi_np
-@onready var luigi : LuigiOW_Movement = get_node_or_null(luigi_np)
-@export var max_distance_from_luigi = 0.6
-@export var max_distance_margin = 0.1
-var cur_right_foot = false
-var old_debug_direction = 0.0
+@export var walk_sound_waittime: float = 12.0 / 20.0 / 2.0
+@export_node_path("LuigiOW_Movement") var luigi_np: NodePath
 
-class MarioMovement:
-	var animation
-	var glb_position
-	var rel_position
+## Distance (en unités du monde) entre deux points enregistrés dans la trace.
+@export var trail_sample_distance: float = 0.35
+## Nombre max de points en attente. La longueur de la laisse, en unités du
+## monde, vaut environ trail_max_length * trail_sample_distance.
+@export var trail_max_length: int = 20
 
-const SORTED_DIRECTION = ["N","NE","E","SE","S","SW","W","NW"]
+@onready var luigi: LuigiOW_Movement = get_node_or_null(luigi_np)
+@onready var right_foot: AudioStreamPlayer = $"RightFoot"
+@onready var right_foot_2: AudioStreamPlayer = $"RightFoot2"
+@onready var footstep_timer: Timer = $"Timer"
 
-const ACTIONS : Dictionary = {JUMP = &"jump", IDLE = &"idle", WALK = &"walk"}
-enum ALTERNATIVE {NORMAL,ALT,ALT2,ALT3}
+## Trace de déplacement, du plus ancien (index 0, la cible actuelle de
+## Luigi) au plus récent. Possédée par Mario, lue et vidée par Luigi.
+var trail: Array[Vector3] = []
 
-var state_direction : StringName = &"S"
-var state_action : StringName = &"idle"
-var on_floor : bool
-var just_touched_floor : bool
-var jump_alt = 0
-var is_moving = false
-var can_play_animation = true
+var cur_right_foot: bool = false
+var is_moving: bool = false
 
-signal touched_floor
+func _ready() -> void:
+	sorted_direction = [&"N", &"NE", &"E", &"SE", &"S", &"SW", &"W", &"NW"]
 
-@export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
+	footstep_timer.timeout.connect(_walk_sound)
+	footstep_timer.autostart = false
+	footstep_timer.one_shot = true
+	stop_move.connect(footstep_timer.stop)
+	start_move.connect(func(): footstep_timer.start(walk_sound_waittime / 2.0))
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	if luigi == null:
+		push_warning("MarioOW_Movement (%s) : Luigi introuvable via luigi_np, la laisse ne fonctionnera pas." % [name])
 
-func walk_sound():
-	if cur_right_foot:
-		$"RightFoot".play()
-	else:
-		$"RightFoot2".play()
+func _walk_sound() -> void:
+	(right_foot if cur_right_foot else right_foot_2).play()
 	cur_right_foot = not cur_right_foot
-	$"Timer".start(walk_sound_waittime)
+	footstep_timer.start(walk_sound_waittime)
 
-func _ready():
-	$"Timer".timeout.connect(walk_sound)
-	$"Timer".autostart = false
-	$"Timer".one_shot = true
-	stop_move.connect($"Timer".stop)
-	start_move.connect(func(): $"Timer".start(walk_sound_waittime/2))
-	#$"Timer".start(walk_sound_waittime)
-	#$"Timer".stop()
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	_update_footstep_pause()
 
-func animation_process():
-	get_action_and_direction(Vector2(sign(velocity.x),sign(velocity.z)))
+	if Input.is_action_just_pressed(&"Jump"):
+		try_jump()
 
-	if just_touched_floor:
-		play_animation(ACTIONS.JUMP,state_direction,&"2")
-		can_play_animation = false
-		#await asprite3D.animation_finished
-		can_play_animation = true
-	elif state_action == ACTIONS.WALK:
-		play_animation(state_action,state_direction,&"")
-		#$"Timer".start()
-	elif state_action == ACTIONS.IDLE:
-		play_animation(state_action,state_direction,&"0")
-		cur_right_foot = true
-		#$"Timer".stop()
-	elif state_action == ACTIONS.JUMP:
-		play_animation(state_action,state_direction,str(jump_alt))
+	# Comme avant : input relatif à l'orientation du personnage.
+	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-func _process(_delta):
-	if can_play_animation:
-		await animation_process()
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	if $"Timer".time_left > 0:
-		if not is_on_floor():
-			$"Timer".paused = true
-		else:
-			if $"Timer".paused:
-				$"Timer".paused = false
-				$"Timer".start(walk_sound_waittime/2)
-
-	# Handle jump.
-	if Input.is_action_just_pressed(&"Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		jumpsfx.play()
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		#did_move.emit(velocity)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		if is_moving:
-			is_moving = false
-			stop_move.emit()
-
-	# if self.global_position.distance_squared_to(luigi.global_position) >= max_distance_from_luigi:
-	# 	var new_position = global_position + luigi.global_position.direction_to(self.global_position) * (max_distance_from_luigi - max_distance_margin)
-	# 	velocity = new_position * 0.2
 
 	move_and_slide()
+	_enforce_leash()
+	_handle_block_bumps()
 
-	if velocity.x or velocity.z:
+	var currently_moving := velocity.x != 0.0 or velocity.z != 0.0
+	if currently_moving and not is_moving:
+		is_moving = true
+		start_move.emit()
+	elif not currently_moving and is_moving:
+		is_moving = false
+		stop_move.emit()
+
+	if currently_moving:
+		_record_trail_point()
 		did_move.emit(global_position)
-		if not is_moving:
-			is_moving = true
-			start_move.emit()
 
-	if is_on_ceiling_only():
-		for slide_col_idx in get_slide_collision_count():
-			var slide_col = get_slide_collision(slide_col_idx).get_collider()
-			if is_instance_of(slide_col,OW_Block):
-				(slide_col as OW_Block).block_hit.emit()
-	
-	just_touched_floor = false
-	if on_floor != is_on_floor():
-		on_floor = not on_floor
-		if on_floor:
-			touched_floor.emit()
-			just_touched_floor = true
-	
+	update_action_and_direction(Vector2(sign(velocity.x), sign(velocity.z)), currently_moving)
+
+func _update_footstep_pause() -> void:
+	if footstep_timer.time_left <= 0:
+		return
 	if not is_on_floor():
-		if velocity.y > center_fall_anim_rspeed:
-			jump_alt = ALTERNATIVE.NORMAL
-		elif velocity.y <= center_fall_anim_rspeed and velocity.y >= -center_fall_anim_rspeed: # -0.2 < velocity.y < 0.1
-			jump_alt = ALTERNATIVE.ALT
-		elif velocity.y < -center_fall_anim_rspeed:
-			jump_alt = ALTERNATIVE.ALT2
-			
-		if just_touched_floor:
-			jump_alt = ALTERNATIVE.ALT3
-		
+		footstep_timer.paused = true
+	elif footstep_timer.paused:
+		footstep_timer.paused = false
+		footstep_timer.start(walk_sound_waittime / 2.0)
 
-func get_action_and_direction(cur_direction : Vector2):
-	var direction_angle = roundi(rad_to_deg(cur_direction.angle()))
+func _handle_block_bumps() -> void:
+	if not is_on_ceiling_only():
+		return
+	for i in get_slide_collision_count():
+		var collider := get_slide_collision(i).get_collider()
+		if is_instance_of(collider, OW_Block):
+			(collider as OW_Block).block_hit.emit()
 
-	if not cur_direction and is_on_floor(): #NO DIRECTION
-		state_action = ACTIONS.IDLE
+## true dès que la trace est pleine : Luigi est trop loin derrière (bloqué,
+## ou juste en retard) pour qu'on le laisse consommer des points plus vite
+## qu'on en ajoute.
+func _is_leashed() -> bool:
+	return trail.size() >= trail_max_length
+
+func _record_trail_point() -> void:
+	if trail.size() >= trail_max_length:
+		return
+	if trail.is_empty() or global_position.distance_to(trail[-1]) >= trail_sample_distance:
+		trail.append(global_position)
+
+## Si la laisse est tendue, on ramène Mario dans un petit rayon autour du
+## dernier point de trace au lieu de le figer complètement : il peut
+## toujours bouger latéralement ou revenir vers Luigi, mais pas s'éloigner
+## davantage. Vector3.limit_length garde la direction du déplacement tout
+## en plafonnant sa longueur — pas besoin de logique de blocage plus lourde.
+func _enforce_leash() -> void:
+	if not _is_leashed():
 		return
 
-	elif cur_direction and is_on_floor():
-		state_action = ACTIONS.WALK
-	elif not is_on_floor():
-		state_action = ACTIONS.JUMP
+	var anchor: Vector3 = trail[-1] if not trail.is_empty() else global_position
+	if luigi != null and trail.is_empty():
+		anchor = luigi.global_position
 
-	var max_angles = 8
-	@warning_ignore("integer_division")
-	var each_index = 360/max_angles
-	@warning_ignore("integer_division")
-	state_direction = SORTED_DIRECTION[((direction_angle/each_index) + 2) % 8]
-	
-	#print("Mario -> Cur Angle : ",direction_angle, " <-> ", direction_angle/each_index ," <->", state_direction)
-
-	# if cur_direction:
-	# 	match cur_direction:
-	# 		Vector2(1,0): state_direction = DIRECTION.RIGHT
-	# 		Vector2(-1,0): state_direction = DIRECTION.LEFT
-	# 		Vector2(0,-1): state_direction = DIRECTION.UP
-	# 		Vector2(0,1): state_direction = DIRECTION.DOWN
-			
-	# 		Vector2(1,1): state_direction = DIRECTION.DOWNRIGHT
-	# 		Vector2(-1,1): state_direction = DIRECTION.DOWNLEFT
-	# 		Vector2(1,-1): state_direction = DIRECTION.UPRIGHT
-	# 		Vector2(-1,-1): state_direction = DIRECTION.UPLEFT
-
-
-func play_animation(action : StringName, _direction : StringName, _animation_alt : StringName):
-	var does_have_alt : bool = false
-	var does_have_direction : bool = false
-	
-	if not _animation_alt.is_empty():
-		does_have_alt = true
-	
-	if not _direction.is_empty():
-		does_have_direction = true
-	
-	var composed_animation_name : String
-
-	if does_have_direction and does_have_alt:
-		composed_animation_name = "-".join(PackedStringArray([action,_direction,_animation_alt]))
-	elif does_have_direction and not does_have_alt:
-		composed_animation_name = "-".join(PackedStringArray([action,_direction]))
-	else:
-		composed_animation_name = action
-	
-	if asprite3D.animation != composed_animation_name:
-		var old_frame = asprite3D.frame
-		@warning_ignore("unused_variable")
-		var old_progress = asprite3D.frame_progress
-		asprite3D.play(StringName(composed_animation_name))
-		if composed_animation_name.begins_with("walk") and asprite3D.animation.begins_with("walk"):
-			asprite3D.set_frame_and_progress(old_frame,1)
-			
-	
+	var offset := global_position - anchor
+	if offset.length() > trail_sample_distance:
+		global_position = anchor + offset.limit_length(trail_sample_distance)

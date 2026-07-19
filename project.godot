@@ -17,7 +17,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Mario & Luigi : Hotel Mania"
 config/version="1.2.5"
 run/main_scene="res://Godot/Scene/title.tscn"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
+run/max_fps=60
 boot_splash/image="res://Assets/load.png"
 config/icon="res://n_icon.png"
 
@@ -25,7 +26,7 @@ config/icon="res://n_icon.png"
 
 Globals="*res://Godot/Scripts/Utility/globals.gd"
 Transitions="*res://Godot/Nodes/transitions.tscn"
-Debugger="res://Godot/Scripts/Utility/Debugging.gd"
+Debugger="*res://Godot/Scripts/Utility/Debugging.gd"
 
 [debug]
 
@@ -43,12 +44,12 @@ project/assembly_name="Mario & Luigi"
 
 [editor]
 
+movie_writer/ogv/encoding_speed=3
 movie_writer/movie_file="D:/Mario & Luigi/Mario-Luigi/Movie.avi"
-movie_writer/fps=30
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg")
 
 [file_customization]
 

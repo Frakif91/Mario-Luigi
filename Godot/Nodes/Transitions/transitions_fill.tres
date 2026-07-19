@@ -1,10 +1,5 @@
 [gd_resource type="GradientTexture2D" format=3 uid="uid://cg0hwhime1otw"]
 
-[sub_resource type="Gradient" id="Gradient_ej2yx"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
-
 [resource]
-gradient = SubResource("Gradient_ej2yx")
-width = 1152
-height = 1152
-fill_from = Vector2(1, 0)
+fill_from = Vector2(0.6666667, 0.73789173)
+fill_to = Vector2(0.17948718, 0.14245014)

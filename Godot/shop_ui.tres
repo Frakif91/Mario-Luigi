@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://blveegsog8cqv"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://blveegsog8cqv"]
 
 [ext_resource type="Texture2D" uid="uid://cjooen3kd8i6e" path="res://Assets/Sprites/Wii U - Paper Mario Color Splash - Toad Green.png" id="1_gjq5d"]
 
@@ -31,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tjjx2")
 }],
-"loop": false,
+"loop": 0,
 "name": &"blink",
 "speed": 15.0
 }, {
@@ -42,7 +42,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mpj06")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 2.0
 }, {
@@ -53,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u3rq4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"talk",
 "speed": 10.0
 }]

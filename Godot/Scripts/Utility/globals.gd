@@ -34,12 +34,7 @@ class RPG_System:
 
 func _ready():
 	var mario_inst : Brother = CharacterDefaultStats.new().create_character(CharacterDefaultStats.available.MARIO)
-	mario_inst.camera_position = Vector3(0.5,1.4,2.5)
-	mario_inst.chooseblock_offset = Vector2(-0.5,-1)
-	
 	var luigi_inst : Brother = CharacterDefaultStats.new().create_character(CharacterDefaultStats.available.LUIGI)
-	luigi_inst.camera_position = Vector3(0.5,1.4,2.5)
-	luigi_inst.chooseblock_offset = Vector2(-1.25,0.6)
 
 	Bros.merge({"Mario" = mario_inst, "Luigi" = luigi_inst})
 	print("Bros :",Bros)

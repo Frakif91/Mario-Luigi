@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://btoma1gohlc67"]
 
-[node name="DebuggingScene" type="Control"]
+[node name="DebuggingScene" type="Control" unique_id=844026327]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1364128267]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -20,22 +20,20 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1489703069]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1615243070]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=617742462]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 300)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "afeo^jezofjeozjfôezjfôejfoêzjfopez
-fozejfêzjfàôpzejfêzjf^pezjf
-ezfêzkjf^pàezjf^jez^fj^"
+text = "No debug values"
 fit_content = true
 autowrap_mode = 0

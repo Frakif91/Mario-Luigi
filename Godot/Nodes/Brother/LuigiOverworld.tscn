@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://3ehm7agaca1t"]
+[gd_scene format=3 uid="uid://3ehm7agaca1t"]
 
-[ext_resource type="Script" path="res://Godot/Scripts/LuigiOverworld_Movement.gd" id="1_iwn5y"]
+[ext_resource type="Script" uid="uid://b0s4v46u8ihjk" path="res://Godot/Scripts/LuigiOverworld_Movement.gd" id="1_iwn5y"]
 [ext_resource type="SpriteFrames" uid="uid://v4pbu477uses" path="res://Godot/overworld_test_luigi_animations.tres" id="2_oxqgx"]
 [ext_resource type="AudioStream" uid="uid://cm8whqc1dnbfa" path="res://Assets/SFX/SML2_Jump.ogg" id="3_7js7q"]
 [ext_resource type="AudioStream" uid="uid://detaoo1lrgc0q" path="res://Assets/SFX/WU_SE_PLY_FOOTNOTE_ROCK.wav" id="4_arifk"]
@@ -15,7 +15,17 @@ top_radius = 0.13
 bottom_radius = 0.13
 height = 0.001
 
-[node name="Luigi" type="CharacterBody3D"]
+[sub_resource type="Gradient" id="Gradient_u6sdm"]
+offsets = PackedFloat32Array(0.7969466, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ntecc"]
+gradient = SubResource("Gradient_u6sdm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Luigi" type="CharacterBody3D" unique_id=667865113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06279, -0.376311)
 collision_layer = 4
 slide_on_ceiling = false
@@ -23,7 +33,7 @@ script = ExtResource("1_iwn5y")
 array_lenght = 15
 mario_np = NodePath("../Mario")
 
-[node name="ASprite3D" type="AnimatedSprite3D" parent="."]
+[node name="ASprite3D" type="AnimatedSprite3D" parent="." unique_id=1279398239]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285589, 0)
 layers = 4
 billboard = 1
@@ -32,23 +42,30 @@ render_priority = 1
 sprite_frames = ExtResource("2_oxqgx")
 animation = &"idle-S-0"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=351871325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220939, 0)
 shape = SubResource("CapsuleShape3D_qf3ef")
 
-[node name="FakeShadow" type="MeshInstance3D" parent="."]
+[node name="FakeShadow" type="MeshInstance3D" parent="." unique_id=635442165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00353271, 0.12, 0.0285166)
+visible = false
 layers = 2
 transparency = 1.0
 mesh = SubResource("CylinderMesh_3veek")
 
-[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+[node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=1404271940]
 stream = ExtResource("3_7js7q")
 
-[node name="RightFoot" type="AudioStreamPlayer" parent="."]
+[node name="RightFoot" type="AudioStreamPlayer" parent="." unique_id=1840496830]
 stream = ExtResource("4_arifk")
 
-[node name="RightFoot2" type="AudioStreamPlayer" parent="."]
+[node name="RightFoot2" type="AudioStreamPlayer" parent="." unique_id=1265378325]
 stream = ExtResource("5_hv5ju")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=178472634]
+
+[node name="Decal2" type="Decal" parent="." unique_id=1069812191]
+size = Vector3(0.3, 2, 0.3)
+texture_albedo = SubResource("GradientTexture2D_ntecc")
+upper_fade = 10.0
+cull_mask = 1048571

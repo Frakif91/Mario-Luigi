@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://beluecn8qtufa"]
+
+[ext_resource type="Script" uid="uid://dxbwdjjlv2kyh" path="res://Godot/Scripts/Enemy.gd" id="1_lafjj"]
+
+[resource]
+script = ExtResource("1_lafjj")
+metadata/_custom_type_script = "uid://dxbwdjjlv2kyh"

@@ -7,7 +7,7 @@ class_name Actions
 
 var mario_variable : BrotherCB3
 var luigi_variable : BrotherCB3
-var enemies_variable : Array[Node3D]
+var enemies_variable : Array[EnemyUnit]
 var ratings_variable : AnimationPlayer
 var mario_anim : AnimationPlayer
 var cur_enemy_sprite : AnimatedSprite3D
@@ -40,7 +40,7 @@ enum results {NONE,SUCESS,FAIL,GOOD}
 
 @onready var animation_timer = Timer.new()
 
-func _init(Mario : BrotherCB3, Luigi : BrotherCB3, Enemies : Array[Node3D], Ratings : AnimationPlayer, choosecube_visibility : Callable):
+func _init(Mario : BrotherCB3 = null, Luigi : BrotherCB3 = null, Enemies : Array[EnemyUnit] = [], Ratings : AnimationPlayer = null, choosecube_visibility : Callable = (func(): pass)):
 	mario_variable = Mario
 	luigi_variable = Luigi
 	enemies_variable = Enemies
@@ -87,10 +87,11 @@ func shake_object(node : Node3D, power : float, sec : float):
 		await Globals.wait(0.001)
 	node.position = og_pos
 
+static var debugger = DebugDraw3D.new()
 
 #region Jump Manual
 func _jump_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSprite3D):
-	var animation_speed = (1.1)**-1
+	var animation_speed = (1.0)**-1
 	animation_timer.start(1.5*animation_speed)
 	var total_time = 1.5
 	var progression = 0
@@ -133,8 +134,8 @@ func _jump_manual_animation(enemy_position: Vector3, enemy_sprite : AnimatedSpri
 		if (progression > jump_minimal_window and progression < jump_maximal_window and not does_have_result):
 			if step == 2:
 				step = 3
-				action_brother.position.x = enemy_position.x
-				action_brother.position.z = enemy_position.z
+				#action_brother.position.x = enemy_position.x
+				#action_brother.position.z = enemy_position.z
 				action_brother.animated_sprite.play(&"jump_on_enemy")
 			result = jump_check_hit(progression,jump_minimal_good_window,jump_maximal_good_window)
 			if result:
@@ -624,7 +625,7 @@ func _hammer_good():
 
 func _hammer_excellent():
 	audio_player.pitch_scale = 1.1
-	(get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.position + Vector3(0,0.7,1)
+	(get_viewport().get_camera_3d() as BattleCamera).cur_transform = CameraTransform.new(Globals.cur_brother.position + Vector3(0.2,0.3,1.5), Vector3(-0.38, 0, 0), 50)
 	_play_audio(preload("res://Assets/SFX/hammershine.wav"))
 	for o in range(4):
 		Globals.cur_brother.animated_sprite.play(&"hammer_charged")
@@ -636,8 +637,9 @@ func _hammer_excellent():
 	_play_audio(hammer_hit)
 	show_damage(20, enemies_variable[0].position + Vector3(0.1 + randf() / 5., -0.3 + randf() / 5., 0), DamageAnouncerTexture.BackGroundTexture.DAMAGE)
 	ratings_variable.play(&"Excellent")
+	cur_enemy_sprite.play(&"damage")
 	shake_object(cur_enemy_sprite,0.07,0.4)
-	(get_viewport().get_camera_3d() as BattleCamera).shake_camera(0.1,0.3)
+	(get_viewport().get_camera_3d() as BattleCamera).shake_camera(0.05,0.1)
 
 	for o in range(3):
 		Globals.cur_brother.animated_sprite.play(&"hammer_attack_stand")
@@ -645,7 +647,8 @@ func _hammer_excellent():
 	Globals.cur_brother.animated_sprite.play(&"hammer_stop")
 	await Globals.cur_brother.animated_sprite.animation_finished
 	await Globals.wait(0.1)
-	(get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.bro.camera_position
+	# Refactor : (get_viewport().get_camera_3d() as BattleCamera).target_position = Globals.cur_brother.bro.camera_position
+	(get_viewport().get_camera_3d() as BattleCamera).cur_transform = CameraTransform.new(Vector3(1, 1.5, 3.2), Vector3(-0.36, 0, 0), 50)
 	Globals.cur_brother.animated_sprite.play(&"walking")
 	Globals.cur_brother.animated_sprite.flip_h = true
 	_play_audio(SFX.RUN)

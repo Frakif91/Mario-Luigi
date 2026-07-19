@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://jntlvgyqrksk"]
+[gd_scene format=3 uid="uid://jntlvgyqrksk"]
 
 [ext_resource type="Texture2D" uid="uid://cmacwq34raqa1" path="res://Assets/Battle UI.png" id="1_ddoss"]
-[ext_resource type="Script" path="res://Godot/Scripts/item_list.gd" id="1_hiyf0"]
+[ext_resource type="Script" uid="uid://bpreexylprvkv" path="res://Godot/Scripts/item_list.gd" id="1_hiyf0"]
 [ext_resource type="PackedScene" uid="uid://bddq6rk2blxqw" path="res://Godot/Nodes/item_template.tscn" id="3_dwlib"]
 [ext_resource type="Texture2D" uid="uid://db7uos7s8j5rp" path="res://Assets/3DS - Mario & Luigi Dream Team - Text Box.png" id="4_hrolo"]
 [ext_resource type="Texture2D" uid="uid://dwiad5hmtb41q" path="res://Assets/Battle UI Paper Mario.png" id="5_5k8gh"]
@@ -37,7 +37,7 @@ font_size = 21
 outline_size = 10
 outline_color = Color(0, 0.211601, 0.394675, 1)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1057253521]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,14 +46,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hiyf0")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=689620039]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 148.0
 offset_right = 1037.0
 offset_bottom = 500.0
 
-[node name="BagageBackgroundTexture" type="TextureRect" parent="."]
+[node name="BagageBackgroundTexture" type="TextureRect" parent="." unique_id=1881829464]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.9
@@ -68,7 +68,7 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = SubResource("AtlasTexture_v6xj1")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BagageBackgroundTexture"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BagageBackgroundTexture" unique_id=1436246051]
 custom_minimum_size = Vector2(454, 282)
 layout_mode = 1
 anchors_preset = -1
@@ -84,21 +84,21 @@ horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 scroll_deadzone = 4
 
-[node name="ItemList" type="BoxContainer" parent="BagageBackgroundTexture/ScrollContainer"]
+[node name="ItemList" type="BoxContainer" parent="BagageBackgroundTexture/ScrollContainer" unique_id=54452451]
 clip_contents = true
 layout_mode = 2
 vertical = true
 
-[node name="ItemObject" parent="BagageBackgroundTexture/ScrollContainer/ItemList" instance=ExtResource("3_dwlib")]
+[node name="ItemObject" parent="BagageBackgroundTexture/ScrollContainer/ItemList" unique_id=558754234 instance=ExtResource("3_dwlib")]
 layout_mode = 2
 
-[node name="ItemObject2" parent="BagageBackgroundTexture/ScrollContainer/ItemList" instance=ExtResource("3_dwlib")]
+[node name="ItemObject2" parent="BagageBackgroundTexture/ScrollContainer/ItemList" unique_id=1827219241 instance=ExtResource("3_dwlib")]
 layout_mode = 2
 
-[node name="ItemObject3" parent="BagageBackgroundTexture/ScrollContainer/ItemList" instance=ExtResource("3_dwlib")]
+[node name="ItemObject3" parent="BagageBackgroundTexture/ScrollContainer/ItemList" unique_id=186036880 instance=ExtResource("3_dwlib")]
 layout_mode = 2
 
-[node name="ArrowUp" type="TextureRect" parent="BagageBackgroundTexture"]
+[node name="ArrowUp" type="TextureRect" parent="BagageBackgroundTexture" unique_id=948841752]
 texture_filter = 3
 layout_mode = 0
 offset_left = 15.0
@@ -108,7 +108,7 @@ offset_bottom = 80.0
 scale = Vector2(0.7, 0.7)
 texture = SubResource("AtlasTexture_kdp6p")
 
-[node name="ArrowDown" type="TextureRect" parent="BagageBackgroundTexture"]
+[node name="ArrowDown" type="TextureRect" parent="BagageBackgroundTexture" unique_id=134112641]
 texture_filter = 3
 layout_mode = 0
 offset_left = 15.0
@@ -118,7 +118,7 @@ offset_bottom = 330.0
 scale = Vector2(0.7, 0.7)
 texture = SubResource("AtlasTexture_k8cfm")
 
-[node name="Pointing-finger" type="TextureRect" parent="BagageBackgroundTexture"]
+[node name="Pointing-finger" type="TextureRect" parent="BagageBackgroundTexture" unique_id=1427858406]
 texture_filter = 1
 layout_mode = 0
 offset_left = -11.9999
@@ -127,7 +127,7 @@ offset_right = 38.0001
 offset_bottom = 61.0
 texture = SubResource("AtlasTexture_2pjvg")
 
-[node name="TextureRect" type="TextureRect" parent="BagageBackgroundTexture"]
+[node name="TextureRect" type="TextureRect" parent="BagageBackgroundTexture" unique_id=893938802]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.00852
@@ -137,10 +137,9 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("AtlasTexture_38fhq")
 expand_mode = 5
-stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Control" parent="BagageBackgroundTexture/TextureRect"]
+[node name="Control" type="Control" parent="BagageBackgroundTexture/TextureRect" unique_id=1087961353]
 clip_children = 1
 clip_contents = true
 anchors_preset = 0
@@ -150,7 +149,7 @@ offset_right = 512.0
 offset_bottom = 51.0
 mouse_filter = 2
 
-[node name="Description" type="Label" parent="BagageBackgroundTexture/TextureRect/Control"]
+[node name="Description" type="Label" parent="BagageBackgroundTexture/TextureRect/Control" unique_id=1071525688]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 5.0
@@ -159,9 +158,9 @@ offset_bottom = 34.0
 text = " Put cursor on item to see description"
 label_settings = SubResource("LabelSettings_tjvpy")
 
-[node name="Marker2D" type="Marker2D" parent="BagageBackgroundTexture/TextureRect"]
+[node name="Marker2D" type="Marker2D" parent="BagageBackgroundTexture/TextureRect" unique_id=760917723]
 position = Vector2(64.0001, 20)
 
-[node name="Select" type="AudioStreamPlayer" parent="."]
+[node name="Select" type="AudioStreamPlayer" parent="." unique_id=1516640268]
 stream = ExtResource("6_dal7h")
 pitch_scale = 0.53

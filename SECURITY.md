@@ -7,6 +7,8 @@ All versions contain the policy shown below:
 | Version | Supported          |
 | ------- | ------------------ |
 | 0.0.1   | :white_check_mark: |
+| Huh ?   | :x:                |
+Who verify code nowadays ?
 
 ## Reporting a Vulnerability
 
